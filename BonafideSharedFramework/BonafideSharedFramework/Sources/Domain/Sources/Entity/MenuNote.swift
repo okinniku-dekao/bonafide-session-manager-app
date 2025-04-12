@@ -10,7 +10,8 @@ public struct MenuNote: Equatable, Identifiable, Hashable {
     public let menu: Menu
     public let memo: String
     
-    public init(menu: Menu, memo: String) {
+    public init(id: String, menu: Menu, memo: String) {
+        self.id = id
         self.menu = menu
         self.memo = memo
     }
