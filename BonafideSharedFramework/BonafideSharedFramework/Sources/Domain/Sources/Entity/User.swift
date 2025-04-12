@@ -49,3 +49,9 @@ public struct User: Identifiable, Equatable {
         self.sessions = sessions
     }
 }
+
+public extension User {
+    func validation() throws(DomainError) {
+        guard !name.isEmpty else { throw DomainError.validation(.invalidUserName) }
+    }
+}
