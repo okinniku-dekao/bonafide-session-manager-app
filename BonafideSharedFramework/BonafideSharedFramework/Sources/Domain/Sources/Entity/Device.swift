@@ -24,6 +24,3 @@ public struct Device: Identifiable, Equatable {
         self.store = store
     }
 }
-
-
-
