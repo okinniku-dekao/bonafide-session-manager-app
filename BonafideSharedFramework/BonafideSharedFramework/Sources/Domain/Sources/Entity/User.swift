@@ -16,9 +16,9 @@ public struct User: Identifiable, Equatable {
     public let isReviewed: Bool
     public let goal: String
     public let note: String
-    public let store: String
+    public let store: Store
     public let trainingMemo: String
-    public let menus: [Menu]
+    public let menus: [MenuNote]
     public let sessions: [Session]
     
     public init(
@@ -30,9 +30,9 @@ public struct User: Identifiable, Equatable {
         isReviewed: Bool,
         goal: String,
         note: String,
-        store: String,
+        store: Store,
         trainingMemo: String,
-        menus: [Menu],
+        menus: [MenuNote],
         sessions: [Session]
     ) {
         self.id = id
