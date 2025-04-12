@@ -7,19 +7,5 @@
 
 
 public protocol FetchDeviceUsecase {
-    func callAsFunction() -> [Device]
-}
-
-public protocol DeleteDeviceUsecase {
-    func callAsFunction(deviceId: String) async throws
-}
-
-
-
-public protocol DeviceRepository {
-    func register(device: Device) async throws
-    func delete(deviceId: String) async throws
-    func update(device: Device) async throws
-    func fetchAll() async throws -> [Device]
-    func fetchAll(for store: Store) async throws -> [Device]
+    func callAsFunction(for store: Store?) async throws -> [Device]
 }
