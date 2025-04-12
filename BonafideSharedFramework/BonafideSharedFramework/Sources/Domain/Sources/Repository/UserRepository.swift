@@ -11,4 +11,5 @@ public protocol UserRepository {
     func update(_ user: User) async throws
     func delete(_ userId: String) async throws
     func fetchAll() async throws -> [User]
+    func fetchAll(for store: Store) async throws -> [User]
 }
