@@ -25,9 +25,26 @@
 		868F9B6B2DAA7A9E00EA66A2 /* BonafideSharedFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BonafideSharedFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		868F9BAA2DAA7E1300EA66A2 /* Exceptions for "BonafideSharedFramework" folder in "BonafideSharedFramework" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Sources/Data,
+				Sources/Domain,
+				Sources/Infrastructure,
+				Sources/Resources,
+				Sources/Usecase,
+			);
+			target = 868F9B612DAA7A9E00EA66A2 /* BonafideSharedFramework */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		868F9B642DAA7A9E00EA66A2 /* BonafideSharedFramework */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				868F9BAA2DAA7E1300EA66A2 /* Exceptions for "BonafideSharedFramework" folder in "BonafideSharedFramework" target */,
+			);
 			path = BonafideSharedFramework;
 			sourceTree = "<group>";
 		};

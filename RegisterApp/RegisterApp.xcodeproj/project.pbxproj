@@ -31,6 +31,7 @@
 		7B62CD642D76EB0200408FDF /* RegisterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegisterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62CD742D76EB0400408FDF /* RegisterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegisterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62CD7E2D76EB0400408FDF /* RegisterAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegisterAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		868F9BAF2DAA7E9F00EA66A2 /* BonafideSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BonafideSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -119,6 +120,7 @@
 		7B62CDC52D76F22100408FDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				868F9BAF2DAA7E9F00EA66A2 /* BonafideSharedFramework.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
