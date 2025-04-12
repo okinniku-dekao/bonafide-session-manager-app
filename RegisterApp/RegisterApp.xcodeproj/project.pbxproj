@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7B62CDC72D76F22100408FDF /* AppRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7B62CDC62D76F22100408FDF /* AppRootFeature */; };
+		868F9BB42DAA7ED000EA66A2 /* BonafideSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868F9BB32DAA7ED000EA66A2 /* BonafideSharedFramework.framework */; };
+		868F9BB52DAA7ED000EA66A2 /* BonafideSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 868F9BB32DAA7ED000EA66A2 /* BonafideSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,11 +29,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		868F9BB62DAA7ED000EA66A2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				868F9BB52DAA7ED000EA66A2 /* BonafideSharedFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7B62CD642D76EB0200408FDF /* RegisterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegisterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62CD742D76EB0400408FDF /* RegisterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegisterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62CD7E2D76EB0400408FDF /* RegisterAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegisterAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		868F9BAF2DAA7E9F00EA66A2 /* BonafideSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BonafideSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		868F9BB32DAA7ED000EA66A2 /* BonafideSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BonafideSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -75,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				868F9BB42DAA7ED000EA66A2 /* BonafideSharedFramework.framework in Frameworks */,
 				7B62CDC72D76F22100408FDF /* AppRootFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +138,7 @@
 		7B62CDC52D76F22100408FDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				868F9BB32DAA7ED000EA66A2 /* BonafideSharedFramework.framework */,
 				868F9BAF2DAA7E9F00EA66A2 /* BonafideSharedFramework.framework */,
 			);
 			name = Frameworks;
@@ -135,6 +154,7 @@
 				7B62CD602D76EB0200408FDF /* Sources */,
 				7B62CD612D76EB0200408FDF /* Frameworks */,
 				7B62CD622D76EB0200408FDF /* Resources */,
+				868F9BB62DAA7ED000EA66A2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
