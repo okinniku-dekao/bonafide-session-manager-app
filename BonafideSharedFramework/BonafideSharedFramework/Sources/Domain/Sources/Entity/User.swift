@@ -10,8 +10,8 @@ import Foundation
 public struct User: Identifiable, Equatable {
     public let id: String
     public let name: String
-    public let birthdate: Date
-    public let joinDate: Date
+    public let birthdate: Date?
+    public let joinDate: Date?
     public let isInstaFollowed: Bool
     public let isReviewed: Bool
     public let goal: String
@@ -24,8 +24,8 @@ public struct User: Identifiable, Equatable {
     public init(
         id: String,
         name: String,
-        birthdate: Date,
-        joinDate: Date,
+        birthdate: Date?,
+        joinDate: Date?,
         isInstaFollowed: Bool,
         isReviewed: Bool,
         goal: String,
