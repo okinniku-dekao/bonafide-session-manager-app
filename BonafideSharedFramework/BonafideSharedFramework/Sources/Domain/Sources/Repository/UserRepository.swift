@@ -7,8 +7,8 @@
 
 
 public protocol UserRepository {
-    func register(user: User) async throws
-    func update(user: User) async throws
-    func delete(userId: String) async throws
+    func register(_ user: User) async throws
+    func update(_ user: User) async throws
+    func delete(_ userId: String) async throws
     func fetchAll() async throws -> [User]
 }
