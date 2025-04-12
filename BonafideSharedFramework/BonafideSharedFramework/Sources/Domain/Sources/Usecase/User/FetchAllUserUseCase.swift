@@ -7,5 +7,5 @@
 
 
 public protocol FetchAllUserUseCase {
-    func callAsFunction() async throws -> [User]
+    func callAsFunction(for store: Store?) async throws -> [User]
 }
