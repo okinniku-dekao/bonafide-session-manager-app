@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:BonafideSharedFramework/BonafideSharedFramework.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:RegisterApp/RegisterApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ManagementApp/ManagementApp.xcodeproj">
+   </FileRef>
 </Workspace>
