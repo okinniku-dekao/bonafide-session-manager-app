@@ -5,7 +5,7 @@
 //  Created by 東　秀斗 on 2025/04/12.
 //
 
-public struct Menu: Equatable, Identifiable {
+public struct Menu: Equatable, Identifiable, Hashable {
     public let id: String
     public let name: String
     public let number: Int
