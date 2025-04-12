@@ -7,5 +7,5 @@
 
 
 public protocol DeleteDeviceUseCase {
-    func callAsFunction(deviceId: String) async throws
+    func callAsFunction(deviceId: String) async throws(DomainError)
 }

@@ -7,5 +7,5 @@
 
 
 public protocol DeleteWeightUseCase {
-    func callAsFunction(_ weightId: String) async throws
+    func callAsFunction(_ weightId: String) async throws(DomainError)
 }

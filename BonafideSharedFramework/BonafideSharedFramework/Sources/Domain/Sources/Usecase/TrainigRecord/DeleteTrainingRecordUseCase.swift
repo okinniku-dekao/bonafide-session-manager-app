@@ -7,5 +7,5 @@
 
 
 public protocol DeleteTrainingRecordUseCase {
-    func callAsFunction(userId: String, recordId: String) async throws
+    func callAsFunction(userId: String, recordId: String) async throws(DomainError)
 }

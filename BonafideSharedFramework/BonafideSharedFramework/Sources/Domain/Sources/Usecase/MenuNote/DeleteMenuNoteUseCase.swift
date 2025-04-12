@@ -7,5 +7,5 @@
 
 
 public protocol DeleteMenuNoteUseCase {
-    func callAsFunction(_ menuNoteId: String) async throws
+    func callAsFunction(_ menuNoteId: String) async throws(DomainError)
 }

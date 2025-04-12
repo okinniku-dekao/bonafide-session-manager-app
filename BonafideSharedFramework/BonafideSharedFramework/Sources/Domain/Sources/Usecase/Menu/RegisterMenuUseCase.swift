@@ -7,5 +7,5 @@
 
 
 public protocol RegisterMenuUseCase {
-    func callAsFunction(_ menu: Menu) async throws
+    func callAsFunction(_ menu: Menu) async throws(DomainError)
 }

@@ -7,5 +7,5 @@
 
 
 public protocol RegisterWeightUseCase {
-    func callAsFunction(_ weight: Weight) async throws
+    func callAsFunction(_ weight: Weight) async throws(DomainError)
 }

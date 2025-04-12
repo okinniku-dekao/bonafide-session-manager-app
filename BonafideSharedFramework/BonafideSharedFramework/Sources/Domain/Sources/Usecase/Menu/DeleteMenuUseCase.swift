@@ -7,5 +7,5 @@
 
 
 public protocol DeleteMenuUseCase {
-    func callAsFunction(_ menuId: String) async throws
+    func callAsFunction(_ menuId: String) async throws(DomainError)
 }

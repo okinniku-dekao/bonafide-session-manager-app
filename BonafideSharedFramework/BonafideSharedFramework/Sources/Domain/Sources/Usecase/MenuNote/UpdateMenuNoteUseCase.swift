@@ -7,5 +7,5 @@
 
 
 public protocol UpdateMenuNoteUseCase {
-    func callAsFunction(_ menuNote: MenuNote) async throws
+    func callAsFunction(_ menuNote: MenuNote) async throws(DomainError)
 }

@@ -7,5 +7,5 @@
 
 
 public protocol UpdateDeviceUseCase {
-    func callAsFunction(_ device: Device) async throws
+    func callAsFunction(_ device: Device) async throws(DomainError)
 }

@@ -7,5 +7,5 @@
 
 
 public protocol FetchAllSessionUseCase {
-    func callAsFunction(userId: String) async throws -> [Session]
+    func callAsFunction(userId: String) async throws(DomainError) -> [Session]
 }

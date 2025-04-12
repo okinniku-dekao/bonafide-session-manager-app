@@ -7,5 +7,5 @@
 
 
 public protocol FetchAllWeightUseCase {
-    func callAsFunction() async throws -> [Weight]
+    func callAsFunction() async throws(DomainError) -> [Weight]
 }

@@ -7,5 +7,5 @@
 
 
 public protocol UpdateUserUseCase {
-    func callAsFunction(_ user: User) async throws
+    func callAsFunction(_ user: User) async throws(DomainError)
 }

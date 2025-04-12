@@ -7,5 +7,5 @@
 
 
 public protocol FetchAllTrainingRecordUseCase {
-    func callAsFunction(_ userId: String) async throws -> [TrainingRecord]
+    func callAsFunction(_ userId: String) async throws(DomainError) -> [TrainingRecord]
 }

@@ -7,5 +7,5 @@
 
 
 public protocol FetchAllDeviceUseCase {
-    func callAsFunction(for store: Store?) async throws -> [Device]
+    func callAsFunction(for store: Store?) async throws(DomainError) -> [Device]
 }

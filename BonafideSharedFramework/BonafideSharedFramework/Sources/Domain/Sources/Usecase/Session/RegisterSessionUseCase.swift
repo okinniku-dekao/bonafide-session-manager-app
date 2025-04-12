@@ -7,5 +7,5 @@
 
 
 public protocol RegisterSessionUseCase {
-    func callAsFunction(userId: String, sessions: [Session]) async throws
+    func callAsFunction(userId: String, sessions: [Session]) async throws(DomainError)
 }

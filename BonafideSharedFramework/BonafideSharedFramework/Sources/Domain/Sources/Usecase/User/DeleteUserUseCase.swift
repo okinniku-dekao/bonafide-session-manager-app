@@ -7,5 +7,5 @@
 
 
 public protocol DeleteUserUseCase {
-    func callAsFunction(_ userId: String) async throws
+    func callAsFunction(_ userId: String) async throws(DomainError)
 }

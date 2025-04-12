@@ -7,5 +7,5 @@
 
 
 public protocol RegisterTrainingRecordUseCase {
-    func callAsFunction(userId: String, trainingRecord: TrainingRecord) async throws
+    func callAsFunction(userId: String, trainingRecord: TrainingRecord) async throws(DomainError)
 }

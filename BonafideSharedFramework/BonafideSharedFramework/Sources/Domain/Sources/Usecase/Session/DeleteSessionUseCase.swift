@@ -7,5 +7,5 @@
 
 
 public protocol DeleteSessionUseCase {
-    func callAsFunction(userId: String, sessionIds: [String]) async throws
+    func callAsFunction(userId: String, sessionIds: [String]) async throws(DomainError)
 }
