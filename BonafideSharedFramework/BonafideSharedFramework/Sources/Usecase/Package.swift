@@ -19,7 +19,8 @@ let package = Package(
             name: "Usecase",
             dependencies: [
                 "Domain"
-            ]
+            ],
+            path: "Sources"
         ),
         .testTarget(
             name: "UsecaseTests",
