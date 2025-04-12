@@ -7,7 +7,7 @@
 
 
 public protocol SessionRepository {
-    func register(userId: String, sessions: [Session]) async throws
-    func delete(userId: String, sessionIds: [String]) async throws
-    func fetchAll(userId: String) async throws -> [Session]
+    func register(userId: String, sessions: [Session]) async throws(DomainError)
+    func delete(userId: String, sessionIds: [String]) async throws(DomainError)
+    func fetchAll(userId: String) async throws(DomainError) -> [Session]
 }

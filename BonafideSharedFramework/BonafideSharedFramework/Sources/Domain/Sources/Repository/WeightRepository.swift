@@ -7,8 +7,8 @@
 
 
 public protocol WeightRepository {
-    func register(_ weight: Weight) async throws
-    func delete(_ weightId: String) async throws
-    func update(_ weight: Weight) async throws
-    func fetchAll() async throws -> [Weight]
+    func register(_ weight: Weight) async throws(DomainError)
+    func delete(_ weightId: String) async throws(DomainError)
+    func update(_ weight: Weight) async throws(DomainError)
+    func fetchAll() async throws(DomainError) -> [Weight]
 }

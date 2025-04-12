@@ -7,9 +7,9 @@
 
 
 public protocol UserRepository {
-    func register(_ user: User) async throws
-    func update(_ user: User) async throws
-    func delete(_ userId: String) async throws
-    func fetchAll() async throws -> [User]
-    func fetchAll(for store: Store) async throws -> [User]
+    func register(_ user: User) async throws(DomainError)
+    func update(_ user: User) async throws(DomainError)
+    func delete(_ userId: String) async throws(DomainError)
+    func fetchAll() async throws(DomainError) -> [User]
+    func fetchAll(for store: Store) async throws(DomainError) -> [User]
 }

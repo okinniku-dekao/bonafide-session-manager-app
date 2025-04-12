@@ -7,9 +7,9 @@
 
 
 public protocol DeviceRepository {
-    func register(_ device: Device) async throws
-    func delete(_ deviceId: String) async throws
-    func update(_ device: Device) async throws
-    func fetchAll() async throws -> [Device]
-    func fetchAll(for store: Store) async throws -> [Device]
+    func register(_ device: Device) async throws(DomainError)
+    func delete(_ deviceId: String) async throws(DomainError)
+    func update(_ device: Device) async throws(DomainError)
+    func fetchAll() async throws(DomainError) -> [Device]
+    func fetchAll(for store: Store) async throws(DomainError) -> [Device]
 }

@@ -7,7 +7,7 @@
 
 
 public protocol TrainingRecordRepository {
-    func register(userId: String, trainingRecord: TrainingRecord) async throws
-    func delete(userId: String, trainingRecordId: String) async throws
-    func fetchAll(_ userId: String) async throws -> [TrainingRecord]
+    func register(userId: String, trainingRecord: TrainingRecord) async throws(DomainError)
+    func delete(userId: String, trainingRecordId: String) async throws(DomainError)
+    func fetchAll(_ userId: String) async throws(DomainError) -> [TrainingRecord]
 }
