@@ -7,4 +7,4 @@
 
 import Infrastructure
 
-enum DataStoreError: Equatable, Error {}
+public enum DataStoreError: Equatable, Error {}
