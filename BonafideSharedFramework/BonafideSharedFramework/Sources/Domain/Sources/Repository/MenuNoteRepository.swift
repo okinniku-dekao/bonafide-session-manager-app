@@ -7,8 +7,8 @@
 
 
 public protocol MenuNoteRepository {
-    func register(_ menuNote: MenuNote) async throws(DomainError)
-    func delete(_ menuNoteId: String) async throws(DomainError)
-    func update(_ menuNote: MenuNote) async throws(DomainError)
-    func fetchAll() async throws(DomainError) -> [MenuNote]
+    func register(userId: String, menuNote: MenuNote) async throws(DomainError)
+    func delete(userId: String, menuNoteId: String) async throws(DomainError)
+    func update(userId: String, menuNote: MenuNote) async throws(DomainError)
+    func fetchAll(userId: String) async throws(DomainError) -> [MenuNote]
 }

@@ -7,5 +7,5 @@
 
 
 public protocol FetchAllMenuNoteUseCase {
-    func callAsFunction() async throws(DomainError) -> [MenuNote]
+    func callAsFunction(userId: String) async throws(DomainError) -> [MenuNote]
 }
