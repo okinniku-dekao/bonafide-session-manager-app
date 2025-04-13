@@ -21,5 +21,6 @@ let package = Package(
             name: "UIComponentsTests",
             dependencies: ["UIComponents"]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

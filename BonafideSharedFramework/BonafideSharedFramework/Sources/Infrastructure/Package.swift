@@ -28,5 +28,6 @@ let package = Package(
             name: "InfrastructureTests",
             dependencies: ["Infrastructure"]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

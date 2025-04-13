@@ -21,11 +21,12 @@ let package = Package(
             dependencies: [
                 "Domain"
             ],
-            path: "Sources"
+            path: "Sources",
         ),
         .testTarget(
             name: "DataTests",
             dependencies: ["Data"]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

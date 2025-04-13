@@ -21,5 +21,6 @@ let package = Package(
             name: "CompositionTests",
             dependencies: ["Composition"]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

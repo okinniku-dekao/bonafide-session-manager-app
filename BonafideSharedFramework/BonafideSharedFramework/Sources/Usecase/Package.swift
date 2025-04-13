@@ -26,5 +26,6 @@ let package = Package(
             name: "UsecaseTests",
             dependencies: ["Usecase"]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )
