@@ -19,10 +19,10 @@ public struct MenuNoteDTO: Identifiable, Codable, Equatable, Hashable {
         self.memo = memo
     }
     
-    public func toDomain() -> MenuNote {
+    public var toDomain: MenuNote {
         return MenuNote(
             id: id,
-            menu: menu.toDomain(),
+            menu: menu.toDomain,
             memo: memo
         )
     }

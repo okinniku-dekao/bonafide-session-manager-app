@@ -13,7 +13,7 @@ public enum StoreDTO: String, Codable, Equatable, CaseIterable {
     case owada
     case yonematsu
     
-    public func toDomain() -> Store {
+    public var toDomain: Store {
         switch self {
         case .seiwa:
             return .seiwa

@@ -21,7 +21,7 @@ public struct WeightDTO: Identifiable, Codable, Equatable, Hashable {
         self.value = value
     }
     
-    public func toDomain() -> Weight {
+    public var toDomain: Weight {
         return Weight(
             id: id,
             name: name,

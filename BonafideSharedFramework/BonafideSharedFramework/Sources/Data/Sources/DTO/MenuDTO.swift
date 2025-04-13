@@ -21,7 +21,7 @@ public struct MenuDTO: Identifiable, Codable, Equatable, Hashable {
         self.path = path
     }
     
-    public func toDomain() -> Menu {
+    public var toDomain: Menu {
         return Menu(
             id: id,
             name: name,

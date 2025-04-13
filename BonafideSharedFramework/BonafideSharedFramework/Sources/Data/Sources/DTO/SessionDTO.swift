@@ -25,7 +25,7 @@ public struct SessionDTO: Identifiable, Codable, Equatable {
         self.tool = tool
     }
     
-    public func toDomain() -> Session {
+    public var toDomain: Session {
         return Session(
             id: id,
             name: name,

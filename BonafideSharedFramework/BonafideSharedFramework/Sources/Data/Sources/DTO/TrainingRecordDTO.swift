@@ -44,7 +44,7 @@ public struct TrainingRecordDTO: Identifiable, Codable, Equatable {
         self.usedItems = usedItems
     }
     
-    public func toDomain() -> TrainingRecord {
+    public var toDomain: TrainingRecord {
         return TrainingRecord(
             id: id,
             dateTime: dateTime,

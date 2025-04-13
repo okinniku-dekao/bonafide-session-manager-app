@@ -50,7 +50,7 @@ public struct UserDTO: Identifiable, Codable, Equatable {
         self.sessions = sessions
     }
     
-    public func toDomain() -> User {
+    public var toDomain: User {
         return User(
             id: id,
             name: name,
@@ -60,10 +60,10 @@ public struct UserDTO: Identifiable, Codable, Equatable {
             isReviewed: isReviewed,
             goal: goal,
             note: note,
-            store: store.toDomain(),
+            store: store.toDomain,
             trainingMemo: trainingMemo,
-            menus: menus.map { $0.toDomain() },
-            sessions: sessions.map { $0.toDomain() }
+            menus: menus.map { $0.toDomain },
+            sessions: sessions.map { $0.toDomain }
         )
     }
     

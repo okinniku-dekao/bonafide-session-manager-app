@@ -25,14 +25,14 @@ public struct DeviceDTO: Identifiable, Codable, Equatable {
         self.store = store
     }
     
-    public func toDomain() -> Device {
+    public var toDomain: Device {
         return Device(
             id: id,
             deviceName: deviceName,
             connectedUserId: connectedUserId,
             isActive: isActive,
             registeredAt: registeredAt,
-            store: store.toDomain()
+            store: store.toDomain
         )
     }
     
