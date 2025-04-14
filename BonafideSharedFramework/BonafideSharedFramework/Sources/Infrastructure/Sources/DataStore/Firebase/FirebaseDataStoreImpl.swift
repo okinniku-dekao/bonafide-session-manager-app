@@ -38,6 +38,12 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    public func fetchDeviceDetail(_ deviceId: String) async throws(DataStoreError) -> DeviceDTO {
+        try await handle {
+            try await db.collection(Key.devices).document(deviceId).getDocument().data(as: DeviceDTO.self)
+        }
+    }
+    
     public func registerMenuNote(userId: String, menuNoteDTO: MenuNoteDTO) async throws(DataStoreError) {
         try await handle {
             try await db.collection(Key.users).document(userId).setData(["menus": FieldValue.arrayUnion([menuNoteDTO])], merge: true)

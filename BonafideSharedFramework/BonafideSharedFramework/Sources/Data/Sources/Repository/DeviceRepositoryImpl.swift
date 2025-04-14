@@ -56,4 +56,12 @@ public struct DeviceRepositoryImpl: DeviceRepository {
             throw DomainError(from: error)
         }
     }
+    
+    public func fetchDetail(deviceId: String) async throws(DomainError) -> Device {
+        do {
+            return try await firebaseDataStore.fetchDeviceDetail(deviceId).toDomain
+        } catch {
+            throw DomainError(from: error)
+        }
+    }
 }

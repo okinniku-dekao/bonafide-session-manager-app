@@ -11,6 +11,7 @@ public protocol FirebaseDataStore {
     func deleteDevice(_ deviceId: String) async throws(DataStoreError)
     func updateDevice(_ device: DeviceDTO) async throws(DataStoreError)
     func fetchAllDevice() async throws(DataStoreError) -> [DeviceDTO]
+    func fetchDeviceDetail(_ deviceId: String) async throws(DataStoreError) -> DeviceDTO
     
     // MARK: - MenuNote
     func registerMenuNote(userId: String, menuNoteDTO: MenuNoteDTO) async throws(DataStoreError)
