@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public struct WeightDTO: Identifiable, Codable, Equatable, Hashable {
+public struct WeightDTO: Identifiable, Codable, Equatable, Hashable, Sendable {
     public let id: String
     public let name: String
     public let color: Int

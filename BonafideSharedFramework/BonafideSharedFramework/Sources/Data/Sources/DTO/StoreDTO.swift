@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public enum StoreDTO: String, Codable, Equatable, CaseIterable {
+public enum StoreDTO: String, Codable, Equatable, CaseIterable, Sendable {
     case seiwa
     case owada
     case yonematsu

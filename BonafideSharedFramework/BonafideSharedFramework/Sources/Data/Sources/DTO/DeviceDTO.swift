@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public struct DeviceDTO: Identifiable, Codable, Equatable {
+public struct DeviceDTO: Identifiable, Codable, Equatable, Sendable {
     public let id: String
     public let deviceName: String
     public let connectedUserId: String

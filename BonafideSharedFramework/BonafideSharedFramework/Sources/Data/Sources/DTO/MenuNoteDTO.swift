@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public struct MenuNoteDTO: Identifiable, Codable, Equatable, Hashable {
+public struct MenuNoteDTO: Identifiable, Codable, Equatable, Hashable, Sendable {
     public let id: String
     public let menu: MenuDTO
     public let memo: String

@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public struct UserDTO: Identifiable, Codable, Equatable {
+public struct UserDTO: Identifiable, Codable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let birthdate: Date?

@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public struct SessionDTO: Identifiable, Codable, Equatable {
+public struct SessionDTO: Identifiable, Codable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let note: String

@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public struct TrainingRecordDTO: Identifiable, Codable, Equatable {
+public struct TrainingRecordDTO: Identifiable, Codable, Equatable, Sendable {
     public let id: String
     public let dateTime: Date
     public let durationInSeconds: Int?
