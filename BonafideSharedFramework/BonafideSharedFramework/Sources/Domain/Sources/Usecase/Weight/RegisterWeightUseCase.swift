@@ -6,6 +6,6 @@
 //
 
 
-public protocol RegisterWeightUseCase {
+public protocol RegisterWeightUseCase: Sendable {
     func callAsFunction(_ weight: Weight) async throws(DomainError)
 }

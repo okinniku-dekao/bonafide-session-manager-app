@@ -6,6 +6,6 @@
 //
 
 
-public protocol UpdateMenuNoteUseCase {
+public protocol UpdateMenuNoteUseCase: Sendable {
     func callAsFunction(userId: String, menuNote: MenuNote) async throws(DomainError)
 }

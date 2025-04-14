@@ -6,6 +6,6 @@
 //
 
 
-public protocol DeleteSessionUseCase {
+public protocol DeleteSessionUseCase: Sendable{
     func callAsFunction(userId: String, sessionIds: [String]) async throws(DomainError)
 }

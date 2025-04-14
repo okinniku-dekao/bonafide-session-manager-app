@@ -6,6 +6,6 @@
 //
 
 
-public protocol UpdateDeviceUseCase {
+public protocol UpdateDeviceUseCase: Sendable {
     func callAsFunction(_ device: Device) async throws(DomainError)
 }

@@ -6,7 +6,7 @@
 //
 
 
-public protocol DeviceRepository {
+public protocol DeviceRepository: Sendable {
     func register(_ device: Device) async throws(DomainError)
     func delete(_ deviceId: String) async throws(DomainError)
     func update(_ device: Device) async throws(DomainError)

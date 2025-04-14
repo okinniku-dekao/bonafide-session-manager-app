@@ -6,7 +6,7 @@
 //
 
 
-public protocol SessionRepository {
+public protocol SessionRepository: Sendable {
     func register(userId: String, sessions: [Session]) async throws(DomainError)
     func delete(userId: String, sessionIds: [String]) async throws(DomainError)
     func fetchAll(userId: String) async throws(DomainError) -> [Session]

@@ -5,7 +5,7 @@
 //  Created by 東　秀斗 on 2025/04/13.
 //
 
-public protocol FirebaseDataStore {
+public protocol FirebaseDataStore: Sendable {
     // MARK: - Deivce
     func registerDevice(_ device: DeviceDTO) async throws(DataStoreError)
     func deleteDevice(_ deviceId: String) async throws(DataStoreError)

@@ -6,6 +6,6 @@
 //
 
 
-public protocol DeleteTrainingRecordUseCase {
+public protocol DeleteTrainingRecordUseCase: Sendable {
     func callAsFunction(userId: String, recordId: String) async throws(DomainError)
 }

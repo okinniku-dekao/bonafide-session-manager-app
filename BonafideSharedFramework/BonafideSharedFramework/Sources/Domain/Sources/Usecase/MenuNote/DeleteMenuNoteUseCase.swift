@@ -6,6 +6,6 @@
 //
 
 
-public protocol DeleteMenuNoteUseCase {
+public protocol DeleteMenuNoteUseCase: Sendable {
     func callAsFunction(userId: String, menuNoteId: String) async throws(DomainError)
 }

@@ -11,6 +11,8 @@ import FirebaseFirestore
 public actor FirebaseDataStoreImpl: FirebaseDataStore {
     typealias Key = FirebaseCollectionKey
     private let db = Firestore.firestore()
+    
+    public init() {}
 
     public func registerDevice(_ device: DeviceDTO) async throws(DataStoreError) {
         try await handle {

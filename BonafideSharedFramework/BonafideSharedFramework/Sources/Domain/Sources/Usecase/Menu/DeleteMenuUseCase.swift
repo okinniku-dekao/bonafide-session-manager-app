@@ -6,6 +6,6 @@
 //
 
 
-public protocol DeleteMenuUseCase {
+public protocol DeleteMenuUseCase: Sendable {
     func callAsFunction(_ menuId: String) async throws(DomainError)
 }

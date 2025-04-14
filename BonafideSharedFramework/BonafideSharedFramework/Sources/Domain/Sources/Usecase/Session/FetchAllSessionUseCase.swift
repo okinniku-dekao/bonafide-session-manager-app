@@ -6,6 +6,6 @@
 //
 
 
-public protocol FetchAllSessionUseCase {
+public protocol FetchAllSessionUseCase: Sendable {
     func callAsFunction(userId: String) async throws(DomainError) -> [Session]
 }

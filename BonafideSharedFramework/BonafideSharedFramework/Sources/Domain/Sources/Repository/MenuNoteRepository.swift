@@ -6,7 +6,7 @@
 //
 
 
-public protocol MenuNoteRepository {
+public protocol MenuNoteRepository: Sendable {
     func register(userId: String, menuNote: MenuNote) async throws(DomainError)
     func delete(userId: String, menuNoteId: String) async throws(DomainError)
     func update(userId: String, menuNote: MenuNote) async throws(DomainError)

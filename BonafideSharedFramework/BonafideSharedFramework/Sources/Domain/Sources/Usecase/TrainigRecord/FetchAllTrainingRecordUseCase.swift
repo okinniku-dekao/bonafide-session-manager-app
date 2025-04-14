@@ -6,6 +6,6 @@
 //
 
 
-public protocol FetchAllTrainingRecordUseCase {
+public protocol FetchAllTrainingRecordUseCase: Sendable {
     func callAsFunction(_ userId: String) async throws(DomainError) -> [TrainingRecord]
 }

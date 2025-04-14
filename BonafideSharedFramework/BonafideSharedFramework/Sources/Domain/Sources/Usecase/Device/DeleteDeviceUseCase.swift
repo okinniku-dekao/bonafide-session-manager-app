@@ -6,6 +6,6 @@
 //
 
 
-public protocol DeleteDeviceUseCase {
+public protocol DeleteDeviceUseCase: Sendable {
     func callAsFunction(deviceId: String) async throws(DomainError)
 }

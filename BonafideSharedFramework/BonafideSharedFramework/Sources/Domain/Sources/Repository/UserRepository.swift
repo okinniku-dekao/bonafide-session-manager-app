@@ -6,7 +6,7 @@
 //
 
 
-public protocol UserRepository {
+public protocol UserRepository: Sendable {
     func register(_ user: User) async throws(DomainError)
     func update(_ user: User) async throws(DomainError)
     func delete(_ userId: String) async throws(DomainError)

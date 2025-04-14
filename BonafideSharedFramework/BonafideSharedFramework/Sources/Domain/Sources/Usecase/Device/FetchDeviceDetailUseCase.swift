@@ -6,6 +6,6 @@
 //
 
 
-public protocol FetchDeviceDetailUseCase {
+public protocol FetchDeviceDetailUseCase: Sendable {
     func callAsFunction(deviceId: String) async throws(DomainError) -> Device
 }

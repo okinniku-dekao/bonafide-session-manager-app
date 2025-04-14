@@ -6,6 +6,6 @@
 //
 
 
-public protocol RegisterDeviceUseCase {
+public protocol RegisterDeviceUseCase: Sendable {
     func callAsFunction(_ device: Device) async throws(DomainError)
 }

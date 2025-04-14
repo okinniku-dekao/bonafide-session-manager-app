@@ -6,6 +6,6 @@
 //
 
 
-public protocol UpdateUserUseCase {
+public protocol UpdateUserUseCase: Sendable {
     func callAsFunction(_ user: User) async throws(DomainError)
 }

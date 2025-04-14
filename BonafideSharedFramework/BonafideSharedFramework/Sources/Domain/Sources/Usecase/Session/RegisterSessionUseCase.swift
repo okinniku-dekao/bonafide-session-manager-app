@@ -6,6 +6,6 @@
 //
 
 
-public protocol RegisterSessionUseCase {
+public protocol RegisterSessionUseCase: Sendable {
     func callAsFunction(userId: String, sessions: [Session]) async throws(DomainError)
 }

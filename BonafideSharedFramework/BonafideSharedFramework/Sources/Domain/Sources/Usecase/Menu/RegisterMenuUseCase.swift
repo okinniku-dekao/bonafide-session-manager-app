@@ -6,6 +6,6 @@
 //
 
 
-public protocol RegisterMenuUseCase {
+public protocol RegisterMenuUseCase: Sendable {
     func callAsFunction(_ menu: Menu) async throws(DomainError)
 }

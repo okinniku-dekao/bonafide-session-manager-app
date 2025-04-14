@@ -6,6 +6,6 @@
 //
 
 
-public protocol RegisterUserUseCase {
+public protocol RegisterUserUseCase: Sendable {
     func callAsFunction(_ user: User) async throws(DomainError)
 }

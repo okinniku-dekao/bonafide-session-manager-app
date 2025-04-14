@@ -6,6 +6,6 @@
 //
 
 
-public protocol FetchAllMenuUseCase {
+public protocol FetchAllMenuUseCase: Sendable {
     func callAsFunction() async throws(DomainError) -> [Menu]
 }

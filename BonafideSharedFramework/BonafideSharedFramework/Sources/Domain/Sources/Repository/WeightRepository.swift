@@ -6,7 +6,7 @@
 //
 
 
-public protocol WeightRepository {
+public protocol WeightRepository: Sendable {
     func register(_ weight: Weight) async throws(DomainError)
     func delete(_ weightId: String) async throws(DomainError)
     func update(_ weight: Weight) async throws(DomainError)

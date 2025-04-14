@@ -6,7 +6,7 @@
 //
 
 
-public protocol TrainingRecordRepository {
+public protocol TrainingRecordRepository: Sendable {
     func register(userId: String, trainingRecord: TrainingRecord) async throws(DomainError)
     func delete(userId: String, trainingRecordId: String) async throws(DomainError)
     func fetchAll(_ userId: String) async throws(DomainError) -> [TrainingRecord]

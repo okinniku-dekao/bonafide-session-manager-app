@@ -6,6 +6,6 @@
 //
 
 
-public protocol DeleteUserUseCase {
+public protocol DeleteUserUseCase: Sendable {
     func callAsFunction(_ userId: String) async throws(DomainError)
 }

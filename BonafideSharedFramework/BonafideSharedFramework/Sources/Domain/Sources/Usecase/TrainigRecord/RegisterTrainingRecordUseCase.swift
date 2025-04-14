@@ -6,6 +6,6 @@
 //
 
 
-public protocol RegisterTrainingRecordUseCase {
+public protocol RegisterTrainingRecordUseCase: Sendable {
     func callAsFunction(userId: String, trainingRecord: TrainingRecord) async throws(DomainError)
 }

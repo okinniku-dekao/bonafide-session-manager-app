@@ -6,6 +6,6 @@
 //
 
 
-public protocol FetchAllWeightUseCase {
+public protocol FetchAllWeightUseCase: Sendable {
     func callAsFunction() async throws(DomainError) -> [Weight]
 }

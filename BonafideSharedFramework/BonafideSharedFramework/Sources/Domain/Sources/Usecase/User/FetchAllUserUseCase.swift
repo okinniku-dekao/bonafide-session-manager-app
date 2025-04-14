@@ -6,6 +6,6 @@
 //
 
 
-public protocol FetchAllUserUseCase {
+public protocol FetchAllUserUseCase: Sendable {
     func callAsFunction(for store: Store?) async throws(DomainError) -> [User]
 }

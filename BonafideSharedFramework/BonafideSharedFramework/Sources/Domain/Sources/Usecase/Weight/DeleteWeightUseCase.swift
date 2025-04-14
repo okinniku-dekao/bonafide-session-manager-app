@@ -6,6 +6,6 @@
 //
 
 
-public protocol DeleteWeightUseCase {
+public protocol DeleteWeightUseCase: Sendable {
     func callAsFunction(_ weightId: String) async throws(DomainError)
 }
