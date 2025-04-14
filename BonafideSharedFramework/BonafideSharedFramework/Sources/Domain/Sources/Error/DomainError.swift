@@ -8,4 +8,10 @@
 
 public enum DomainError: Equatable, Error {
     case validation(ValidationError)
+    case networkError
+    case permissionDenied
+    case notFound
+    case conflict
+    case unauthorized
+    case unknown(String)
 }
