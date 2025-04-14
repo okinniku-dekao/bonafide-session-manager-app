@@ -5,18 +5,33 @@ import PackageDescription
 
 let package = Package(
     name: "Composition",
-    platforms: [.iOS(.v15)],
+    platforms: [.iOS(.v15), .macOS(.v10_15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Composition",
             targets: ["Composition"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.1"),
+        .package(path: "../Domain"),
+        .package(path: "../Data"),
+        .package(path: "../Infrastructure"),
+        .package(path: "../Usecase"),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Composition"),
+            name: "Composition",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                "Domain",
+                "Data",
+                "Infrastructure",
+                "Usecase"
+            ]
+        ),
         .testTarget(
             name: "CompositionTests",
             dependencies: ["Composition"]
