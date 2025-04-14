@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		868F9B6C2DAA7A9E00EA66A2 /* BonafideSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868F9B622DAA7A9E00EA66A2 /* BonafideSharedFramework.framework */; };
+		86BDAD162DAD124F0055FB9D /* Composition in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDAD152DAD124F0055FB9D /* Composition */; };
+		86BDAD182DAD124F0055FB9D /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDAD172DAD124F0055FB9D /* Data */; };
+		86BDAD1A2DAD124F0055FB9D /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDAD192DAD124F0055FB9D /* Domain */; };
+		86BDAD1C2DAD124F0055FB9D /* Infrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDAD1B2DAD124F0055FB9D /* Infrastructure */; };
+		86BDAD1E2DAD124F0055FB9D /* Resources in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDAD1D2DAD124F0055FB9D /* Resources */; };
+		86BDAD202DAD124F0055FB9D /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDAD1F2DAD124F0055FB9D /* UIComponents */; };
+		86BDAD222DAD124F0055FB9D /* Usecase in Frameworks */ = {isa = PBXBuildFile; productRef = 86BDAD212DAD124F0055FB9D /* Usecase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +69,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BDAD202DAD124F0055FB9D /* UIComponents in Frameworks */,
+				86BDAD1A2DAD124F0055FB9D /* Domain in Frameworks */,
+				86BDAD182DAD124F0055FB9D /* Data in Frameworks */,
+				86BDAD222DAD124F0055FB9D /* Usecase in Frameworks */,
+				86BDAD162DAD124F0055FB9D /* Composition in Frameworks */,
+				86BDAD1C2DAD124F0055FB9D /* Infrastructure in Frameworks */,
+				86BDAD1E2DAD124F0055FB9D /* Resources in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +95,7 @@
 			children = (
 				868F9B642DAA7A9E00EA66A2 /* BonafideSharedFramework */,
 				868F9B6F2DAA7A9E00EA66A2 /* BonafideSharedFrameworkTests */,
+				86BDAD142DAD124F0055FB9D /* Frameworks */,
 				868F9B632DAA7A9E00EA66A2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +107,13 @@
 				868F9B6B2DAA7A9E00EA66A2 /* BonafideSharedFrameworkTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		86BDAD142DAD124F0055FB9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +147,13 @@
 			);
 			name = BonafideSharedFramework;
 			packageProductDependencies = (
+				86BDAD152DAD124F0055FB9D /* Composition */,
+				86BDAD172DAD124F0055FB9D /* Data */,
+				86BDAD192DAD124F0055FB9D /* Domain */,
+				86BDAD1B2DAD124F0055FB9D /* Infrastructure */,
+				86BDAD1D2DAD124F0055FB9D /* Resources */,
+				86BDAD1F2DAD124F0055FB9D /* UIComponents */,
+				86BDAD212DAD124F0055FB9D /* Usecase */,
 			);
 			productName = BonafideSharedFramework;
 			productReference = 868F9B622DAA7A9E00EA66A2 /* BonafideSharedFramework.framework */;
@@ -517,6 +546,37 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		86BDAD152DAD124F0055FB9D /* Composition */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Composition;
+		};
+		86BDAD172DAD124F0055FB9D /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		86BDAD192DAD124F0055FB9D /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		86BDAD1B2DAD124F0055FB9D /* Infrastructure */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Infrastructure;
+		};
+		86BDAD1D2DAD124F0055FB9D /* Resources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Resources;
+		};
+		86BDAD1F2DAD124F0055FB9D /* UIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIComponents;
+		};
+		86BDAD212DAD124F0055FB9D /* Usecase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Usecase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 868F9B592DAA7A9E00EA66A2 /* Project object */;
 }
