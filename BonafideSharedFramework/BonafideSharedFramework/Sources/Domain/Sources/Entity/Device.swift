@@ -15,12 +15,27 @@ public struct Device: Identifiable, Equatable {
     public let registeredAt: Date
     public let store: Store
     
-    public init(id: String, deviceName: String, connectedUserId: String, isActive: Bool, registeredAt: Date, store: Store) {
+    public init(
+        id: String = UUID().uuidString,
+        deviceName: String,
+        connectedUserId: String,
+        isActive: Bool = false,
+        registeredAt: Date = Date(),
+        store: Store = .owada)
+    {
         self.id = id
         self.deviceName = deviceName
         self.connectedUserId = connectedUserId
         self.isActive = isActive
         self.registeredAt = registeredAt
         self.store = store
+    }
+}
+
+public extension Device {
+    func validation() throws(DomainError) {
+        guard !deviceName.isEmpty else {
+            throw DomainError.validation(.invalidDeviceName)
+        }
     }
 }

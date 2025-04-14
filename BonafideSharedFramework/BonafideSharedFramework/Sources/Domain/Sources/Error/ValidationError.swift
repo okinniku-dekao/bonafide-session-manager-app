@@ -8,4 +8,7 @@
 
 public enum ValidationError: Equatable, Error {
     case invalidUserName
+    case invalidDeviceName
+    case invalidMenuName
+    case invalidMenuNumber
 }
