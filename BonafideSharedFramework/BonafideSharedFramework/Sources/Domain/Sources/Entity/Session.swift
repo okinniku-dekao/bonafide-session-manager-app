@@ -7,12 +7,12 @@
 
 
 public struct Session: Identifiable, Equatable {
-    public let id: String
-    public let name: String
-    public let note: String
-    public let number: Int
-    public let path: String
-    public let tool: String
+    public var id: String
+    public var name: String
+    public var note: String
+    public var number: Int
+    public var path: String
+    public var tool: String
     
     public init(id: String, name: String, note: String, number: Int, path: String, tool: String) {
         self.id = id

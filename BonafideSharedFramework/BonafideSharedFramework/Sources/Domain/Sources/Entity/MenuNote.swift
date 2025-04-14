@@ -6,9 +6,9 @@
 //
 
 public struct MenuNote: Equatable, Identifiable, Hashable {
-    public let id: String
-    public let menu: Menu
-    public let memo: String
+    public var id: String
+    public var menu: Menu
+    public var memo: String
     
     public init(id: String, menu: Menu, memo: String) {
         self.id = id

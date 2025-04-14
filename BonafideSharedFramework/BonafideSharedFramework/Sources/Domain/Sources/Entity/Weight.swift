@@ -6,10 +6,10 @@
 //
 
 public struct Weight: Equatable, Identifiable, Hashable {
-    public let id: String
-    public let name: String
-    public let color: Int
-    public let value: Double
+    public var id: String
+    public var name: String
+    public var color: Int
+    public var value: Double
     
     public init(id: String, name: String, color: Int, value: Double) {
         self.id = id

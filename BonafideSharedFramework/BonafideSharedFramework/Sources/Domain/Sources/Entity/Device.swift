@@ -8,12 +8,12 @@
 import Foundation
 
 public struct Device: Identifiable, Equatable {
-    public let id: String
-    public let deviceName: String
-    public let connectedUserId: String
-    public let isActive: Bool
-    public let registeredAt: Date
-    public let store: Store
+    public var id: String
+    public var deviceName: String
+    public var connectedUserId: String
+    public var isActive: Bool
+    public var registeredAt: Date
+    public var store: Store
     
     public init(
         id: String = UUID().uuidString,

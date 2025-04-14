@@ -8,19 +8,19 @@
 import Foundation
 
 public struct User: Identifiable, Equatable {
-    public let id: String
-    public let name: String
-    public let birthdate: Date?
-    public let joinDate: Date?
-    public let isInstaFollowed: Bool
-    public let isReviewed: Bool
-    public let goal: String
-    public let note: String
-    public let store: Store
-    public let trainingMemo: String
-    public let menus: [MenuNote]
-    public let sessions: [Session]
-    public let trainingRecords: [TrainingRecord]
+    public var id: String
+    public var name: String
+    public var birthdate: Date?
+    public var joinDate: Date?
+    public var isInstaFollowed: Bool
+    public var isReviewed: Bool
+    public var goal: String
+    public var note: String
+    public var store: Store
+    public var trainingMemo: String
+    public var menus: [MenuNote]
+    public var sessions: [Session]
+    public var trainingRecords: [TrainingRecord]
     
     public init(
         id: String,

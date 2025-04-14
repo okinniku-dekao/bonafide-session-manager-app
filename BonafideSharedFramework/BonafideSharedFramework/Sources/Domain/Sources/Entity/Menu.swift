@@ -8,10 +8,10 @@
 import Foundation
 
 public struct Menu: Equatable, Identifiable, Hashable {
-    public let id: String
-    public let name: String
-    public let number: Int
-    public let path: String
+    public var id: String
+    public var name: String
+    public var number: Int
+    public var path: String
     
     public init(
         id: String = UUID().uuidString,

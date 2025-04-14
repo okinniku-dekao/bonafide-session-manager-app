@@ -8,16 +8,16 @@
 import Foundation
 
 public struct TrainingRecord: Equatable, Identifiable {
-    public let id: String
-    public let dateTime: Date
-    public let durationInSeconds: Int?
-    public let menuName: String
-    public let note: String
-    public let reps: Int
-    public let satisfaction: String
-    public let sets: Int
-    public let totalWeight: Double
-    public let usedItems: [String]
+    public var id: String
+    public var dateTime: Date
+    public var durationInSeconds: Int?
+    public var menuName: String
+    public var note: String
+    public var reps: Int
+    public var satisfaction: String
+    public var sets: Int
+    public var totalWeight: Double
+    public var usedItems: [String]
 
     public init(
         id: String,
