@@ -12,6 +12,9 @@ public struct Menu: Equatable, Identifiable, Hashable {
     public var name: String
     public var number: Int
     public var path: String
+    public var category: MenuCategory {
+        MenuCategory(number)
+    }
     
     public init(
         id: String = UUID().uuidString,
