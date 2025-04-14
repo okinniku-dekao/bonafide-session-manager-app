@@ -21,6 +21,7 @@ public struct UserDTO: Identifiable, Codable, Equatable, Sendable {
     public let trainingMemo: String
     public let menus: [MenuNoteDTO]
     public let sessions: [SessionDTO]
+    public let trainingRecords: [TrainingRecordDTO]
     
     public init(
         id: String,
@@ -34,7 +35,8 @@ public struct UserDTO: Identifiable, Codable, Equatable, Sendable {
         store: StoreDTO,
         trainingMemo: String,
         menus: [MenuNoteDTO],
-        sessions: [SessionDTO]
+        sessions: [SessionDTO],
+        trainingRecords: [TrainingRecordDTO]
     ) {
         self.id = id
         self.name = name
@@ -48,6 +50,7 @@ public struct UserDTO: Identifiable, Codable, Equatable, Sendable {
         self.trainingMemo = trainingMemo
         self.menus = menus
         self.sessions = sessions
+        self.trainingRecords = trainingRecords
     }
     
     public var toDomain: User {
@@ -63,7 +66,8 @@ public struct UserDTO: Identifiable, Codable, Equatable, Sendable {
             store: store.toDomain,
             trainingMemo: trainingMemo,
             menus: menus.map { $0.toDomain },
-            sessions: sessions.map { $0.toDomain }
+            sessions: sessions.map { $0.toDomain },
+            trainingRecords: trainingRecords.map { $0.toDomain }
         )
     }
     
@@ -80,5 +84,6 @@ public struct UserDTO: Identifiable, Codable, Equatable, Sendable {
         self.trainingMemo = domain.trainingMemo
         self.menus = domain.menus.map { MenuNoteDTO(from: $0) }
         self.sessions = domain.sessions.map { SessionDTO(from: $0) }
+        self.trainingRecords = domain.trainingRecords.map { TrainingRecordDTO(from: $0) }
     }
 }

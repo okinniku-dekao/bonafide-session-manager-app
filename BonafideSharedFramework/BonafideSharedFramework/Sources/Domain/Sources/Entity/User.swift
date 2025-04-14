@@ -20,6 +20,7 @@ public struct User: Identifiable, Equatable {
     public let trainingMemo: String
     public let menus: [MenuNote]
     public let sessions: [Session]
+    public let trainingRecords: [TrainingRecord]
     
     public init(
         id: String,
@@ -33,7 +34,8 @@ public struct User: Identifiable, Equatable {
         store: Store,
         trainingMemo: String,
         menus: [MenuNote],
-        sessions: [Session]
+        sessions: [Session],
+        trainingRecords: [TrainingRecord]
     ) {
         self.id = id
         self.name = name
@@ -47,6 +49,7 @@ public struct User: Identifiable, Equatable {
         self.trainingMemo = trainingMemo
         self.menus = menus
         self.sessions = sessions
+        self.trainingRecords = trainingRecords
     }
 }
 
