@@ -5,6 +5,8 @@
 //  Created by 東　秀斗 on 2025/04/13.
 //
 
-import Infrastructure
+import Domain
 
-public enum DataStoreError: Equatable, Error {}
+public enum DataStoreError: Equatable, Error {
+    case unknown
+}
