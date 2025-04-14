@@ -13,14 +13,14 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "11.11.0"),
-        .package(path: "../Domain")
+        .package(path: "../Data")
     ],
     targets: [
         .target(
             name: "Infrastructure",
             dependencies: [
                 .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
-                "Domain"
+                "Data"
             ],
             path: "Sources"
         ),
