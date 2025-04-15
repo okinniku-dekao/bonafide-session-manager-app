@@ -8,6 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 import AppRootFeature
+import FirebaseCore
+import FirebaseFirestore
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
     let store = Store(initialState: AppRootFeature.State()) {
@@ -15,6 +17,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
         return true
     }
 }
