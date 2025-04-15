@@ -1,5 +1,5 @@
 {
-  "originHash" : "9651314362dbb6ce5eee640d6324af590e4c24cae004081e1c5b6b26cd0785ea",
+  "originHash" : "1ed96cdce6274a49358b5c8abdf9c02f04260cd5e147a8c12ecd6707ce9d3c23",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "5928286acce13def418ec36d05a001a9641086f2",
         "version" : "1.0.3"
-      }
-    },
-    {
-      "identity" : "glpgs-ios-api-client",
-      "kind" : "remoteSourceControl",
-      "location" : "git@github.com:galapagos-ada/glpgs-ios-api-client.git",
-      "state" : {
-        "branch" : "higashi/add-api-client",
-        "revision" : "d4c729a1ee74b3d5e3e28f787efb5e982c5f0b54"
       }
     },
     {

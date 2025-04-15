@@ -55,12 +55,8 @@
 		7B62CD982D76EE8900408FDF /* Exceptions for "RegisterApp" folder in "RegisterApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Sources/Data,
-				Sources/Domain,
-				Sources/Infrastructure,
 				Sources/Presentation/AppRootFeature,
 				Sources/Resources,
-				Sources/Usecase,
 			);
 			target = 7B62CD632D76EB0200408FDF /* RegisterApp */;
 		};
