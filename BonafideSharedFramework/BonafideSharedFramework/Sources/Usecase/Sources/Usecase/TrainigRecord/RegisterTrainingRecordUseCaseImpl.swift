@@ -14,7 +14,8 @@ public struct RegisterTrainingRecordUseCaseImpl: RegisterTrainingRecordUseCase {
         self.trainingRecordRepository = trainingRecordRepository
     }
     
-    public func callAsFunction(userId: String, trainingRecord: TrainingRecord) async throws(DomainError) {
+    public func callAsFunction(userId: String, trainingRecord: TrainingRecord, recordType: RecordType) async throws(DomainError) {
+        try trainingRecord.validation(recodType: recordType)
         try await trainingRecordRepository.register(userId: userId, trainingRecord: trainingRecord)
     }
 }

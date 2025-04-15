@@ -20,7 +20,8 @@ struct UnimplementedFetchAllTrainingRecordCase: FetchAllTrainingRecordUseCase {
 }
 
 struct UnimplementedRegisterTrainingRecordUseCase: RegisterTrainingRecordUseCase {
-    func callAsFunction(userId: String, trainingRecord: TrainingRecord) async throws(DomainError) {
+    func callAsFunction(userId: String, trainingRecord: TrainingRecord, recordType: RecordType
+    ) async throws(DomainError) {
         preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
     }
 }
