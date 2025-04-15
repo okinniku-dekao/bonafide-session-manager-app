@@ -56,7 +56,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Sources/Presentation/AppRootFeature,
-				Sources/Resources,
 			);
 			target = 7B62CD632D76EB0200408FDF /* RegisterApp */;
 		};
