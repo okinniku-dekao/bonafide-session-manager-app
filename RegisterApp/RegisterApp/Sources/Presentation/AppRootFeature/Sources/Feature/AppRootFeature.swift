@@ -6,13 +6,17 @@
 //
 
 import ComposableArchitecture
+import Composition
+import Domain
 
 @Reducer
 public struct AppRootFeature {
     public init() {}
 
     public struct State {
-        public init() {}
+        public init() {
+            let user: User
+        }
     }
 
     public enum Action {}

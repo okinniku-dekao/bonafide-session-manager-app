@@ -1,5 +1,5 @@
 {
-  "originHash" : "1ed96cdce6274a49358b5c8abdf9c02f04260cd5e147a8c12ecd6707ce9d3c23",
+  "originHash" : "ed1b4d16ca066a2dfc0093b91045de2165135553760a4b3f2acc22862a247260",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -8,24 +8,6 @@
       "state" : {
         "revision" : "5928286acce13def418ec36d05a001a9641086f2",
         "version" : "1.0.3"
-      }
-    },
-    {
-      "identity" : "r.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mac-cain13/R.swift.git",
-      "state" : {
-        "revision" : "a9abc6b0afe0fc4a5a71e1d7d2872143dff2d2f1",
-        "version" : "7.8.0"
-      }
-    },
-    {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser",
-      "state" : {
-        "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
-        "version" : "1.5.0"
       }
     },
     {
@@ -87,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-dependencies",
       "state" : {
-        "revision" : "121a428c505c01c4ce02d5ada1c8fc3da93afce9",
-        "version" : "1.8.0"
+        "revision" : "fee6aa29908a75437506ddcbe7434c460605b7e6",
+        "version" : "1.9.1"
       }
     },
     {
@@ -134,15 +116,6 @@
       "state" : {
         "revision" : "0687f71944021d616d34d922343dcef086855920",
         "version" : "600.0.1"
-      }
-    },
-    {
-      "identity" : "xcodeedit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tomlokhorst/XcodeEdit",
-      "state" : {
-        "revision" : "9bc684439d16c07d7bede66ae43bb577a25d6bb1",
-        "version" : "2.12.0"
       }
     },
     {
