@@ -13,11 +13,45 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:BonafideSharedFramework.xcodeproj",
-        "identifier" : "868F9B6A2DAA7A9E00EA66A2",
-        "name" : "BonafideSharedFrameworkTests"
+        "containerPath" : "container:BonafideSharedFramework\/Sources\/Data",
+        "identifier" : "DataTests",
+        "name" : "DataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:BonafideSharedFramework\/Sources\/UIComponents",
+        "identifier" : "UIComponentsTests",
+        "name" : "UIComponentsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:BonafideSharedFramework\/Sources\/Domain",
+        "identifier" : "DomainTests",
+        "name" : "DomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:BonafideSharedFramework\/Sources\/Composition",
+        "identifier" : "CompositionTests",
+        "name" : "CompositionTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:BonafideSharedFramework\/Sources\/Usecase",
+        "identifier" : "UsecaseTests",
+        "name" : "UsecaseTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:BonafideSharedFramework\/Sources\/Infrastructure",
+        "identifier" : "InfrastructureTests",
+        "name" : "InfrastructureTests"
       }
     }
   ],
