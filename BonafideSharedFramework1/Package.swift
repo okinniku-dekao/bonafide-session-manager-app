@@ -7,6 +7,7 @@ let package = Package(
     name: "BonafideSharedFramework",
     platforms: [.iOS(.v15), .macOS(.v10_15)],
     products: [
+        // 個別のモジュールも必要に応じて使用できるようにします
         .library(
             name: "Domain",
             targets: ["Domain"]
@@ -38,32 +39,26 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.1"),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "11.11.0"),
-        .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.8.0")
     ],
     targets: [
         .target(
             name: "Domain",
-            path: "Sources/Domain"
+            path: "BonafideSharedFramework/Sources/Domain"
         ),
         .target(
             name: "Data",
             dependencies: ["Domain"],
-            path: "Sources/Data"
+            path: "BonafideSharedFramework/Sources/Data"
         ),
         .target(
             name: "Usecase",
             dependencies: ["Domain"],
-            path: "Sources/Usecase"
+            path: "BonafideSharedFramework/Sources/Usecase"
         ),
         .target(
             name: "Infrastructure",
-            dependencies: [
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
-                "Domain",
-                "Data"
-            ],
-            path: "Sources/Infrastructure"
+            dependencies: ["Domain"],
+            path: "BonafideSharedFramework/Sources/Infrastructure"
         ),
         .target(
             name: "Composition",
@@ -74,19 +69,17 @@ let package = Package(
                 "Infrastructure",
                 "Usecase"
             ],
-            path: "Sources/Composition"
+            path: "BonafideSharedFramework/Sources/Composition"
         ),
         .target(
             name: "UIComponents",
-            path: "Sources/UIComponents"
+            path: "BonafideSharedFramework/Sources/UIComponents"
         ),
         .target(
             name: "Resources",
-            dependencies: [.product(name: "RswiftLibrary", package: "R.swift")],
-            path: "Sources/Resources",
-            resources: [.process("Sources/Resources/Assets")],
-            plugins: [.plugin(name: "RswiftGeneratePublicResources", package: "R.swift")]
+            path: "BonafideSharedFramework/Sources/Resources"
         ),
+        // テストターゲットも必要に応じて追加できます
     ],
     swiftLanguageModes: [.v6]
 )

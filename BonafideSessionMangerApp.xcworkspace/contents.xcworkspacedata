@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:BonafideSharedFramework/BonafideSharedFramework.xcodeproj">
+      location = "group:BonafideSharedFramework">
    </FileRef>
    <FileRef
       location = "group:RegisterApp/RegisterApp.xcodeproj">
