@@ -30,6 +30,7 @@
 /* Begin PBXFileReference section */
 		868F9B622DAA7A9E00EA66A2 /* BonafideSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonafideSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		868F9B6B2DAA7A9E00EA66A2 /* BonafideSharedFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BonafideSharedFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		86BDAD232DADE14B0055FB9D /* BonafideSharedFramework.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BonafideSharedFramework.xctestplan; path = TestPlan/BonafideSharedFramework.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -93,6 +94,7 @@
 		868F9B582DAA7A9E00EA66A2 = {
 			isa = PBXGroup;
 			children = (
+				86BDAD232DADE14B0055FB9D /* BonafideSharedFramework.xctestplan */,
 				868F9B642DAA7A9E00EA66A2 /* BonafideSharedFramework */,
 				868F9B6F2DAA7A9E00EA66A2 /* BonafideSharedFrameworkTests */,
 				86BDAD142DAD124F0055FB9D /* Frameworks */,

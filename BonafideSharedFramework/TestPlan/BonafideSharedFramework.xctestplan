@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "A878CFEE-BC11-4039-AB02-27CCDE15514F",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BonafideSharedFramework.xcodeproj",
+        "identifier" : "868F9B6A2DAA7A9E00EA66A2",
+        "name" : "BonafideSharedFrameworkTests"
+      }
+    }
+  ],
+  "version" : 1
+}
