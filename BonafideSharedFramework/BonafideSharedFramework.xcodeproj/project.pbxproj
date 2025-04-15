@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8610C85D2DAE14AA00C5533A /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		868F9B622DAA7A9E00EA66A2 /* BonafideSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonafideSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86BDAD232DADE14B0055FB9D /* BonafideSharedFramework.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BonafideSharedFramework.xctestplan; path = TestPlan/BonafideSharedFramework.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +74,7 @@
 				868F9B642DAA7A9E00EA66A2 /* BonafideSharedFramework */,
 				86BDAD142DAD124F0055FB9D /* Frameworks */,
 				868F9B632DAA7A9E00EA66A2 /* Products */,
+				8610C85D2DAE14AA00C5533A /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
