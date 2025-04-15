@@ -11,4 +11,7 @@ public enum ValidationError: Equatable, Error {
     case invalidDeviceName
     case invalidMenuName
     case invalidMenuNumber
+    case invalidSatisfaction
+    case invalidWeightValue
+    case invalidDurationValue
 }

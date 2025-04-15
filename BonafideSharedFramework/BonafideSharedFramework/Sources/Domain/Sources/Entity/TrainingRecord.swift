@@ -43,3 +43,26 @@ public struct TrainingRecord: Equatable, Identifiable {
         self.usedItems = usedItems
     }
 }
+
+public extension TrainingRecord {
+    mutating func updateTotalWeight(value: Double) {
+        self.totalWeight = value
+    }
+
+    func validation(recodType: RecordType) throws(DomainError) {
+        switch recodType {
+        case .timeBase:
+            guard let durationInSeconds, durationInSeconds > 0 else {
+                throw DomainError.validation(.invalidDurationValue)
+            }
+        case .weightBase:
+            guard totalWeight > 0, reps > 0, sets > 0 else {
+                throw DomainError.validation(.invalidWeightValue)
+            }
+        }
+
+        guard !satisfaction.isEmpty else {
+            throw DomainError.validation(.invalidSatisfaction)
+        }
+    }
+}
