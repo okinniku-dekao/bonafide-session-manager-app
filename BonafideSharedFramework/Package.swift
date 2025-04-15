@@ -46,15 +46,30 @@ let package = Package(
             name: "Domain",
             path: "Sources/Domain"
         ),
+        .testTarget(
+            name: "DomainTests",
+            dependencies: ["Domain"],
+            path: "Tests/DomainTests"
+        ),
         .target(
             name: "Data",
             dependencies: ["Domain"],
             path: "Sources/Data"
         ),
+        .testTarget(
+            name: "DataTests",
+            dependencies: ["Data"],
+            path: "Tests/DataTests"
+        ),
         .target(
             name: "Usecase",
             dependencies: ["Domain"],
             path: "Sources/Usecase"
+        ),
+        .testTarget(
+            name: "UsecaseTests",
+            dependencies: ["Usecase"],
+            path: "Tests/UsecaseTests"
         ),
         .target(
             name: "Infrastructure",
@@ -64,6 +79,11 @@ let package = Package(
                 "Data"
             ],
             path: "Sources/Infrastructure"
+        ),
+        .testTarget(
+            name: "InfrastructureTests",
+            dependencies: ["Infrastructure"],
+            path: "Tests/InfrastructureTests"
         ),
         .target(
             name: "Composition",
@@ -75,6 +95,11 @@ let package = Package(
                 "Usecase"
             ],
             path: "Sources/Composition"
+        ),
+        .testTarget(
+            name: "CompositionTests",
+            dependencies: ["Composition"],
+            path: "Tests/CompositionTests"
         ),
         .target(
             name: "UIComponents",

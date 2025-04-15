@@ -1,0 +1,52 @@
+{
+  "configurations" : [
+    {
+      "id" : "9E9FC710-399B-483F-B783-C5744FC763D9",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "CompositionTests",
+        "name" : "CompositionTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DataTests",
+        "name" : "DataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DomainTests",
+        "name" : "DomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "InfrastructureTests",
+        "name" : "InfrastructureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "UsecaseTests",
+        "name" : "UsecaseTests"
+      }
+    }
+  ],
+  "version" : 1
+}
