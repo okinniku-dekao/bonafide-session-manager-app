@@ -9,16 +9,26 @@ public enum RecordType: Equatable, Sendable, CaseIterable {
     case timeBase
     case weightBase
     
-    init(_ number: Int) {
-        switch number {
-        case 100...300:
+    init(_ category: MenuCategory) {
+        switch category {
+        case .stretch:
             self = .timeBase
-        case 700...800:
+        case .pilates:
             self = .timeBase
-        case 900...:
-            self = .timeBase
-        default:
+        case .lowerBody:
             self = .weightBase
+        case .chest:
+            self = .weightBase
+        case .shoulder:
+            self = .weightBase
+        case .back:
+            self = .weightBase
+        case .abdominal:
+            self = .timeBase
+        case .arm:
+            self = .weightBase
+        case .other:
+            self = .timeBase
         }
     }
 }
