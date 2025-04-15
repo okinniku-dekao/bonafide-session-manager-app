@@ -87,3 +87,54 @@ public struct UserDTO: Identifiable, Codable, Equatable, Sendable {
         self.trainingRecords = domain.trainingRecords.map { TrainingRecordDTO(from: $0) }
     }
 }
+
+// MARK: - Codable
+public extension UserDTO {
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(String.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        if let birthdateString = try container.decodeIfPresent(String.self, forKey: .birthdate) {
+            birthdate = dateFormatter.date(from: birthdateString)
+        } else {
+            birthdate = nil
+        }
+        
+        if let joinDateString = try container.decodeIfPresent(String.self, forKey: .joinDate) {
+            joinDate = dateFormatter.date(from: joinDateString)
+        } else {
+            joinDate = nil
+        }
+        
+        isInstaFollowed = try container.decode(Bool.self, forKey: .isInstaFollowed)
+        isReviewed = try container.decode(Bool.self, forKey: .isReviewed)
+        goal = try container.decode(String.self, forKey: .goal)
+        note = try container.decode(String.self, forKey: .note)
+        store = try container.decode(StoreDTO.self, forKey: .store)
+        trainingMemo = try container.decode(String.self, forKey: .trainingMemo)
+        menus = try container.decodeIfPresent([MenuNoteDTO].self, forKey: .menus) ?? []
+        sessions = try container.decodeIfPresent([SessionDTO].self, forKey: .sessions) ?? []
+        trainingRecords = try container.decodeIfPresent([TrainingRecordDTO].self, forKey: .trainingRecords) ?? []
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case birthdate
+        case joinDate
+        case isInstaFollowed
+        case isReviewed
+        case goal
+        case note
+        case store
+        case trainingMemo
+        case menus
+        case sessions
+        case trainingRecords
+    }
+}

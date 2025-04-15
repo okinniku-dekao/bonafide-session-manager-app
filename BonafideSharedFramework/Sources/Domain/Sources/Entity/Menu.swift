@@ -11,7 +11,6 @@ public struct Menu: Equatable, Identifiable, Hashable {
     public var id: String
     public var name: String
     public var number: Int
-    public var path: String
     public var category: MenuCategory {
         MenuCategory(number)
     }
@@ -20,12 +19,10 @@ public struct Menu: Equatable, Identifiable, Hashable {
         id: String = UUID().uuidString,
         name: String,
         number: Int,
-        path: String = ""
     ) {
         self.id = id
         self.name = name
         self.number = number
-        self.path = path
     }
 }
 
@@ -39,3 +36,5 @@ public extension Menu {
         }
     }
 }
+
+

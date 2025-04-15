@@ -12,14 +12,12 @@ public struct Session: Identifiable, Equatable {
     public var note: String
     public var number: Int
     public var path: String
-    public var tool: String
     
-    public init(id: String, name: String, note: String, number: Int, path: String, tool: String) {
+    public init(id: String, name: String, note: String, number: Int, path: String) {
         self.id = id
         self.name = name
         self.note = note
         self.number = number
         self.path = path
-        self.tool = tool
     }
 }
