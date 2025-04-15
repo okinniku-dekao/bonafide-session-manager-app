@@ -20,8 +20,8 @@ public struct TrainingRecord: Equatable, Identifiable {
     public var usedItems: [String]
 
     public init(
-        id: String,
-        dateTime: Date,
+        id: String = UUID().uuidString,
+        dateTime: Date = Date(),
         durationInSeconds: Int?,
         menuName: String,
         note: String,
