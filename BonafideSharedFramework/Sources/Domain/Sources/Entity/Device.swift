@@ -21,7 +21,7 @@ public struct Device: Identifiable, Equatable, Sendable {
         connectedUserId: String = "",
         isActive: Bool = false,
         registeredAt: Date = Date(),
-        store: Store = .owada)
+        store: Store = .seiwa)
     {
         self.id = id
         self.deviceName = deviceName
