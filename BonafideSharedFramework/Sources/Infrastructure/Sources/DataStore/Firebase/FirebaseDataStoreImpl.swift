@@ -6,7 +6,7 @@
 //
 
 import Data
-import FirebaseFirestore
+@preconcurrency import FirebaseFirestore
 
 public actor FirebaseDataStoreImpl: FirebaseDataStore {
     typealias Key = FirebaseCollectionKey
