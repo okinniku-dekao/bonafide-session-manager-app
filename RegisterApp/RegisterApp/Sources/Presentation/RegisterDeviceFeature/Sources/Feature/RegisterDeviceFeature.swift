@@ -2,6 +2,7 @@
 // https://docs.swift.org/swift-book
 
 import ComposableArchitecture
+import Domain
 
 @Reducer
 public struct RegisterDeviceFeature {
@@ -10,14 +11,17 @@ public struct RegisterDeviceFeature {
     @ObservableState
     public struct State {
         public init() {}
+        var device: Device = .init()
     }
     
     @CasePathable
-    public enum Action {
+    public enum Action: BindableAction {
+        case binding(BindingAction<State>)
         case onAppear
     }
     
     public var body: some ReducerOf<Self> {
+        BindingReducer()
         Reduce { state, action in
             switch action {
             default:
