@@ -32,7 +32,7 @@ public struct AppRootFeature: Sendable {
     @CasePathable
     public enum Action {
         case onAppear
-        case deviceIdReceived(UUID)
+        case deviceIdReceived(String)
         case deviceIdGetFailed(DomainError)
         case destination(PresentationAction<Destination.Action>)
     }
