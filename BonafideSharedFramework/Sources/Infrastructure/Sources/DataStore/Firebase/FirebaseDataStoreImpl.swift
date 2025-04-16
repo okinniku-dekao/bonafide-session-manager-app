@@ -121,6 +121,25 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    public func streamAllSession(userId: String) async -> AsyncThrowingStream<[SessionDTO], any Error> {
+        AsyncThrowingStream { continuation in
+            let listener = db.collection(Key.users).document(userId)
+                .addSnapshotListener { snapshot, error in
+                    if let error {
+                        continuation.finish(throwing: DataStoreError(from: error))
+                        return
+                    } else {
+                        let sessions = (try? snapshot?.data(as: UserDTO.self).sessions) ?? []
+                        continuation.yield(sessions)
+                    }
+                }
+
+            continuation.onTermination = { _ in
+                listener.remove()
+            }
+        }
+    }
+    
     // MARK: - TrainingRecord
     public func registerTrainingRecord(userId: String, trainingRecordDTO: TrainingRecordDTO) async throws(DataStoreError) {
         try await handle {

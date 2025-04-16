@@ -15,6 +15,7 @@ public struct SessionUseCases: Sendable {
     public var delete: any DeleteSessionUseCase
     public var fetchAll: any FetchAllSessionUseCase
     public var register: any RegisterSessionUseCase
+    public var stream: any StreamSessionsUseCase
 }
 
 public extension DependencyValues {
@@ -32,7 +33,8 @@ extension SessionUseCases: DependencyKey {
         Self(
             delete: DeleteSessionUseCaseImpl(sessionRepository: sessionRepositoryImpl),
             fetchAll: FetchAllSessionUseCaseImpl(sessionRepository: sessionRepositoryImpl),
-            register: RegisterSessionUseCaseImpl(sessionRepository: sessionRepositoryImpl)
+            register: RegisterSessionUseCaseImpl(sessionRepository: sessionRepositoryImpl),
+            stream: StreamSessionsUseCaseImpl(sessionRepository: sessionRepositoryImpl)
         )
     }
     
@@ -40,7 +42,8 @@ extension SessionUseCases: DependencyKey {
         Self(
             delete: UnimplementedDeleteSessionUseCase(),
             fetchAll: UnimplementedFetchAllSessionUserCase(),
-            register: UnimplementedRegisterSessionUseCase()
+            register: UnimplementedRegisterSessionUseCase(),
+            stream: UnimplementedStreamSessionsUseCase()
         )
     }
 }

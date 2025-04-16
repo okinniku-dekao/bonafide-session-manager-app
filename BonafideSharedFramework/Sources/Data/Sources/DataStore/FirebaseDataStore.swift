@@ -29,6 +29,7 @@ public protocol FirebaseDataStore: Sendable {
     func registerSession(userId: String, sessionDTO: [SessionDTO]) async throws(DataStoreError)
     func deleteSession(userId: String, sessionIds: [String]) async throws(DataStoreError)
     func fetchAllSession(userId: String) async throws(DataStoreError) -> [SessionDTO]
+    func streamAllSession(userId: String) async -> AsyncThrowingStream<[SessionDTO], any Error>
     
     // MARK: - TrainingRecord
     func registerTrainingRecord(userId: String, trainingRecordDTO: TrainingRecordDTO) async throws(DataStoreError)

@@ -37,4 +37,21 @@ public struct SessionRepositoryImpl: SessionRepository {
             throw DomainError(from: error)
         }
     }
+    
+    public func streamSessions(userId: String) -> AsyncThrowingStream<[Session], any Error> {
+        AsyncThrowingStream { continuation in
+            Task {
+                let stream = await firebaseDataStore.streamAllSession(userId: userId)
+                do {
+                    for try await sessionDTOs in stream {
+                        continuation.yield(sessionDTOs.map(\.toDomain))
+                    }
+                    continuation.finish()
+                } catch {
+                    continuation.finish(throwing: DomainError(from: error as! DataStoreError))
+                }
+            }
+            
+        }
+    }
 }

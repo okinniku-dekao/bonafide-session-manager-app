@@ -24,3 +24,9 @@ struct UnimplementedRegisterSessionUseCase: RegisterSessionUseCase {
         preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
     }
 }
+
+struct  UnimplementedStreamSessionsUseCase: StreamSessionsUseCase {
+    func callAsFunction(userId: String) -> AsyncThrowingStream<[Session], any Error> {
+        preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
+    }
+}
