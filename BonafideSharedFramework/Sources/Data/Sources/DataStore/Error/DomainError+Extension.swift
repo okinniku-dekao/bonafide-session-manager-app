@@ -10,7 +10,7 @@ import Domain
 public extension DomainError {
     init(from error: DataStoreError) {
         switch error {
-        case .notFound:
+        case .notFound, .notSaved:
             self = .notFound
         case .alreadyExists:
             self = .conflict
@@ -22,6 +22,8 @@ public extension DomainError {
             self = .unauthorized
         case .invalidArgument, .aborted, .outOfRange, .failedPrecondition:
             self = .unknown("\(error)")
+        case .faildSaveData, .faildConvertToData:
+            self = .faildSave
         case .unknown(let message):
             self = .unknown(message)
         }

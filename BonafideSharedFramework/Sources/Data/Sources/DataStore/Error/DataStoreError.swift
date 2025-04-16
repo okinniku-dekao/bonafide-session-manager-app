@@ -20,5 +20,8 @@ public enum DataStoreError: Error, Equatable {
     case aborted
     case outOfRange
     case failedPrecondition
+    case faildConvertToData
+    case faildSaveData
+    case notSaved
     case unknown(String) // エラーメッセージなど任意の情報を保持したい時に使う
 }

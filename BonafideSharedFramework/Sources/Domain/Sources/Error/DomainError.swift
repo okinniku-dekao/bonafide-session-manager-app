@@ -13,5 +13,6 @@ public enum DomainError: Equatable, Error {
     case notFound
     case conflict
     case unauthorized
+    case faildSave
     case unknown(String)
 }
