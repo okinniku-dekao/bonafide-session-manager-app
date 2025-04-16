@@ -14,7 +14,8 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.18.0"),
         .package(path: "../../../../../BonafideSharedFramework"),
-        .package(path: "../RegisterDeviceFeature")
+        .package(path: "../RegisterDeviceFeature"),
+        .package(path: "../MainTabFeature"),
     ],
     targets: [
         .target(
@@ -24,7 +25,8 @@ let package = Package(
                 .product(name: "Composition", package: "BonafideSharedFramework"),
                 .product(name: "Domain", package: "BonafideSharedFramework"),
                 .product(name: "PresentationHelper", package: "BonafideSharedFramework"),
-                "RegisterDeviceFeature"
+                "RegisterDeviceFeature",
+                "MainTabFeature"
             ]
         ),
         .testTarget(
