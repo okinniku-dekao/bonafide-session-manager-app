@@ -9,3 +9,5 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 APP_NAME = トレーニング登録(開発)
+PRODUCT_BUNDLE_IDENTIFIER = com.bonafide.trainingRegisterApp-dev
+GOOGLE_SERVICE_INFO = GoogleService-Info-Dev.plist
