@@ -17,6 +17,8 @@ public struct DeviceUseCases: Sendable {
     public var fetchDetail: any FetchDeviceDetailUseCase
     public var register: any RegisterDeviceUseCase
     public var update: any UpdateDeviceUseCase
+    public var getDeviceId: any GetDeviceIdUseCase
+    public var saveDeviceId: any SaveDeviceIdUseCase
 }
 
 public extension DependencyValues {
@@ -28,7 +30,13 @@ public extension DependencyValues {
 
 extension DeviceUseCases: DependencyKey {
     private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
+    nonisolated(unsafe) public static var serviceName: String = ""
+    private static let localDataStoreImpl: LocalDataStore = {
+        guard !serviceName.isEmpty else { fatalError("AppDelegate内でserviceNameを設定してください") }
+        return LocalDataStoreImpl(service: serviceName)
+    }()
     private static let deviceRepositoryImpl: DeviceRepository = DeviceRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
+    private static let keychainRepositoryImpl: KeychainRepository = KeychainRepositoryImpl(localDataStore: localDataStoreImpl)
 
     public static var liveValue: DeviceUseCases {
         Self(
@@ -36,7 +44,9 @@ extension DeviceUseCases: DependencyKey {
             fetchAll: FetchAllDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
             fetchDetail: FetchDeviceDetailUseCaseImpl(deviceRepository: deviceRepositoryImpl),
             register: RegisterDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
-            update: UpdateDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl)
+            update: UpdateDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
+            getDeviceId: GetDeviceIdUseCaseImpl(keychainRepository: keychainRepositoryImpl),
+            saveDeviceId: SaveDeviceIdUseCaseImpl(keychainRepository: keychainRepositoryImpl)
         )
     }
     
@@ -46,7 +56,9 @@ extension DeviceUseCases: DependencyKey {
             fetchAll: UnimplementedFetchAllDeviceUserCase(),
             fetchDetail: UnimplementedFetchDeviceDetailUseCase(),
             register: UnimplementedRegisterDeviceUseCase(),
-            update: UnimplementedUpdateDeviceUseCase()
+            update: UnimplementedUpdateDeviceUseCase(),
+            getDeviceId: UnimplementedGetDeviceIdUseCase(),
+            saveDeviceId: UnimplementedSaveDeviceIdUseCase()
         )
     }
 }

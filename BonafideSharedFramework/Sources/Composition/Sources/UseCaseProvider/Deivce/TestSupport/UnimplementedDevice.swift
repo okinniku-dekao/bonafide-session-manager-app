@@ -5,6 +5,7 @@
 //  Created by 東　秀斗 on 2025/04/14.
 //
 
+import Foundation
 import Domain
 
 struct UnimplementedDeleteDeviceUseCase: DeleteDeviceUseCase {
@@ -33,6 +34,18 @@ struct UnimplementedRegisterDeviceUseCase: RegisterDeviceUseCase {
 
 struct UnimplementedUpdateDeviceUseCase: UpdateDeviceUseCase {
     func callAsFunction(_ device: Device) async throws(DomainError) {
+        preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
+    }
+}
+
+struct UnimplementedSaveDeviceIdUseCase: SaveDeviceIdUseCase {
+    func callAsFunction(_ deviceId: UUID) async throws(DomainError) {
+        preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
+    }
+}
+
+struct UnimplementedGetDeviceIdUseCase: GetDeviceIdUseCase {
+    func callAsFunction() async throws(DomainError) -> UUID {
         preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
     }
 }
