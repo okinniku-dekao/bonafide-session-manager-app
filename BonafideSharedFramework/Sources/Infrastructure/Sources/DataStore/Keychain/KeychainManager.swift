@@ -9,8 +9,8 @@
 import Foundation
 import Security
 
-actor KeychainManager {
-    static let shared = KeychainManager()
+public actor KeychainManager {
+    public static let shared = KeychainManager()
     
     private init() {}
     
@@ -68,3 +68,12 @@ actor KeychainManager {
         return status == errSecSuccess
     }
 }
+
+#if DEBUG
+public extension KeychainManager {
+    public func deleteDeviceId(service: String) {
+        delete(service: service, key: KeychainKey.deviceId)
+    }
+}
+#endif
+
