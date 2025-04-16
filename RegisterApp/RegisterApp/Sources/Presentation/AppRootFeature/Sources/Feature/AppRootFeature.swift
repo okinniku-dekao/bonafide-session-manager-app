@@ -50,10 +50,10 @@ public struct AppRootFeature: Sendable {
                 
             case .deviceIdReceived:
                 // 端末IDが登録されていた場合はMainTabへ遷移させる
+                state.destination = .mainTab(.init())
                 return .none
 
             case .deviceIdGetFailed(let error):
-                print(error, "🔥")
                 if error == .notFound {
                     // 端末IDが未登録の場合は、端末登録画面に遷移させる
                     state.destination = .registerDevice(.init())

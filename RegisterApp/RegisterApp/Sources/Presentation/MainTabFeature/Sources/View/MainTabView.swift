@@ -19,6 +19,7 @@ public struct MainTabView: View {
         WithPerceptionTracking {
             Text("MainTabView")
         }
+        .navigationBarHidden(true)
     }
 }
 
