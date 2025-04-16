@@ -7,11 +7,15 @@ import ComposableArchitecture
 public struct RegisterDeviceFeature {
     public init(){}
 
-    public struct State: Equatable {
+    @ObservableState
+    public struct State {
         public init() {}
     }
     
-    public enum Action: Equatable {}
+    @CasePathable
+    public enum Action {
+        case onAppear
+    }
     
     public var body: some ReducerOf<Self> {
         Reduce { state, action in

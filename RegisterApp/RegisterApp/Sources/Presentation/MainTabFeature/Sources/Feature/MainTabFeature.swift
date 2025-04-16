@@ -7,11 +7,12 @@ import ComposableArchitecture
 public struct MainTabFeature {
     public init() {}
     
-    public struct State: Equatable {
+    @ObservableState
+    public struct State {
         public init() {}
     }
     
-    public enum Action: Equatable {}
+    public enum Action {}
     
     public var body: some ReducerOf<Self> {
         Reduce { state, action in

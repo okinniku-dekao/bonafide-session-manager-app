@@ -9,14 +9,19 @@ import SwiftUI
 import ComposableArchitecture
 
 public struct RegisterDeviceView: View {
-    private let store: StoreOf<RegisterDeviceFeature>
+    @Perception.Bindable private var store: StoreOf<RegisterDeviceFeature>
     
     public init(store: StoreOf<RegisterDeviceFeature>) {
         self.store = store
     }
     
     public var body: some View {
-        Text("RegisterDeviceView")
+        WithPerceptionTracking {
+            Text("RegisterDeviceView")
+                .task {
+                    store.send(.onAppear)
+                }
+        }
     }
 }
 
