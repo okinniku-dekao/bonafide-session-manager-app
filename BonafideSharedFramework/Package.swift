@@ -35,9 +35,14 @@ let package = Package(
             name: "Resources",
             targets: ["Resources"]
         ),
+        .library(
+            name: "PresentationHelper",
+            targets: ["PresentationHelper"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.1"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.19.0"),
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "11.11.0"),
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.8.0")
     ],
@@ -112,6 +117,13 @@ let package = Package(
             resources: [.process("Sources/Resources/Assets")],
             plugins: [.plugin(name: "RswiftGeneratePublicResources", package: "R.swift")]
         ),
+        .target(
+            name: "PresentationHelper",
+            dependencies: [
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ],
+            path: "Sources/PresentationHelper"
+        )
     ],
     swiftLanguageModes: [.v6]
 )
