@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Domain
 
 public extension Effect {
     static func stream<T: Equatable & Sendable>(
@@ -19,6 +20,21 @@ public extension Effect {
             }
         } catch: {
             await handler?($0, $1)
+        }
+    }
+    
+    static func runDomainError(
+        operation: @escaping @Sendable (_ send: Send<Action>) async throws -> Void,
+        catch handler: @escaping @Sendable (_ error: DomainError, _ send: Send<Action>) async -> Void
+    ) -> Effect {
+        .run { send in
+            await try operation(send)
+        } catch: { error, send in
+            guard let domainError = error as? DomainError else {
+                assertionFailure("Unexpected error type: \(error)")
+                return
+            }
+            await handler(domainError, send)
         }
     }
 }
