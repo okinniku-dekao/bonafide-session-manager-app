@@ -7,20 +7,35 @@
 
 import SwiftUI
 import ComposableArchitecture
+import MainTabFeature
+import RegisterDeviceFeature
 
 public struct AppRootView: View {
     public init(store: StoreOf<AppRootFeature>) {
         self.store = store
     }
-
-    let store: StoreOf<AppRootFeature>
-
+    
+    @Perception.Bindable var store: StoreOf<AppRootFeature>
+    
     public var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            Text("AppRootView")
-                .task {
-                    viewStore.send(.onAppear)
+        WithPerceptionTracking {
+            if let destination = store.destination {
+                switch destination {
+                case .mainTab:
+                    if let store = store.scope(state: \.destination?.mainTab, action: \.destination.mainTab) {
+                        MainTabView(store: store)
+                    }
+                case .registerDevice:
+                    if let store = store.scope(state: \.destination?.registerDevice, action: \.destination.registerDevice) {
+                        RegisterDeviceView(store: store)
+                    }
                 }
+            } else {
+                ProgressView()
+                    .onAppear {
+                        store.send(.onAppear)
+                    }
+            }
         }
     }
 }
