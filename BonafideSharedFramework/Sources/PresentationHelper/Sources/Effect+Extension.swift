@@ -28,7 +28,7 @@ public extension Effect {
         catch handler: @escaping @Sendable (_ error: DomainError, _ send: Send<Action>) async -> Void
     ) -> Effect {
         .run { send in
-            await try operation(send)
+            try await operation(send)
         } catch: { error, send in
             guard let domainError = error as? DomainError else {
                 assertionFailure("Unexpected error type: \(error)")
