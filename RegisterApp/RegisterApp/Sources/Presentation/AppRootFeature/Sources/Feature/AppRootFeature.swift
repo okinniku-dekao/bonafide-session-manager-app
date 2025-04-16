@@ -30,13 +30,15 @@ public struct AppRootFeature: Sendable {
     @Dependency(\.userUseCases) var user
     @Dependency(\.menuUseCases) var menu
     @Dependency(\.sessionUseCases) var session
+    @Dependency(\.deviceUseCases) var device
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
                 return .run { _ in
-                    let users = try await user.fetchAll(for: nil)
-                    let menus = try await menu.fetchAll()
+//                    let users = try await user.fetchAll(for: nil)
+//                    let menus = try await menu.fetchAll()
+                    let deviceId = try await device.getDeviceId()
                 } catch: { error, _ in
                     if let error = error as? DomainError {
                         print(error, "🔥")

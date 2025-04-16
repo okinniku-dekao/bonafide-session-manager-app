@@ -1,0 +1,30 @@
+//
+//  RegisterDeviceView.swift
+//  RegisterDeviceFeature
+//
+//  Created by 東　秀斗 on 2025/04/16.
+//
+
+import SwiftUI
+import ComposableArchitecture
+
+public struct RegisterDeviceView: View {
+    private let store: StoreOf<RegisterDeviceFeature>
+    
+    public init(store: StoreOf<RegisterDeviceFeature>) {
+        self.store = store
+    }
+    
+    public var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+#Preview {
+    RegisterDeviceView(
+        store: Store(
+            initialState: RegisterDeviceFeature.State(),
+            reducer: { RegisterDeviceFeature() }
+        )
+    )
+}
