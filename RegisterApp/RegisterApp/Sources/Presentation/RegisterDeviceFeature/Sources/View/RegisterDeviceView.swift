@@ -22,6 +22,8 @@ public struct RegisterDeviceView: View {
                     store.send(.onAppear)
                 }
         }
+        .navigationTitle("端末登録")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

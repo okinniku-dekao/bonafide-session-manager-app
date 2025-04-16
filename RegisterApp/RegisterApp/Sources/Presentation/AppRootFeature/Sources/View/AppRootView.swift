@@ -18,23 +18,25 @@ public struct AppRootView: View {
     @Perception.Bindable var store: StoreOf<AppRootFeature>
     
     public var body: some View {
-        WithPerceptionTracking {
-            if let destination = store.destination {
-                switch destination {
-                case .mainTab:
-                    if let store = store.scope(state: \.destination?.mainTab, action: \.destination.mainTab) {
-                        MainTabView(store: store)
+        NavigationView {
+            WithPerceptionTracking {
+                if let destination = store.destination {
+                    switch destination {
+                    case .mainTab:
+                        if let store = store.scope(state: \.destination?.mainTab, action: \.destination.mainTab) {
+                            MainTabView(store: store)
+                        }
+                    case .registerDevice:
+                        if let store = store.scope(state: \.destination?.registerDevice, action: \.destination.registerDevice) {
+                            RegisterDeviceView(store: store)
+                        }
                     }
-                case .registerDevice:
-                    if let store = store.scope(state: \.destination?.registerDevice, action: \.destination.registerDevice) {
-                        RegisterDeviceView(store: store)
-                    }
+                } else {
+                    ProgressView()
+                        .onAppear {
+                            store.send(.onAppear)
+                        }
                 }
-            } else {
-                ProgressView()
-                    .onAppear {
-                        store.send(.onAppear)
-                    }
             }
         }
     }
