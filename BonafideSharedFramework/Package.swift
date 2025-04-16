@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "BonafideSharedFramework",
+    defaultLocalization: "ja",
     platforms: [.iOS(.v15), .macOS(.v10_15)],
     products: [
         .library(
