@@ -120,7 +120,8 @@ let package = Package(
         .target(
             name: "PresentationHelper",
             dependencies: [
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+                "Domain"
             ],
             path: "Sources/PresentationHelper"
         )
