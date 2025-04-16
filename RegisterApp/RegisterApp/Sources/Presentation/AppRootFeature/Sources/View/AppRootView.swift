@@ -20,7 +20,6 @@ public struct AppRootView: View {
             Text("AppRootView")
                 .task {
                     viewStore.send(.onAppear)
-                    viewStore.send(.stream)
                 }
         }
     }
