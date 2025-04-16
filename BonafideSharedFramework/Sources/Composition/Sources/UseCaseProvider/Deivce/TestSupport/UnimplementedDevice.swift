@@ -38,14 +38,8 @@ struct UnimplementedUpdateDeviceUseCase: UpdateDeviceUseCase {
     }
 }
 
-struct UnimplementedSaveDeviceIdUseCase: SaveDeviceIdUseCase {
-    func callAsFunction(_ deviceId: UUID) async throws(DomainError) {
-        preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
-    }
-}
-
 struct UnimplementedGetDeviceIdUseCase: GetDeviceIdUseCase {
-    func callAsFunction() async throws(DomainError) -> UUID {
+    func callAsFunction() async throws(DomainError) -> String {
         preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
     }
 }

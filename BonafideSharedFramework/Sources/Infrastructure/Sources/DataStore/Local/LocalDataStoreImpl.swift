@@ -15,8 +15,8 @@ public struct LocalDataStoreImpl: LocalDataStore {
         self.service = service
     }
     
-    public func saveDeviceId(_ deviceId: UUID) async throws(DataStoreError) {
-        guard let deviceIdData = deviceId.uuidString.data(using: .utf8) else {
+    public func saveDeviceId(_ deviceId: String) async throws(DataStoreError) {
+        guard let deviceIdData = deviceId.data(using: .utf8) else {
             throw .faildConvertToData
         }
         let saved = await KeychainManager.shared.save(
@@ -29,15 +29,14 @@ public struct LocalDataStoreImpl: LocalDataStore {
         }
     }
     
-    public func getDeviceId() async throws(DataStoreError) -> UUID {
+    public func getDeviceId() async throws(DataStoreError) -> String {
         guard let data = await KeychainManager.shared.load(
             service: service,
             key: KeychainKey.deviceId
         ),
-              let uuidString = String(data: data, encoding: .utf8),
-              let uuid = UUID(uuidString: uuidString) else {
+              let uuidString = String(data: data, encoding: .utf8)  else {
             throw .notSaved
         }
-        return uuid
+        return uuidString
     }
 }

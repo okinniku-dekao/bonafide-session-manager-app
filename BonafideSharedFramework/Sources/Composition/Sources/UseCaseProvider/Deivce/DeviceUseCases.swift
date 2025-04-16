@@ -18,7 +18,6 @@ public struct DeviceUseCases: Sendable {
     public var register: any RegisterDeviceUseCase
     public var update: any UpdateDeviceUseCase
     public var getDeviceId: any GetDeviceIdUseCase
-    public var saveDeviceId: any SaveDeviceIdUseCase
 }
 
 public extension DependencyValues {
@@ -43,10 +42,12 @@ extension DeviceUseCases: DependencyKey {
             delete: DeleteDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
             fetchAll: FetchAllDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
             fetchDetail: FetchDeviceDetailUseCaseImpl(deviceRepository: deviceRepositoryImpl),
-            register: RegisterDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
+            register: RegisterDeviceUseCaseImpl(
+                deviceRepository: deviceRepositoryImpl,
+                keychainRepository: keychainRepositoryImpl
+            ),
             update: UpdateDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
-            getDeviceId: GetDeviceIdUseCaseImpl(keychainRepository: keychainRepositoryImpl),
-            saveDeviceId: SaveDeviceIdUseCaseImpl(keychainRepository: keychainRepositoryImpl)
+            getDeviceId: GetDeviceIdUseCaseImpl(keychainRepository: keychainRepositoryImpl)
         )
     }
     
@@ -57,8 +58,7 @@ extension DeviceUseCases: DependencyKey {
             fetchDetail: UnimplementedFetchDeviceDetailUseCase(),
             register: UnimplementedRegisterDeviceUseCase(),
             update: UnimplementedUpdateDeviceUseCase(),
-            getDeviceId: UnimplementedGetDeviceIdUseCase(),
-            saveDeviceId: UnimplementedSaveDeviceIdUseCase()
+            getDeviceId: UnimplementedGetDeviceIdUseCase()
         )
     }
 }

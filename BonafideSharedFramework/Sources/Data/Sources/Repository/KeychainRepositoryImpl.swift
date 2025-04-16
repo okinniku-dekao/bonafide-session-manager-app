@@ -5,7 +5,6 @@
 //  Created by 東　秀斗 on 2025/04/16.
 //
 
-import Foundation
 import Domain
 
 public struct KeychainRepositoryImpl: KeychainRepository {
@@ -15,7 +14,7 @@ public struct KeychainRepositoryImpl: KeychainRepository {
         self.localDataStore = localDataStore
     }
     
-    public func saveDeviceId(_ id: UUID) async throws(DomainError) {
+    public func saveDeviceId(_ id: String) async throws(DomainError) {
         do {
             try await localDataStore.saveDeviceId(id)
         } catch {
@@ -23,7 +22,7 @@ public struct KeychainRepositoryImpl: KeychainRepository {
         }
     }
     
-    public func loadDeviceId() async throws(DomainError) -> UUID {
+    public func loadDeviceId() async throws(DomainError) -> String {
         do {
             return try await localDataStore.getDeviceId()
         } catch {

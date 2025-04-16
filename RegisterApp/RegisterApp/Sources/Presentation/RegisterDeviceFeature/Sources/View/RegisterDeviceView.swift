@@ -55,7 +55,7 @@ public struct RegisterDeviceView: View {
                 Spacer()
                 
                 Button {
-                    
+                    store.send(.onTapRegisterDeviceButton)
                 } label: {
                     Text(l10n.registerDeviceButtonLabel())
                         .frame(maxWidth: .infinity)
@@ -67,9 +67,7 @@ public struct RegisterDeviceView: View {
                 }
                 .padding(.bottom, 20)
             }
-            .task {
-                store.send(.onAppear)
-            }
+            .alert($store.scope(state: \.alert, action: \.alert))
         }
         .navigationTitle(l10n.registerDeviceTitle())
         .navigationBarTitleDisplayMode(.inline)
