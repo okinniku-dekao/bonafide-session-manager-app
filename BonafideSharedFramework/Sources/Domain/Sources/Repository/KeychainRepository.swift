@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol KeychainRepository {
+public protocol KeychainRepository: Sendable {
     func saveDeviceId(_ id: UUID) async throws(DomainError)
     func loadDeviceId() async throws(DomainError) -> UUID
 }
