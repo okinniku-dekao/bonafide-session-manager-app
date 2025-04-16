@@ -39,8 +39,11 @@ actor KeychainManager {
     }
     
     func load(service: String, key: String) -> Data? {
-        let query = getKeychainQuery(for: service, key: key)
+        var query = getKeychainQuery(for: service, key: key)
         
+        query[kSecReturnData] = kCFBooleanTrue
+        query[kSecMatchLimit] = kSecMatchLimitOne
+
         var result: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
         
