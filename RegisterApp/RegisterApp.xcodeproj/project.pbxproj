@@ -51,7 +51,10 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Sources/Presentation/AppRootFeature,
+				Sources/Presentation/MainTabFeature,
 				Sources/Presentation/RegisterDeivceFeature,
+				Sources/Presentation/StreamConnectionFeature,
+				Sources/Presentation/StreamSessionFeature,
 			);
 			target = 7B62CD632D76EB0200408FDF /* RegisterApp */;
 		};
