@@ -16,7 +16,13 @@ public struct AppRootView: View {
     let store: StoreOf<AppRootFeature>
 
     public var body: some View {
-        Text("AppRootView")
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            Text("AppRootView")
+                .task {
+                    viewStore.send(.onAppear)
+                    viewStore.send(.stream)
+                }
+        }
     }
 }
 
