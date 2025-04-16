@@ -14,6 +14,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public init() {}
 
+    // MARK: - Device
     public func registerDevice(_ device: DeviceDTO) async throws(DataStoreError) {
         try await handle {
             try db.collection(Key.devices).document(device.id).setData(from: device)
@@ -46,6 +47,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    // MARK: - MenuNote
     public func registerMenuNote(userId: String, menuNoteDTO: MenuNoteDTO) async throws(DataStoreError) {
         try await handle {
             try await db.collection(Key.users).document(userId).setData(["menus": FieldValue.arrayUnion([menuNoteDTO])], merge: true)
@@ -74,6 +76,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    // MARK: - Menu
     public func registerMenu(_ menuDTO: MenuDTO) async throws(DataStoreError) {
         try await handle {
             try db.collection(Key.menus).document(menuDTO.id).setData(from: menuDTO)
@@ -98,6 +101,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    // MARK: - Session
     public func registerSession(userId: String, sessionDTO: [SessionDTO]) async throws(DataStoreError) {
         try await handle {
             try await db.collection(Key.users).document(userId).setData(["sessions": FieldValue.arrayUnion(sessionDTO)], merge: true)
@@ -117,6 +121,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    // MARK: - TrainingRecord
     public func registerTrainingRecord(userId: String, trainingRecordDTO: TrainingRecordDTO) async throws(DataStoreError) {
         try await handle {
             try await db.collection(Key.users).document(userId).setData(["trainingRecords": FieldValue.arrayUnion([trainingRecordDTO])], merge: true)
@@ -138,6 +143,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    // MARK: - User
     public func registerUser(userDTO: UserDTO) async throws(DataStoreError) {
         try await handle {
             try db.collection(Key.users).document(userDTO.id).setData(from: userDTO)
@@ -162,6 +168,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    // MARK: - Weight
     public func registerWeight(weightDTO: WeightDTO) async throws(DataStoreError) {
         try await handle {
             try db.collection(Key.weights).document(weightDTO.id).setData(from: weightDTO)
