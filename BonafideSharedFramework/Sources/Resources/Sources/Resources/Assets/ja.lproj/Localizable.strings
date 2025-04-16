@@ -12,3 +12,14 @@
 "deviceNameInputPlaceholder" = "端末名を入力してください";
 "shopSelectTitle" = "店舗";
 "registerDeviceButtonLabel" = "登録する";
+
+// MARK: - アラート
+"alertErrorTitle" = "エラー";
+"invalidUserNameMessage" = "ユーザ名を入力してください";
+"invalidDeviceNameMessage" = "端末名を入力してください";
+"invalidMenuNameMessage" = "メニュー名を入力してください";
+"invalidMenuNumberMessage" = "メニュー番号を入力してください";
+"invalidSatisfactionMessage" = "満足度を選択してください";
+"invalidWeightValueMessage" = "重りを入力してください";
+"invalidDurationValueMessage" = "時間を入力してください";
+"alertOk" = "OK";
