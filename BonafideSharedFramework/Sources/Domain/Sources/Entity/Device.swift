@@ -17,8 +17,8 @@ public struct Device: Identifiable, Equatable {
     
     public init(
         id: String = UUID().uuidString,
-        deviceName: String,
-        connectedUserId: String,
+        deviceName: String = "",
+        connectedUserId: String = "",
         isActive: Bool = false,
         registeredAt: Date = Date(),
         store: Store = .owada)
