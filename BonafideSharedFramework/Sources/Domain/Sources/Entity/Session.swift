@@ -6,7 +6,7 @@
 //
 
 
-public struct Session: Identifiable, Equatable {
+public struct Session: Identifiable, Equatable, Sendable {
     public var id: String
     public var name: String
     public var note: String
