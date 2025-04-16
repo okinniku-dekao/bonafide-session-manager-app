@@ -15,6 +15,7 @@ public struct RegisterDeviceUseCaseImpl: RegisterDeviceUseCase {
     }
     
     public func callAsFunction(_ device: Device) async throws (DomainError) {
+        try device.validation()
         try await deviceRepository.register(device)
     }
 }
