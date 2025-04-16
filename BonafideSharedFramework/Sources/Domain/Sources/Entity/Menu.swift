@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Menu: Equatable, Identifiable, Hashable {
+public struct Menu: Equatable, Identifiable, Hashable, Sendable {
     public var id: String
     public var name: String
     public var number: Int

@@ -5,7 +5,7 @@
 //  Created by 東　秀斗 on 2025/04/12.
 //
 
-public struct MenuNote: Equatable, Identifiable, Hashable {
+public struct MenuNote: Equatable, Identifiable, Hashable, Sendable {
     public var id: String
     public var menu: Menu
     public var memo: String

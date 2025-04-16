@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Device: Identifiable, Equatable {
+public struct Device: Identifiable, Equatable, Sendable {
     public var id: String
     public var deviceName: String
     public var connectedUserId: String

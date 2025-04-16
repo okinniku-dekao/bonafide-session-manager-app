@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TrainingRecord: Equatable, Identifiable {
+public struct TrainingRecord: Equatable, Identifiable, Sendable {
     public var id: String
     public var dateTime: Date
     public var durationInSeconds: Int?

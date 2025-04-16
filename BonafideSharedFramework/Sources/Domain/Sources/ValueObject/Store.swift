@@ -5,7 +5,7 @@
 //  Created by 東　秀斗 on 2025/04/12.
 //
 
-public enum Store: Equatable, CaseIterable {
+public enum Store: Equatable, CaseIterable, Sendable {
     case seiwa
     case owada
     case yonematsu

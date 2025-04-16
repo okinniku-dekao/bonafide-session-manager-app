@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User: Identifiable, Equatable {
+public struct User: Identifiable, Equatable, Sendable {
     public var id: String
     public var name: String
     public var birthdate: Date?
