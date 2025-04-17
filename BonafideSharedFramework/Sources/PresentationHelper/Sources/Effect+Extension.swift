@@ -12,14 +12,14 @@ public extension Effect {
     static func stream<T: Equatable & Sendable>(
         _ stream: @escaping @Sendable () async throws -> AsyncThrowingStream<T, any Error>,
         map action: @escaping @Sendable (T) -> Action,
-        catch handler: (@Sendable (_ error: any Error, _ send: Send<Action>) async -> Void)? = nil
+        catch handler: (@Sendable (_ error: DomainError, _ send: Send<Action>) async -> Void)? = nil
     ) -> Effect {
         .run { [action = action] send in
             for try await value in try await stream() {
                 await send(action(value))
             }
         } catch: {
-            await handler?($0, $1)
+            await handler?($0 as! DomainError, $1)
         }
     }
     
