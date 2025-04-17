@@ -51,7 +51,6 @@ public struct SessionRepositoryImpl: SessionRepository {
                     continuation.finish(throwing: DomainError(from: error as! DataStoreError))
                 }
             }
-            
         }
     }
 }
