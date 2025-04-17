@@ -26,6 +26,9 @@ public struct StreamConnectionView: View {
                 Color(uiColor: backgroundColor)
                     .ignoresSafeArea()
             )
+            .task {
+                store.send(.onAppear)
+            }
             .navigationTitle("接続待機")
             .navigationBarTitleDisplayMode(.inline)
     }
