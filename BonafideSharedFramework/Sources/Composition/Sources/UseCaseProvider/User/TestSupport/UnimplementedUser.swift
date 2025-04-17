@@ -30,3 +30,9 @@ struct UnimplementedUpdateUserUseCase: UpdateUserUseCase {
         preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
     }
 }
+
+struct UnimplementedFetchUserDetailUseCase: FetchUserDetailUseCase {
+    func callAsFunction(_ userId: String) async throws(DomainError) -> User {
+        preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
+    }
+}

@@ -16,6 +16,7 @@ public struct UserUseCases: Sendable {
     public var fetchAll: any FetchAllUserUseCase
     public var register: any RegisterUserUseCase
     public var update: any UpdateUserUseCase
+    public var fetchDetail: any FetchUserDetailUseCase
 }
 
 public extension DependencyValues {
@@ -34,7 +35,8 @@ extension UserUseCases: DependencyKey {
             delete: DeleteUserUseCaseImpl(userRepository: userRepositoryImpl),
             fetchAll: FetchAllUserUseCaseImpl(userRepository: userRepositoryImpl),
             register: RegisterUserUseCaseImpl(userRepository: userRepositoryImpl),
-            update: UpdateUserUseCaseImpl(userRepository: userRepositoryImpl)
+            update: UpdateUserUseCaseImpl(userRepository: userRepositoryImpl),
+            fetchDetail: FetchUserDetailUseCaseImpl(userRepository: userRepositoryImpl)
         )
     }
     
@@ -43,7 +45,8 @@ extension UserUseCases: DependencyKey {
             delete: UnimplementedDeleteUserUseCase(),
             fetchAll: UnimplementedFetchAllUserCase(),
             register: UnimplementedRegisterUserUseCase(),
-            update: UnimplementedUpdateUserUseCase()
+            update: UnimplementedUpdateUserUseCase(),
+            fetchDetail: UnimplementedFetchUserDetailUseCase()
         )
     }
 }
