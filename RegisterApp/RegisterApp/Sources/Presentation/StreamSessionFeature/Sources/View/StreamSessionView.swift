@@ -12,6 +12,7 @@ import ComposableArchitecture
 import PresentationHelper
 import Resources
 import Domain
+import Composition
 
 public struct StreamSessionView: View {
     @Perception.Bindable private var store: StoreOf<StreamSessionFeature>
@@ -21,10 +22,17 @@ public struct StreamSessionView: View {
     }
     
     private let backgroundColor: UIColor = sharedColors.commonBackground()!
-    
     public var body: some View {
         WithPerceptionTracking {
             VStack {
+                Text(store.userName)
+                    .font(.title)
+                    .foregroundStyle(Color.black)
+                Button {
+                    store.send(.test)
+                } label: {
+                    Text("セッション追加")
+                }
                 switch store.sessions {
                 case .idle:
                     EmptyView()
@@ -35,7 +43,7 @@ public struct StreamSessionView: View {
                     if sessions.isEmpty {
                         Text("セッションがありません")
                             .font(.headline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(Color.black)
                             .padding()
                     } else {
                         List {
@@ -52,12 +60,15 @@ public struct StreamSessionView: View {
                         .padding()
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(
                 Color(uiColor: backgroundColor)
                     .ignoresSafeArea()
             )
             .alert($store.scope(state: \.alert, action: \.alert))
+            .task {
+                store.send(.onAppear)
+            }
         }
         .navigationTitle("セッション一覧")
         .navigationBarTitleDisplayMode(.inline)

@@ -5,6 +5,7 @@ import ComposableArchitecture
 import Composition
 import Domain
 import PresentationHelper
+import AppSharedState
 
 @Reducer
 public struct StreamSessionFeature: Sendable {
@@ -13,17 +14,24 @@ public struct StreamSessionFeature: Sendable {
     @ObservableState
     public struct State {
         public init() {}
-        var userId: String = ""
+        @Shared(.appSharedState) var appSharedState = AppSharedState()
         var sessions: LoadStatus<[Session]> = .idle
         @Presents var alert: AlertState<Action.Alert>?
+        var userName: String {
+            guard let user = appSharedState.connectedUser else {
+                preconditionFailure("値をセットしてから読み込んでください")
+            }
+            return user.name
+        }
     }
     
     public enum Action {
-        case onAppear(userId: String)
+        case onAppear
         case sessionsReceived([Session])
         case streamSessionFailed(DomainError)
         case alert(PresentationAction<Alert>)
-        
+        case test
+
         public enum Alert {
             case ok
         }
@@ -34,14 +42,15 @@ public struct StreamSessionFeature: Sendable {
     }
     
     @Dependency(\.sessionUseCases) var session
-    
+    @Dependency(\.uuid) var uuid
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .onAppear(let userId):
-                state.userId = userId
+            case .onAppear:
                 state.sessions = .loading
-                
+                guard let userId = state.appSharedState.connectedUser?.id else {
+                    preconditionFailure()
+                }
                 return .stream {
                     await session.stream(userId: userId)
                 } map: {
@@ -70,6 +79,20 @@ public struct StreamSessionFeature: Sendable {
                 
             case .alert:
                 return .none
+                
+            case .test:
+                return .run { [userId = state.appSharedState.connectedUser!.id] _ in
+                    try await session.register(
+                        userId: userId,
+                        sessions: [
+                            .init(id: uuid().uuidString, name: "トレーニング4", note: "簡単", number: 0, path: ""),
+                            .init(id: uuid().uuidString, name: "トレーニング5", note: "普通", number: 0, path: ""),
+                            .init(id: uuid().uuidString, name: "トレーニング6", note: "難しい", number: 0, path: ""),
+                        ]
+                    )
+                } catch: { error, send in
+                    print(error as! DomainError)
+                }
             }
         }
         .ifLet(\.$alert, action: \.alert)
