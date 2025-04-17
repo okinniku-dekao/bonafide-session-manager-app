@@ -21,6 +21,7 @@ public struct StreamConnectionView: View {
     
     public var body: some View {
         ProgressView()
+            .tint(Color(uiColor: sharedColors.primary()!))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
                 Color(uiColor: backgroundColor)

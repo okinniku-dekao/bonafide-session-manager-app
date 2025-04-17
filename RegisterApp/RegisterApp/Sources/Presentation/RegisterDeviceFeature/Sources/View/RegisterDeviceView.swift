@@ -62,7 +62,7 @@ public struct RegisterDeviceView: View {
                     Text(l10n.registerDeviceButtonLabel())
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.accentColor)
+                        .background(Color(uiColor: sharedColors.primary()!))
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         .padding(.horizontal)
