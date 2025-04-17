@@ -23,7 +23,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         DeviceUseCases.serviceName = Bundle.main.bundleIdentifier ?? "default.bundle.identifier"
         #if DEBUG
         // デバッグ用でKeychainに保存した端末IDを削除する
-        resetKeychain(service: DeviceUseCases.serviceName)
+//        resetKeychain(service: DeviceUseCases.serviceName)
         #endif
         FirebaseApp.configure()
         return true
