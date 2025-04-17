@@ -109,6 +109,9 @@ let package = Package(
         ),
         .target(
             name: "UIComponents",
+            dependencies: [
+                "Resources"
+            ],
             path: "Sources/UIComponents"
         ),
         .target(
