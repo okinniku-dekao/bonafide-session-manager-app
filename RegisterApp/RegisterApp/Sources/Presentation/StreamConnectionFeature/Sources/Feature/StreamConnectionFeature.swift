@@ -12,6 +12,7 @@ public struct StreamConnectionFeature: Sendable {
     @ObservableState
     public struct State {
         public init() {}
+        var error: DomainError?
     }
     
     public enum Action {
@@ -19,6 +20,7 @@ public struct StreamConnectionFeature: Sendable {
         case connectedUserIdReceived(String)
         case streamUserIdFailed(DomainError)
         case delegate(DelegateAction)
+        case retryStreaming
         
         public enum DelegateAction {
             case connectedUserIdReceived(String)
@@ -33,15 +35,7 @@ public struct StreamConnectionFeature: Sendable {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                return .stream {
-                    let deviceId = try await device.getDeviceId()
-                    return await device.streamConnectedUserId(deviceId: deviceId)
-                } map: {
-                    .connectedUserIdReceived($0)
-                } catch: { error, send in
-                    await send(.streamUserIdFailed(error))
-                }
-                .cancellable(id: CancelId.stream)
+                return streamConnectedUserId()
 
             case .connectedUserIdReceived(let userId):
                 guard !userId.isEmpty else { return .none }
@@ -51,12 +45,28 @@ public struct StreamConnectionFeature: Sendable {
                 )
                 
             case .streamUserIdFailed(let error):
-                print(error)
-                return .none
+                state.error = error
+                return .cancel(id: CancelId.stream)
+                
+            case .retryStreaming:
+                state.error = nil
+                return streamConnectedUserId()
                 
             default:
                 return .none
             }
         }
+    }
+    
+    private func streamConnectedUserId() -> Effect<Action> {
+        return .stream {
+            let deviceId = try await device.getDeviceId()
+            return await device.streamConnectedUserId(deviceId: deviceId)
+        } map: {
+            .connectedUserIdReceived($0)
+        } catch: { error, send in
+            await send(.streamUserIdFailed(error))
+        }
+        .cancellable(id: CancelId.stream)
     }
 }
