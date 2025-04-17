@@ -110,7 +110,8 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     // MARK: - Session
     public func registerSession(userId: String, sessionDTO: [SessionDTO]) async throws(DataStoreError) {
         try await handle {
-            try await db.collection(Key.users).document(userId).setData(["sessions": FieldValue.arrayUnion(sessionDTO)], merge: true)
+            let sessions = try sessionDTO.map { try $0.toDictionary() }
+            try await db.collection(Key.users).document(userId).setData(["sessions": FieldValue.arrayUnion(sessions)], merge: true)
         }
     }
     
