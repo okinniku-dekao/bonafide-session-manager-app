@@ -22,9 +22,14 @@ public struct RegisterDeviceFeature: Sendable {
         case onTapRegisterDeviceButton
         case registerDeviceFailed(DomainError)
         case alert(PresentationAction<Alert>)
+        case delegate(DelegateAction)
         
         public enum Alert {
             case ok
+        }
+        
+        public enum DelegateAction {
+            case registerDeviceSuccess
         }
     }
     
@@ -36,6 +41,7 @@ public struct RegisterDeviceFeature: Sendable {
             case .onTapRegisterDeviceButton:
                 return .runDomainError { [inputDevice = state.device] send in
                     try await device.register(inputDevice)
+                    await send(.delegate(.registerDeviceSuccess))
                 } catch: { error, send in
                     await send(.registerDeviceFailed(error))
                 }
