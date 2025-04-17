@@ -14,7 +14,7 @@ public struct StreamSessionsUseCaseImpl: StreamSessionsUseCase {
         self.sessionRepository = sessionRepository
     }
     
-    public func callAsFunction(userId: String) -> AsyncThrowingStream<[Session], any Error> {
-        sessionRepository.streamSessions(userId: userId)
+    public func callAsFunction(userId: String) async -> AsyncThrowingStream<[Session], any Error> {
+        await sessionRepository.streamSessions(userId: userId)
     }
 }

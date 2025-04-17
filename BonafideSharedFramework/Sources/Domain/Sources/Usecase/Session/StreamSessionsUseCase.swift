@@ -6,5 +6,5 @@
 //
 
 public protocol StreamSessionsUseCase: Sendable {
-    func callAsFunction(userId: String) -> AsyncThrowingStream<[Session], any Error>
+    func callAsFunction(userId: String) async -> AsyncThrowingStream<[Session], any Error>
 }

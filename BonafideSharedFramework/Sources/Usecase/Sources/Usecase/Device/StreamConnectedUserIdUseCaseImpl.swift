@@ -14,7 +14,7 @@ public struct StreamConnectedUserIdUseCaseImpl: StreamConnectedUserIdUseCase {
         self.deviceRepository = deviceRepository
     }
     
-    public func callAsFunction(deviceId: String) -> AsyncThrowingStream<String, any Error> {
-        deviceRepository.streamConnectedUserId(deviceId: deviceId)
+    public func callAsFunction(deviceId: String) async -> AsyncThrowingStream<String, any Error> {
+        await deviceRepository.streamConnectedUserId(deviceId: deviceId)
     }
 }
