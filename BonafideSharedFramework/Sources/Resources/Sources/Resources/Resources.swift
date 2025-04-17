@@ -4,3 +4,4 @@
 @_exported import RswiftResources
 
 public let l10n = R.string.localizable
+public let sharedColors = R.color
