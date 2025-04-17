@@ -6,7 +6,6 @@
 //
 
 import Domain
-import Data
 
 public struct FetchUserDetailUseCaseImpl: FetchUserDetailUseCase {
     private let userRepository: UserRepository
