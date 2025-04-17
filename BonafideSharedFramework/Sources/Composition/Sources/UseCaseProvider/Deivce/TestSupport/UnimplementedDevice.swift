@@ -43,3 +43,9 @@ struct UnimplementedGetDeviceIdUseCase: GetDeviceIdUseCase {
         preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
     }
 }
+
+struct UnimplementedStreamConnectedUserIdUseCase: StreamConnectedUserIdUseCase {
+    func callAsFunction(deviceId: String) -> AsyncThrowingStream<String, any Error> {
+        preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
+    }
+}

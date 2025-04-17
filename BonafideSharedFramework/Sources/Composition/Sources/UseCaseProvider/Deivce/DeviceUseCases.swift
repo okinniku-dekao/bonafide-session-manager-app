@@ -18,6 +18,7 @@ public struct DeviceUseCases: Sendable {
     public var register: any RegisterDeviceUseCase
     public var update: any UpdateDeviceUseCase
     public var getDeviceId: any GetDeviceIdUseCase
+    public var streamConnectedUserId: any StreamConnectedUserIdUseCase
 }
 
 public extension DependencyValues {
@@ -47,7 +48,8 @@ extension DeviceUseCases: DependencyKey {
                 keychainRepository: keychainRepositoryImpl
             ),
             update: UpdateDeviceUseCaseImpl(deviceRepository: deviceRepositoryImpl),
-            getDeviceId: GetDeviceIdUseCaseImpl(keychainRepository: keychainRepositoryImpl)
+            getDeviceId: GetDeviceIdUseCaseImpl(keychainRepository: keychainRepositoryImpl),
+            streamConnectedUserId: StreamConnectedUserIdUseCaseImpl(deviceRepository: deviceRepositoryImpl)
         )
     }
     
@@ -58,7 +60,8 @@ extension DeviceUseCases: DependencyKey {
             fetchDetail: UnimplementedFetchDeviceDetailUseCase(),
             register: UnimplementedRegisterDeviceUseCase(),
             update: UnimplementedUpdateDeviceUseCase(),
-            getDeviceId: UnimplementedGetDeviceIdUseCase()
+            getDeviceId: UnimplementedGetDeviceIdUseCase(),
+            streamConnectedUserId: UnimplementedStreamConnectedUserIdUseCase()
         )
     }
 }
