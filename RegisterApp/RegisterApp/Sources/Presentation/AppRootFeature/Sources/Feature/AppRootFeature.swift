@@ -60,6 +60,10 @@ public struct AppRootFeature: Sendable {
                 }
                 return .none
                 
+            case .destination(.presented(.registerDevice(.delegate(.registerDeviceSuccess)))):
+                // 端末登録が完了したらコネクション待機画面に遷移させる
+                return .none
+                
             case .destination:
                 return .none
             }
