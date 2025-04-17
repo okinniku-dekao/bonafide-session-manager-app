@@ -19,6 +19,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        setupNavigationBarAppearance()
         DeviceUseCases.serviceName = Bundle.main.bundleIdentifier ?? "default.bundle.identifier"
         #if DEBUG
         // デバッグ用でKeychainに保存した端末IDを削除する
@@ -26,6 +27,20 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         #endif
         FirebaseApp.configure()
         return true
+    }
+}
+
+extension AppDelegate {
+    private func setupNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.clear
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
     }
 }
 
