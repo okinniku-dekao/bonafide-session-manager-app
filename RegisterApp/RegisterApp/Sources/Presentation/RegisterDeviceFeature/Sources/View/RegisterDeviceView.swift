@@ -18,6 +18,8 @@ public struct RegisterDeviceView: View {
         self.store = store
     }
     
+    private let backgroundColor: UIColor = sharedColors.commonBackground()!
+    
     public var body: some View {
         WithPerceptionTracking {
             VStack(spacing: 24) {
@@ -72,8 +74,9 @@ public struct RegisterDeviceView: View {
         .navigationTitle(l10n.registerDeviceTitle())
         .navigationBarTitleDisplayMode(.inline)
         .background(
-            Color(UIColor.systemBackground)
+            Color(uiColor: backgroundColor)
                 .ignoresSafeArea()
+                .hideKeyboardOnTap()
         )
     }
 }
