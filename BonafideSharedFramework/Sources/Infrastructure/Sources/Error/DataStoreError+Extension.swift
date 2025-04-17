@@ -30,7 +30,7 @@ extension DataStoreError {
         case .aborted: self = .aborted
         case .outOfRange: self = .outOfRange
         case .unauthenticated: self = .unauthenticated
-        case .unavailable: self = .unavailable
+        case .unavailable: self = .networkError
         default: self = .unknown(error.localizedDescription)
         }
     }

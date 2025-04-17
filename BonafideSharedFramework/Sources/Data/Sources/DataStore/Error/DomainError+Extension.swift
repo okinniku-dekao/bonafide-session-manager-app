@@ -24,6 +24,8 @@ public extension DomainError {
             self = .unknown("\(error)")
         case .faildSaveData, .faildConvertToData:
             self = .faildSave
+        case .networkError:
+            self = .networkError
         case .unknown(let message):
             self = .unknown(message)
         }

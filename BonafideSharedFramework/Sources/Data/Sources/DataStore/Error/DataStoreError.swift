@@ -23,5 +23,6 @@ public enum DataStoreError: Error, Equatable {
     case faildConvertToData
     case faildSaveData
     case notSaved
+    case networkError
     case unknown(String) // エラーメッセージなど任意の情報を保持したい時に使う
 }
