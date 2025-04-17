@@ -25,7 +25,8 @@ let package = Package(
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "Composition", package: "BonafideSharedFramework"),
                 .product(name: "Domain", package: "BonafideSharedFramework"),
-                .product(name: "PresentationHelper", package: "BonafideSharedFramework")
+                .product(name: "PresentationHelper", package: "BonafideSharedFramework"),
+                .product(name: "UIComponents", package: "BonafideSharedFramework")
             ]
         ),
         .testTarget(

@@ -14,7 +14,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.18.0"),
-        .package(path: "../../../../../BonafideSharedFramework")
+        .package(path: "../../../../../BonafideSharedFramework"),
+        .package(path: "../StreamSessionFeature")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -25,7 +26,8 @@ let package = Package(
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "Composition", package: "BonafideSharedFramework"),
                 .product(name: "Domain", package: "BonafideSharedFramework"),
-                .product(name: "PresentationHelper", package: "BonafideSharedFramework")
+                .product(name: "PresentationHelper", package: "BonafideSharedFramework"),
+                "StreamSessionFeature"
             ]
         ),
         .testTarget(
