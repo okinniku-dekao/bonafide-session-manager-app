@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import PresentationHelper
 
-struct StreamConnectionView: View {
+public struct StreamConnectionView: View {
     @Perception.Bindable private var store: StoreOf<StreamConnectionFeature>
     
     public init(store: StoreOf<StreamConnectionFeature>) {
