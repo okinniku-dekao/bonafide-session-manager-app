@@ -16,6 +16,7 @@ let package = Package(
         .package(path: "../../../../../BonafideSharedFramework"),
         .package(path: "../RegisterDeviceFeature"),
         .package(path: "../MainTabFeature"),
+        .package(path: "../StreamConnectionFeature")
     ],
     targets: [
         .target(
@@ -26,7 +27,8 @@ let package = Package(
                 .product(name: "Domain", package: "BonafideSharedFramework"),
                 .product(name: "PresentationHelper", package: "BonafideSharedFramework"),
                 "RegisterDeviceFeature",
-                "MainTabFeature"
+                "MainTabFeature",
+                "StreamConnectionFeature"
             ]
         ),
         .testTarget(

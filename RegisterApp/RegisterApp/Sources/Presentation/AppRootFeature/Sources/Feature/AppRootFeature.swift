@@ -12,6 +12,7 @@ import Domain
 import PresentationHelper
 import MainTabFeature
 import RegisterDeviceFeature
+import StreamConnectionFeature
 
 @Reducer
 public struct AppRootFeature: Sendable {
@@ -21,6 +22,7 @@ public struct AppRootFeature: Sendable {
     public enum Destination {
         case mainTab(MainTabFeature)
         case registerDevice(RegisterDeviceFeature)
+        case streamConnection(StreamConnectionFeature)
     }
     
     @ObservableState
@@ -62,6 +64,7 @@ public struct AppRootFeature: Sendable {
                 
             case .destination(.presented(.registerDevice(.delegate(.registerDeviceSuccess)))):
                 // 端末登録が完了したらコネクション待機画面に遷移させる
+                state.destination = .streamConnection(.init())
                 return .none
                 
             case .destination:

@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import MainTabFeature
 import RegisterDeviceFeature
+import StreamConnectionFeature
 
 public struct AppRootView: View {
     public init(store: StoreOf<AppRootFeature>) {
@@ -30,12 +31,17 @@ public struct AppRootView: View {
                         if let store = store.scope(state: \.destination?.registerDevice, action: \.destination.registerDevice) {
                             RegisterDeviceView(store: store)
                         }
+                    case .streamConnection:
+                        if let store = store.scope(state: \.destination?.streamConnection, action: \.destination.streamConnection) {
+                            StreamConnectionView(store: store)
+                        }
                     }
                 } else {
                     ProgressView()
                         .onAppear {
                             store.send(.onAppear)
                         }
+                        .navigationBarHidden(true)
                 }
             }
         }
