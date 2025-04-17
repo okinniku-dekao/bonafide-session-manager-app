@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import PresentationHelper
+import Resources
 
 public struct StreamConnectionView: View {
     @Perception.Bindable private var store: StoreOf<StreamConnectionFeature>
@@ -16,13 +17,17 @@ public struct StreamConnectionView: View {
         self.store = store
     }
     
-    var body: some View {
-        VStack {
-            ProgressView()
-        }
-        .trackingPerception()
-        .navigationTitle("接続待機")
-        .navigationBarTitleDisplayMode(.inline)
+    private let backgroundColor: UIColor = sharedColors.commonBackground()!
+    
+    public var body: some View {
+        ProgressView()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                Color(uiColor: backgroundColor)
+                    .ignoresSafeArea()
+            )
+            .navigationTitle("接続待機")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
