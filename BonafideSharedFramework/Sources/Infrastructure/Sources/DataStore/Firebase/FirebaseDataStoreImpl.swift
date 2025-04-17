@@ -12,7 +12,11 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     typealias Key = FirebaseCollectionKey
     private let db = Firestore.firestore()
     
-    public init() {}
+    public init() {
+        let settings = FirestoreSettings()
+        settings.cacheSettings = MemoryCacheSettings()
+        self.db.settings = settings
+    }
 
     // MARK: - Device
     public func registerDevice(_ device: DeviceDTO) async throws(DataStoreError) {
