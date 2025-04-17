@@ -23,3 +23,34 @@
 "invalidWeightValueMessage" = "重りを入力してください";
 "invalidDurationValueMessage" = "時間を入力してください";
 "alertOk" = "OK";
+
+// MARK: - エラー表示
+"error.networkError.title" = "ネットワークエラー";
+"error.networkError.message" = "インターネット接続を確認して、再度お試しください。";
+"error.notFound.title" = "データが見つかりません";
+"error.notFound.message" = "お探しのデータが見つかりませんでした。削除されたか、移動された可能性があります。";
+"error.permissionDenied.title" = "アクセス権限がありません";
+"error.permissionDenied.message" = "このデータにアクセスする権限がありません。管理者に連絡してください。";
+"error.conflict.title" = "データの競合が発生しました";
+"error.conflict.message" = "他のユーザーが同時に同じデータを編集した可能性があります。最新の状態に更新してから再度お試しください。";
+"error.unauthorized.title" = "認証エラー";
+"error.unauthorized.message" = "セッションが期限切れになったか、ログインが必要です。";
+"error.faildSave.title" = "保存に失敗しました";
+"error.faildSave.message" = "データの保存中にエラーが発生しました。再度お試しください。";
+"error.unknown.title" = "予期せぬエラーが発生しました";
+"error.unknown.message" = "エラーが発生しました：%@";
+"error.validation.invalidUserName.title" = "ユーザー名が無効です";
+"error.validation.invalidUserName.message" = "有効なユーザー名を入力してください。";
+"error.validation.invalidDeviceName.title" = "デバイス名が無効です";
+"error.validation.invalidDeviceName.message" = "有効なデバイス名を入力してください。";
+"error.validation.invalidMenuName.title" = "メニュー名が無効です";
+"error.validation.invalidMenuName.message" = "有効なメニュー名を入力してください。";
+"error.validation.invalidMenuNumber.title" = "メニュー番号が無効です";
+"error.validation.invalidMenuNumber.message" = "有効なメニュー番号を入力してください。";
+"error.validation.invalidSatisfaction.title" = "満足度が無効です";
+"error.validation.invalidSatisfaction.message" = "満足度を選択してください。";
+"error.validation.invalidWeightValue.title" = "重量値が無効です";
+"error.validation.invalidWeightValue.message" = "有効な重量値を入力してください。";
+"error.validation.invalidDurationValue.title" = "時間値が無効です";
+"error.validation.invalidDurationValue.message" = "有効な時間を入力してください。";
+"error.button.retry" = "再試行";
