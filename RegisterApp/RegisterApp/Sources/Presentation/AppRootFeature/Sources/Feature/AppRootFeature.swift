@@ -51,8 +51,8 @@ public struct AppRootFeature: Sendable {
                 }
                 
             case .deviceIdReceived:
-                // 端末IDが登録されていた場合はMainTabへ遷移させる
-                state.destination = .mainTab(.init())
+                // 端末IDが登録されていた場合はコネクション待機画面へ遷移させる
+                state.destination = .streamConnection(.init())
                 return .none
 
             case .deviceIdGetFailed(let error):
