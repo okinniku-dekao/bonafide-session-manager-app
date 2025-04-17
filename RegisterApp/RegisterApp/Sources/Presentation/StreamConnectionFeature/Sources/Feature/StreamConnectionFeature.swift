@@ -8,7 +8,9 @@ public struct StreamConnectionFeature {
     public init() {}
     
     @ObservableState
-    public struct State {}
+    public struct State {
+        public init() {}
+    }
     
     public enum Action {}
     
