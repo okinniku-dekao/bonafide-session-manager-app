@@ -67,6 +67,11 @@ public struct AppRootFeature: Sendable {
                 state.destination = .streamConnection(.init())
                 return .none
                 
+            case .destination(.presented(.streamConnection(.delegate(.connectedUserIdReceived(let userId))))):
+                // デバイスにユーザIDがセットされたらMainTabに遷移させる
+                print(userId, "🔥")
+                return .none
+                
             case .destination:
                 return .none
             }

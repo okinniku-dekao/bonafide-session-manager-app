@@ -18,8 +18,16 @@ public struct StreamConnectionFeature: Sendable {
         case onAppear
         case connectedUserIdReceived(String)
         case streamUserIdFailed(DomainError)
+        case delegate(DelegateAction)
+        
+        public enum DelegateAction {
+            case connectedUserIdReceived(String)
+        }
     }
     
+    private enum CancelId {
+        case stream
+    }
     @Dependency(\.deviceUseCases) var device
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -33,14 +41,20 @@ public struct StreamConnectionFeature: Sendable {
                 } catch: { error, send in
                     await send(.streamUserIdFailed(error))
                 }
-                
+                .cancellable(id: CancelId.stream)
+
             case .connectedUserIdReceived(let userId):
                 guard !userId.isEmpty else { return .none }
-                print(userId, "🔥")
-                return .none
+                return .concatenate(
+                    .cancel(id: CancelId.stream),
+                    .send(.delegate(.connectedUserIdReceived(userId)))
+                )
                 
             case .streamUserIdFailed(let error):
                 print(error)
+                return .none
+                
+            default:
                 return .none
             }
         }
