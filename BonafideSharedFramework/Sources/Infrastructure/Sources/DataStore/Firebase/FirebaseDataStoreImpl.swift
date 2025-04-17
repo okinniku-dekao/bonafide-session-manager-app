@@ -47,6 +47,12 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
+    public func streamConnectedUserId(deviceId : String) async -> AsyncThrowingStream<String, any Error> {
+        stream(reference: db.collection(Key.devices).document(deviceId)) { snapshot in
+            (try? snapshot?.data(as: DeviceDTO.self).connectedUserId) ?? ""
+        }
+    }
+    
     // MARK: - MenuNote
     public func registerMenuNote(userId: String, menuNoteDTO: MenuNoteDTO) async throws(DataStoreError) {
         try await handle {
@@ -122,21 +128,8 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     }
     
     public func streamAllSession(userId: String) async -> AsyncThrowingStream<[SessionDTO], any Error> {
-        AsyncThrowingStream { continuation in
-            let listener = db.collection(Key.users).document(userId)
-                .addSnapshotListener { snapshot, error in
-                    if let error {
-                        continuation.finish(throwing: DataStoreError(from: error))
-                        return
-                    } else {
-                        let sessions = (try? snapshot?.data(as: UserDTO.self).sessions) ?? []
-                        continuation.yield(sessions)
-                    }
-                }
-
-            continuation.onTermination = { _ in
-                listener.remove()
-            }
+        stream(reference: db.collection(Key.users).document(userId)) { snapshot in
+            (try? snapshot?.data(as: UserDTO.self).sessions) ?? []
         }
     }
     
@@ -221,6 +214,31 @@ extension FirebaseDataStoreImpl {
             return try await operation()
         } catch {
             throw DataStoreError(from: error)
+        }
+    }
+    
+    private func stream<T>(
+        reference: DocumentReference,
+        transform: @escaping (DocumentSnapshot?) throws -> T
+    ) -> AsyncThrowingStream<T, any Error> {
+        AsyncThrowingStream { continuation in
+            let listener = reference.addSnapshotListener { snapshot, error in
+                if let error {
+                    continuation.finish(throwing: DataStoreError(from: error))
+                    return
+                } else {
+                    do {
+                        let result = try transform(snapshot)
+                        continuation.yield(result)
+                    } catch {
+                        continuation.finish(throwing: DataStoreError(from: error))
+                    }
+                }
+            }
+            
+            continuation.onTermination = { _ in
+                listener.remove()
+            }
         }
     }
 }

@@ -13,4 +13,5 @@ public protocol DeviceRepository: Sendable {
     func fetchAll() async throws(DomainError) -> [Device]
     func fetchAll(for store: Store) async throws(DomainError) -> [Device]
     func fetchDetail(deviceId: String) async throws(DomainError) -> Device
+    func streamConnectedUserId(deviceId : String) -> AsyncThrowingStream<String, any Error>
 }

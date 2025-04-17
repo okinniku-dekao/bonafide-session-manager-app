@@ -64,4 +64,20 @@ public struct DeviceRepositoryImpl: DeviceRepository {
             throw DomainError(from: error)
         }
     }
+    
+    public func streamConnectedUserId(deviceId: String) -> AsyncThrowingStream<String, any Error> {
+        AsyncThrowingStream { continuation in
+            Task {
+                let stream = await firebaseDataStore.streamConnectedUserId(deviceId: deviceId)
+                do {
+                    for try await connectedUserId in stream {
+                        continuation.yield(connectedUserId)
+                    }
+                    continuation.finish()
+                } catch {
+                    continuation.finish(throwing: DomainError(from: error as! DataStoreError))
+                }
+            }
+        }
+    }
 }

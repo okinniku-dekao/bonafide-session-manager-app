@@ -12,6 +12,7 @@ public protocol FirebaseDataStore: Sendable {
     func updateDevice(_ device: DeviceDTO) async throws(DataStoreError)
     func fetchAllDevice() async throws(DataStoreError) -> [DeviceDTO]
     func fetchDeviceDetail(_ deviceId: String) async throws(DataStoreError) -> DeviceDTO
+    func streamConnectedUserId(deviceId : String) async -> AsyncThrowingStream<String, any Error>
     
     // MARK: - MenuNote
     func registerMenuNote(userId: String, menuNoteDTO: MenuNoteDTO) async throws(DataStoreError)
