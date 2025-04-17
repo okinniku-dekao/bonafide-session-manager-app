@@ -1,23 +1,29 @@
+//
+//  ErrorView.swift
+//  BonafideSharedFramework
+//
+//  Created by 東　秀斗 on 2025/04/17.
+//
+
+
 // ErrorView.swift
 // BonafideSharedFramework/Sources/PresentationHelper/Sources/Views/ErrorView.swift
 
 import SwiftUI
 import Domain
 import Resources
+import UIKit
 
 public struct ErrorView: View {
     private let error: DomainError
     private let retryAction: (() -> Void)?
-    private let closeAction: (() -> Void)?
     
     public init(
-        error: DomainError,
-        retryAction: (() -> Void)? = nil,
-        closeAction: (() -> Void)? = nil
+        _ error: DomainError,
+        retryAction: (() -> Void)? = nil
     ) {
         self.error = error
         self.retryAction = retryAction
-        self.closeAction = closeAction
     }
     
     public var body: some View {
@@ -31,10 +37,11 @@ public struct ErrorView: View {
                 .font(.title2)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
+                .foregroundColor(Color.black)
             
             Text(getErrorMessage())
                 .font(.body)
-                .foregroundColor(.secondary)
+                .foregroundColor(Color.black)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
             
@@ -48,17 +55,6 @@ public struct ErrorView: View {
                             .padding()
                             .background(Color(uiColor: sharedColors.primary()!))
                             .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                }
-                
-                if let closeAction = closeAction {
-                    Button(action: closeAction) {
-                        Text("閉じる")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .foregroundColor(.primary)
                             .cornerRadius(10)
                     }
                 }
@@ -164,24 +160,12 @@ public struct ErrorView: View {
 
 #Preview {
     VStack(spacing: 20) {
-        ErrorView(
-            error: .networkError,
-            retryAction: {},
-            closeAction: {}
-        )
+        ErrorView(.networkError)
         
-        ErrorView(
-            error: .notFound,
-            retryAction: {}
-        )
+        ErrorView(.notFound)
         
-        ErrorView(
-            error: .validation(.invalidUserName),
-            closeAction: {}
-        )
+        ErrorView(.validation(.invalidUserName))
         
-        ErrorView(
-            error: .unknown("サーバーエラー")
-        )
+        ErrorView(.unknown("サーバーエラー"))
     }
 }
