@@ -10,9 +10,10 @@ import Data
 
 public actor FirebaseDataStoreImpl: FirebaseDataStore {
     typealias Key = FirebaseCollectionKey
-    private let db = Firestore.firestore()
+    private let db: Firestore
     
     public init() {
+        db = Firestore.firestore()
         let settings = FirestoreSettings()
         settings.cacheSettings = MemoryCacheSettings()
         self.db.settings = settings
