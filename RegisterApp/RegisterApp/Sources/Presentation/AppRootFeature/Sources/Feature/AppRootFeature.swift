@@ -13,6 +13,7 @@ import PresentationHelper
 import MainTabFeature
 import RegisterDeviceFeature
 import StreamConnectionFeature
+import AppSharedState
 
 @Reducer
 public struct AppRootFeature: Sendable {
@@ -28,6 +29,7 @@ public struct AppRootFeature: Sendable {
     @ObservableState
     public struct State {
         public init() {}
+        @Shared(.appSharedState) var appSharedState = AppSharedState()
         @Presents var destination: Destination.State?
     }
 
@@ -37,9 +39,12 @@ public struct AppRootFeature: Sendable {
         case deviceIdReceived(String)
         case deviceIdGetFailed(DomainError)
         case destination(PresentationAction<Destination.Action>)
+        case userReceived(User)
+        case fetchUserFailed(DomainError)
     }
 
     @Dependency(\.deviceUseCases) var device
+    @Dependency(\.userUseCases) var user
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -68,8 +73,21 @@ public struct AppRootFeature: Sendable {
                 return .none
                 
             case .destination(.presented(.streamConnection(.delegate(.connectedUserIdReceived(let userId))))):
+                return .runDomainError { send in
+                    let user = try await user.fetchDetail(userId)
+                    await send(.userReceived(user))
+                } catch: { error, send in
+                    await send(.fetchUserFailed(error))
+                }
+                
+            case .userReceived(let user):
+                state.$appSharedState.withLock { $0.setUser(user) }
                 // デバイスにユーザIDがセットされたらMainTabに遷移させる
-                print(userId, "🔥")
+                state.destination = .mainTab(.init())
+                return .none
+                
+            case .fetchUserFailed(let error):
+                print(error, "🔥")
                 return .none
                 
             case .destination:
