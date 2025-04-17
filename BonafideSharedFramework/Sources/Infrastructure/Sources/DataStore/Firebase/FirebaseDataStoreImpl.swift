@@ -219,19 +219,25 @@ extension FirebaseDataStoreImpl {
     
     private func stream<T>(
         reference: DocumentReference,
-        transform: @escaping (DocumentSnapshot?) throws -> T
+        transform: @escaping @Sendable (DocumentSnapshot?) throws -> T
     ) -> AsyncThrowingStream<T, any Error> {
-        AsyncThrowingStream { continuation in
+        return AsyncThrowingStream { continuation in
             let listener = reference.addSnapshotListener { snapshot, error in
-                if let error {
-                    continuation.finish(throwing: DataStoreError(from: error))
-                    return
-                } else {
-                    do {
-                        let result = try transform(snapshot)
-                        continuation.yield(result)
-                    } catch {
+                Task {
+                    guard await isConnected() else {
+                        continuation.finish(throwing: DataStoreError.networkError)
+                        return
+                    }
+                    if let error {
                         continuation.finish(throwing: DataStoreError(from: error))
+                        return
+                    } else {
+                        do {
+                            let result = try transform(snapshot)
+                            continuation.yield(result)
+                        } catch {
+                            continuation.finish(throwing: DataStoreError(from: error))
+                        }
                     }
                 }
             }
@@ -240,5 +246,26 @@ extension FirebaseDataStoreImpl {
                 listener.remove()
             }
         }
+        
+        // addSnapshotListenerではオフライン状態が取れないのでgetDocumentを使ってネットワーク状態を検知する
+        func isConnected() async -> Bool {
+            do {
+                try await handle { try await reference.getDocument(source: .server) }
+                return true
+            } catch {
+                return error != .networkError
+            }
+        }
+    }
+}
+
+extension SessionDTO {
+    func toDictionary() throws -> [String: Any] {
+        let data = try JSONEncoder().encode(self)
+        let jsonObject = try JSONSerialization.jsonObject(with: data)
+        guard let dictionary = jsonObject as? [String: Any] else {
+            throw DataStoreError.faildConvertToData
+        }
+        return dictionary
     }
 }
