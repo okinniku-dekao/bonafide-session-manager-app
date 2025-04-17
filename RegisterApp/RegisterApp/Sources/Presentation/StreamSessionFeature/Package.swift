@@ -5,8 +5,8 @@ import PackageDescription
 
 let package = Package(
     name: "StreamSessionFeature",
+    platforms: [.iOS(.v15)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "StreamSessionFeature",
             targets: ["StreamSessionFeature"]),
@@ -16,15 +16,14 @@ let package = Package(
         .package(path: "../../../../../BonafideSharedFramework")
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "StreamSessionFeature",
             dependencies: [
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "Composition", package: "BonafideSharedFramework"),
                 .product(name: "Domain", package: "BonafideSharedFramework"),
-                .product(name: "PresentationHelper", package: "BonafideSharedFramework")
+                .product(name: "PresentationHelper", package: "BonafideSharedFramework"),
+                .product(name: "Resources", package: "BonafideSharedFramework")
             ]
         ),
         .testTarget(
