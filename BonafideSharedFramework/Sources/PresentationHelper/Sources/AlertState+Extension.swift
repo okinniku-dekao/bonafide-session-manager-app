@@ -22,17 +22,3 @@ public extension AlertState {
         }
     }
 }
-
-private extension Domain.ValidationError {
-    var message: String {
-        switch self {
-        case .invalidUserName: return l10n.invalidUserNameMessage()
-        case .invalidDeviceName: return l10n.invalidDeviceNameMessage()
-        case .invalidMenuName: return l10n.invalidMenuNameMessage()
-        case .invalidMenuNumber: return l10n.invalidMenuNumberMessage()
-        case .invalidSatisfaction: return l10n.invalidSatisfactionMessage()
-        case .invalidWeightValue: return l10n.invalidWeightValueMessage()
-        case .invalidDurationValue: return l10n.invalidDurationValueMessage()
-        }
-    }
-}

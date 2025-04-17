@@ -110,7 +110,8 @@ let package = Package(
         .target(
             name: "UIComponents",
             dependencies: [
-                "Resources"
+                "Resources",
+                "PresentationHelper"
             ],
             path: "Sources/UIComponents"
         ),
