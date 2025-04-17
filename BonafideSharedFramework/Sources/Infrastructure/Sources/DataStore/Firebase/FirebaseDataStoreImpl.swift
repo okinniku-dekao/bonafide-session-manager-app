@@ -47,7 +47,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
         }
     }
     
-    public func streamConnectedUserId(deviceId : String) async -> AsyncThrowingStream<String, any Error> {
+    public func streamConnectedUserId(deviceId: String) async -> AsyncThrowingStream<String, any Error> {
         stream(reference: db.collection(Key.devices).document(deviceId)) { snapshot in
             (try? snapshot?.data(as: DeviceDTO.self).connectedUserId) ?? ""
         }
