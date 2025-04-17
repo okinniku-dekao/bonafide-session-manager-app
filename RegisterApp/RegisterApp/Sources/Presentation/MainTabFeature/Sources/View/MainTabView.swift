@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import StreamSessionFeature
 
 public struct MainTabView: View {
     @Perception.Bindable private var store: StoreOf<MainTabFeature>
@@ -17,7 +18,15 @@ public struct MainTabView: View {
     
     public var body: some View {
         WithPerceptionTracking {
-            Text("MainTabView")
+            TabView(selection: $store.currentTab.sending(\.selectedTab)) {
+                StreamSessionView(
+                    store: store.scope(state: \.sessionState, action: \.sessionAction)
+                )
+                .tag(MainTabFeature.Tab.session)
+                .tabItem {
+                    Text("記録")
+                }
+            }
         }
         .navigationBarHidden(true)
     }
