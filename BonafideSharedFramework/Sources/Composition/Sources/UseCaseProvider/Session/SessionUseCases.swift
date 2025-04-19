@@ -46,4 +46,13 @@ extension SessionUseCases: DependencyKey {
             stream: UnimplementedStreamSessionsUseCase()
         )
     }
+    
+    public static var previewValue: SessionUseCases {
+        Self(
+            delete: UnimplementedDeleteSessionUseCase(),
+            fetchAll: UnimplementedFetchAllSessionUserCase(),
+            register: UnimplementedRegisterSessionUseCase(),
+            stream: PreviewStreamSessionsUseCase()
+        )
+    }
 }
