@@ -51,6 +51,26 @@ public struct User: Identifiable, Equatable, Sendable {
         self.sessions = sessions
         self.trainingRecords = trainingRecords
     }
+    
+    
+    /// 新規ユーザ登録用
+    public static func newUser(id: UUID = UUID(), name: String = "") -> User {
+        .init(
+            id: id.uuidString,
+            name: name,
+            birthdate: nil,
+            joinDate: nil,
+            isInstaFollowed: false,
+            isReviewed: false,
+            goal: "",
+            note: "",
+            store: .seiwa,
+            trainingMemo: "",
+            menus: [],
+            sessions: [],
+            trainingRecords: []
+        )
+    }
 }
 
 public extension User {
