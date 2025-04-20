@@ -24,7 +24,10 @@ public struct MainTabView: View {
                 )
                 .tag(MainTabFeature.Tab.session)
                 .tabItem {
-                    Text("記録")
+                    VStack {
+                        Image(systemName: "book")
+                        Text("記録")
+                    }
                 }
             }
         }
