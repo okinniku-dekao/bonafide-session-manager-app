@@ -85,21 +85,22 @@ public struct StreamSessionView: View {
 
 struct SessionRowView: View {
     let session: Session
+    let onTap: () -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(session.name)
-                .font(.headline)
-            
-            if !session.note.isEmpty {
-                Text(session.note)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+        Button(action: onTap) {
+            HStack {
+                Text(session.name)
+                    .font(.headline)
+                    .foregroundStyle(Color.black)
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.gray)
             }
-            
-            Text("セッション番号: \(session.number)")
-                .font(.caption)
-                .foregroundColor(.secondary)
+            .padding()
+            .background(Color.white)
+            .contentShape(Rectangle())
         }
         .padding(.vertical, 8)
     }
