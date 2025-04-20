@@ -68,8 +68,18 @@ public struct StreamSessionView: View {
                 store.send(.onAppear)
             }
         }
-        .navigationTitle("セッション一覧")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
+    }
+
+    private var header: some View {
+        VStack {
+            Text("\(store.userName) 様")
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("本日のメニュー")
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .font(.title3)
+        .foregroundStyle(Color.black)
     }
 }
 
