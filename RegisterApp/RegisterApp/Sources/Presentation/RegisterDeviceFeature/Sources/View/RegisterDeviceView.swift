@@ -52,7 +52,7 @@ public struct RegisterDeviceView: View {
                         .cornerRadius(8)
                     }
                 }
-                .padding(.horizontal)
+                .padding(.all)
                 
                 Spacer()
                 
