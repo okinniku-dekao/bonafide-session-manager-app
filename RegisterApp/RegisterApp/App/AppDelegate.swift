@@ -20,6 +20,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         setupNavigationBarAppearance()
+        setupTabBarAppearance()
         DeviceUseCases.serviceName = Bundle.main.bundleIdentifier ?? "default.bundle.identifier"
         #if DEBUG
         // デバッグ用でKeychainに保存した端末IDを削除する
@@ -41,6 +42,13 @@ extension AppDelegate {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
+    }
+    
+    private func setupTabBarAppearance() {
+        let appearance: UITabBarAppearance = UITabBarAppearance()
+        appearance.backgroundColor = .white
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+        UITabBar.appearance().standardAppearance = appearance
     }
 }
 
