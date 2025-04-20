@@ -44,12 +44,12 @@ public struct StreamSessionView: View {
                             .foregroundColor(Color.black)
                             .padding()
                     } else {
-                        List {
+                        ScrollView(showsIndicators: false) {
                             ForEach(sessions) { session in
-                                SessionRowView(session: session)
+                                SessionRowView(session: session) {}
                             }
+                            .padding(.horizontal, 10)
                         }
-                        .listStyle(.plain)
                     }
                 case .error:
                     Text("エラーが発生しました")
