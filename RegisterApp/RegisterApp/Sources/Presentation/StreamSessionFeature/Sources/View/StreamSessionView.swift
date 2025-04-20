@@ -102,7 +102,20 @@ struct SessionRowView: View {
             .background(Color.white)
             .contentShape(Rectangle())
         }
-        .padding(.vertical, 8)
+        .buttonStyle(.plain)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 1, y: 1)
+    }
+}
+
+#if DEBUG
+extension StreamSessionFeature.State {
+    static func preview() -> StreamSessionFeature.State {
+        let state = StreamSessionFeature.State()
+        var sharedState: AppSharedState = .init()
+        sharedState.setUser(.preview)
+        state.$appSharedState.withLock { $0 = sharedState }
+        return state
     }
 }
 
@@ -110,9 +123,10 @@ struct SessionRowView: View {
     NavigationView {
         StreamSessionView(
             store: Store(
-                initialState: StreamSessionFeature.State(),
+                initialState: .preview(),
                 reducer: { StreamSessionFeature() }
             )
         )
     }
 }
+#endif
