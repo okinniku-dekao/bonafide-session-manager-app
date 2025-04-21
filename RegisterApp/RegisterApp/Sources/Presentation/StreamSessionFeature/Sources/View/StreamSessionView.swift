@@ -69,6 +69,7 @@ public struct StreamSessionView: View {
                 store.send(.onAppear)
             }
         }
+        .navigationBarTitle("")
         .navigationBarHidden(true)
     }
 
