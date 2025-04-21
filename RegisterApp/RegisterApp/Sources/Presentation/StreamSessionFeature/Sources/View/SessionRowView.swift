@@ -1,3 +1,14 @@
+//
+//  SessionRowView.swift
+//  StreamSessionFeature
+//
+//  Created by 東　秀斗 on 2025/04/21.
+//
+
+import SwiftUI
+import Domain
+import PresentationHelper
+
 struct SessionRowView: View {
     let session: Session
     let onTap: () -> Void
@@ -22,3 +33,9 @@ struct SessionRowView: View {
         .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 1, y: 1)
     }
 }
+
+#if DEBUG
+#Preview {
+    SessionRowView(session: .preview(), onTap: {})
+}
+#endif
