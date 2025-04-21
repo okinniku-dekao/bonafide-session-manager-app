@@ -45,7 +45,8 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.1"),
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.19.0"),
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "11.11.0"),
-        .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.8.0")
+        .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.8.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.3.2")
     ],
     targets: [
         .target(
@@ -110,6 +111,7 @@ let package = Package(
         .target(
             name: "UIComponents",
             dependencies: [
+                .product(name: "Kingfisher", package: "Kingfisher"),
                 "Resources",
                 "PresentationHelper"
             ],
@@ -119,7 +121,10 @@ let package = Package(
             name: "Resources",
             dependencies: [.product(name: "RswiftLibrary", package: "R.swift")],
             path: "Sources/Resources",
-            resources: [.process("Sources/Resources/Assets")],
+            resources: [
+                .process("Sources/Resources/Assets"),
+                .copy("Sources/Resources/gif")
+            ],
             plugins: [.plugin(name: "RswiftGeneratePublicResources", package: "R.swift")]
         ),
         .target(
