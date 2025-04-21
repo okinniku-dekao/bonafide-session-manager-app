@@ -11,6 +11,7 @@ import PresentationHelper
 import Resources
 import Domain
 import Composition
+import AppSharedState
 
 public struct StreamSessionView: View {
     @Perception.Bindable private var store: StoreOf<StreamSessionFeature>
