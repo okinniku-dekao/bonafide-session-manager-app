@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 public struct GIFImage: View {
     private let name: String
 
-    init(name: String) {
+    public init(name: String) {
         self.name = name
     }
     
@@ -28,7 +28,7 @@ public struct GIFImage: View {
     // 初期化はアプリのエントリポイントでやるのでPreview時はここで設定
     SDImageCodersManager.shared.addCoder(SDImageAWebPCoder())
     return VStack {
-        GIFImage(name: "607_One_Hand_Row")
+        GIFImage(name: "103_Dynamic_Stretch")
         GIFImage(name: "101_Butt_Stretch")
             .frame(height: 100)
         HStack {
