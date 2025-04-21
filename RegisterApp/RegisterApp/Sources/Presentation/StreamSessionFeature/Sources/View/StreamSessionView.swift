@@ -33,6 +33,7 @@ public struct StreamSessionView: View {
                 } label: {
                     Text("セッション追加")
                 }
+                GIFImage(name: "103_Dynamic_Stretch")
                 switch store.sessions {
                 case .idle:
                     EmptyView()
