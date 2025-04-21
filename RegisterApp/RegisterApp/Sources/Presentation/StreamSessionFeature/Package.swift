@@ -27,6 +27,7 @@ let package = Package(
                 .product(name: "Domain", package: "BonafideSharedFramework"),
                 .product(name: "PresentationHelper", package: "BonafideSharedFramework"),
                 .product(name: "Resources", package: "BonafideSharedFramework"),
+                .product(name: "UIComponents", package: "BonafideSharedFramework"),
                 "AppSharedState"
             ]
         ),
