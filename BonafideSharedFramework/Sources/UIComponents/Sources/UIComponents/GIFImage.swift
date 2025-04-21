@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Resources
-import Kingfisher
+import SDWebImageSwiftUI
 
 public struct GIFImage: View {
     private let name: String
@@ -17,15 +17,18 @@ public struct GIFImage: View {
     }
     
     public var body: some View {
-        KFAnimatedImage(AnimationAsset.url(name))
-            .aspectRatio(contentMode: .fit)
+        AnimatedImage(url: AnimationAsset.url(name))
+            .resizable()
+            .scaledToFit()
     }
 }
 
 #if DEBUG
 #Preview {
-    VStack {
-        GIFImage(name: "101_Butt_Stretch")
+    // 初期化はアプリのエントリポイントでやるのでPreview時はここで設定
+    SDImageCodersManager.shared.addCoder(SDImageAWebPCoder())
+    return VStack {
+        GIFImage(name: "607_One_Hand_Row")
         GIFImage(name: "101_Butt_Stretch")
             .frame(height: 100)
         HStack {

@@ -46,7 +46,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.19.0"),
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "11.11.0"),
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.8.0"),
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.3.2")
+        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", from: "3.1.3")
     ],
     targets: [
         .target(
@@ -111,7 +111,7 @@ let package = Package(
         .target(
             name: "UIComponents",
             dependencies: [
-                .product(name: "Kingfisher", package: "Kingfisher"),
+                .product(name: "SDWebImageSwiftUI", package: "SDWebImageSwiftUI"),
                 "Resources",
                 "PresentationHelper"
             ],
