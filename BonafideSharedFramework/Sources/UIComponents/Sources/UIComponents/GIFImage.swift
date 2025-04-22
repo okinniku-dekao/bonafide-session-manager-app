@@ -23,6 +23,27 @@ public struct GIFImage: View {
     }
 }
 
+public extension GIFImage {
+    func gifImageStyle<Style: GIFImageStyle>(_ style: Style) -> some View {
+        self.modifier(style)
+    }
+}
+
+public protocol GIFImageStyle: ViewModifier {}
+
+public struct RoundedGIFImageStyle: GIFImageStyle {
+    private let cornerRadius: Double
+    
+    public init(cornerRadius: Double = 10) {
+        self.cornerRadius = cornerRadius
+    }
+    
+    public func body(content: Content) -> some View {
+        content
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+    }
+}
+
 #if DEBUG
 #Preview {
     // 初期化はアプリのエントリポイントでやるのでPreview時はここで設定
@@ -30,6 +51,7 @@ public struct GIFImage: View {
     return VStack {
         GIFImage(name: "103_Dynamic_Stretch")
         GIFImage(name: "101_Butt_Stretch")
+            .gifImageStyle(RoundedGIFImageStyle())
             .frame(height: 100)
         HStack {
             GIFImage(name: "101_Butt_Stretch")
