@@ -27,11 +27,6 @@ public struct StreamSessionView: View {
                 Text(store.userName)
                     .font(.title)
                     .foregroundStyle(Color.black)
-                Button {
-                    store.send(.test)
-                } label: {
-                    Text("セッション追加")
-                }
                 switch store.sessions {
                 case .idle:
                     EmptyView()

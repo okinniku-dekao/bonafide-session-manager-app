@@ -79,20 +79,6 @@ public struct StreamSessionFeature: Sendable {
                 
             case .alert:
                 return .none
-                
-            case .test:
-                return .run { [userId = state.appSharedState.connectedUser!.id] _ in
-                    try await session.register(
-                        userId: userId,
-                        sessions: [
-                            .init(id: uuid().uuidString, name: "トレーニング4", note: "簡単", number: 0, path: ""),
-                            .init(id: uuid().uuidString, name: "トレーニング5", note: "普通", number: 0, path: ""),
-                            .init(id: uuid().uuidString, name: "トレーニング6", note: "難しい", number: 0, path: ""),
-                        ]
-                    )
-                } catch: { error, send in
-                    print(error as! DomainError)
-                }
             }
         }
         .ifLet(\.$alert, action: \.alert)
