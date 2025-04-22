@@ -10,6 +10,7 @@ import ComposableArchitecture
 import PresentationHelper
 import Domain
 import Resources
+import UIComponents
 
 public struct RegisterDeviceView: View {
     @Perception.Bindable public var store: StoreOf<RegisterDeviceFeature>
@@ -60,13 +61,8 @@ public struct RegisterDeviceView: View {
                     store.send(.onTapRegisterDeviceButton)
                 } label: {
                     Text(l10n.registerDeviceButtonLabel())
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color(uiColor: sharedColors.primary()!))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
                 }
+                .buttonStyle(CommonButtonStyle())
                 .padding(.bottom, 20)
             }
             .alert($store.scope(state: \.alert, action: \.alert))
