@@ -17,6 +17,7 @@ public struct StreamSessionFeature: Sendable {
         @Shared(.appSharedState) var appSharedState = AppSharedState()
         var sessions: LoadStatus<[Session]> = .idle
         @Presents var alert: AlertState<Action.Alert>?
+        @Presents var sessionDetail: SessionDetailFeature.State?
         var userName: String {
             guard let user = appSharedState.connectedUser else {
                 preconditionFailure("値をセットしてから読み込んでください")
@@ -30,7 +31,8 @@ public struct StreamSessionFeature: Sendable {
         case sessionsReceived([Session])
         case streamSessionFailed(DomainError)
         case alert(PresentationAction<Alert>)
-        case test
+        case onTapSessionRow(Session)
+        case sessionDetailAction(PresentationAction<SessionDetailFeature.Action>)
 
         public enum Alert {
             case ok
@@ -77,10 +79,20 @@ public struct StreamSessionFeature: Sendable {
                 }
                 return .none
                 
+            case .onTapSessionRow(let session):
+                state.sessionDetail = .init(sesison: session)
+                return .none
+                
+            case .sessionDetailAction:
+                return .none
+                
             case .alert:
                 return .none
             }
         }
         .ifLet(\.$alert, action: \.alert)
+        .ifLet(\.$sessionDetail, action: \.sessionDetailAction) {
+            SessionDetailFeature()
+        }
     }
 }

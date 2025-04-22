@@ -42,7 +42,9 @@ public struct StreamSessionView: View {
                     } else {
                         ScrollView(showsIndicators: false) {
                             ForEach(sessions) { session in
-                                SessionRowView(session: session) {}
+                                SessionRowView(session: session) {
+                                    store.send(.onTapSessionRow(session))
+                                }
                             }
                             .padding(.horizontal, 10)
                         }
@@ -62,6 +64,9 @@ public struct StreamSessionView: View {
             .alert($store.scope(state: \.alert, action: \.alert))
             .task {
                 store.send(.onAppear)
+            }
+            .sheet(item: $store.scope(state: \.sessionDetail, action: \.sessionDetailAction)) {
+                SessionDetailView(store: $0)
             }
         }
         .navigationBarTitle("")
