@@ -12,7 +12,6 @@ import Resources
 import Domain
 import Composition
 import AppSharedState
-import UIComponents
 
 public struct StreamSessionView: View {
     @Perception.Bindable private var store: StoreOf<StreamSessionFeature>
@@ -33,7 +32,6 @@ public struct StreamSessionView: View {
                 } label: {
                     Text("セッション追加")
                 }
-                GIFImage(name: "103_Dynamic_Stretch")
                 switch store.sessions {
                 case .idle:
                     EmptyView()
