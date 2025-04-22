@@ -8,34 +8,70 @@
 import SwiftUI
 import Domain
 import UIComponents
+import ComposableArchitecture
+import Resources
 
 public struct SessionDetailView: View {
-    private let session: Session
-    private let transition: (Session) -> Void
+    @Perception.Bindable private var store: StoreOf<SessionDetailFeature>
     
-    public init(session: Session, transition: @escaping (Session) -> Void) {
-        self.session = session
-        self.transition = transition
+    public init(store: StoreOf<SessionDetailFeature>) {
+        self.store = store
     }
     
+    private let backgroundColor: UIColor = sharedColors.commonBackground()!
     public var body: some View {
-        VStack {
-            GIFImage(name: session.name)
-            Text(session.note)
-        }
-        .overlay(alignment: .bottom) {
-            Button {
-                transition(session)
-            } label: {
-                Text("登録する")
+        WithPerceptionTracking {
+            VStack(spacing: 0) {
+                header
+                Divider()
+                ScrollView {
+                    VStack {
+                        GIFImage(name: store.session.path)
+                            .padding()
+                        Text(store.session.note)
+                            .foregroundStyle(Color.black)
+                    }
+                    .padding(.bottom, 62)
+                }
             }
-            .buttonStyle(CommonButtonStyle())
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .overlay(alignment: .bottom) {
+                Button {
+                } label: {
+                    Text("登録する")
+                }
+                .buttonStyle(CommonButtonStyle())
+                .frame(height: 52)
+                .padding(.bottom, 10)
+            }
+            .background(Color(uiColor: backgroundColor))
         }
+    }
+    
+    private var header: some View {
+        Text(store.session.name)
+            .foregroundStyle(Color.black)
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .overlay(alignment: .trailing) {
+                Button {
+                    store.send(.onTapClose)
+                } label: {
+                    Text("閉じる")
+                }
+                .padding(.trailing)
+            }
+            .background(Color(uiColor: backgroundColor))
     }
 }
 
 #if DEBUG
 #Preview {
-    SessionDetailView(session: .preview(path: "103_Dynamic_Stretch")) { _ in }
+    SessionDetailView(
+        store: Store(
+            initialState: SessionDetailFeature.State(sesison: .preview()),
+            reducer: { SessionDetailFeature() }
+        )
+    )
 }
 #endif
