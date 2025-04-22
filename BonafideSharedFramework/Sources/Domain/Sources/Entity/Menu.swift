@@ -11,6 +11,8 @@ public struct Menu: Equatable, Identifiable, Hashable, Sendable {
     public var id: String
     public var name: String
     public var number: Int
+    public var note: String
+    public var path: String
     public var category: MenuCategory {
         MenuCategory(number)
     }
@@ -19,10 +21,14 @@ public struct Menu: Equatable, Identifiable, Hashable, Sendable {
         id: String = UUID().uuidString,
         name: String,
         number: Int,
+        note: String = "",
+        path: String = ""
     ) {
         self.id = id
         self.name = name
         self.number = number
+        self.note = note
+        self.path = path
     }
 }
 

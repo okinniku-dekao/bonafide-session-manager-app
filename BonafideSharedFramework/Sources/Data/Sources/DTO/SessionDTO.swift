@@ -29,7 +29,7 @@ public struct SessionDTO: Identifiable, Codable, Equatable, Sendable {
             name: name,
             note: note,
             number: number,
-            path: path
+            path: path.hasSuffix(".gif") ? String(path.dropLast(4)) : path
         )
     }
     
