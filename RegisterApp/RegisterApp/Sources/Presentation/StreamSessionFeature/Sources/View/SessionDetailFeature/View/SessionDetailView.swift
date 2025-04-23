@@ -27,11 +27,11 @@ public struct SessionDetailView: View {
                 ScrollView {
                     VStack {
                         GIFImage(name: store.session.path)
-                            .padding()
-                        Text(store.session.note)
-                            .foregroundStyle(Color.black)
+                            .padding(.horizontal)
+                        TipsView(note: store.session.note)
                     }
-                    .padding(.bottom, 62)
+                    .padding(.top, 12)
+                    .padding(.bottom, 64)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
