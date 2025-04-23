@@ -35,7 +35,7 @@ struct SessionRowView: View {
         .buttonStyle(.plain)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 1, y: 1)
-        .frame(maxHeight: 60)
+        .frame(height: 60)
     }
 }
 
