@@ -16,6 +16,7 @@ public struct MenuUseCases: Sendable {
     public var fetchAll: any FetchAllMenuUseCase
     public var register: any RegisterMenuUseCase
     public var update: any UpdateMenuUseCase
+    public var fetchDetail: any FetchMenuDetailUseCase
 }
 
 public extension DependencyValues {
@@ -34,7 +35,8 @@ extension MenuUseCases: DependencyKey {
             delete: DeleteMenuUseCaseImpl(menuRepository: menuRepositoryImpl),
             fetchAll: FetchAllMenuUseCaseImpl(menuRepository: menuRepositoryImpl),
             register: RegisterMenuUseCaseImpl(menuRepository: menuRepositoryImpl),
-            update: UpdateMenuUseCaseImpl(menuRepository: menuRepositoryImpl)
+            update: UpdateMenuUseCaseImpl(menuRepository: menuRepositoryImpl),
+            fetchDetail: FetchMenuDetailUseCaseImpl(menuRepository: menuRepositoryImpl)
         )
     }
     
@@ -43,7 +45,8 @@ extension MenuUseCases: DependencyKey {
             delete: UnimplementedDeleteMenuUseCase(),
             fetchAll: UnimplementedFetchAllMenuUserCase(),
             register: UnimplementedRegisterMenuUseCase(),
-            update: UnimplementedUpdateMenuUseCase()
+            update: UnimplementedUpdateMenuUseCase(),
+            fetchDetail: UnimplementedFetchMenuDetailUseCase()
         )
     }
 }

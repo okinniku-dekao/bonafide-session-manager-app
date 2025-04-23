@@ -13,6 +13,7 @@ public struct FetchAllMenuUseCaseImpl: FetchAllMenuUseCase {
     public init(menuRepository: MenuRepository) {
         self.menuRepository = menuRepository
     }
+
     public func callAsFunction() async throws(DomainError) -> [Menu] {
         try await menuRepository.fetchAll()
     }

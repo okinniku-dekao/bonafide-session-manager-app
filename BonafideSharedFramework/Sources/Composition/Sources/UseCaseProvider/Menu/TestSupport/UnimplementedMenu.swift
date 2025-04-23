@@ -30,3 +30,9 @@ struct UnimplementedUpdateMenuUseCase: UpdateMenuUseCase {
         preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
     }
 }
+
+struct UnimplementedFetchMenuDetailUseCase: FetchMenuDetailUseCase {
+    func callAsFunction(by menuName: String) async throws(DomainError) -> Menu {
+        preconditionFailure("\("\(Self.self)".dropFirst(13)) is not implemented")
+    }
+}
