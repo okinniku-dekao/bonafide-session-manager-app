@@ -54,6 +54,7 @@
 			membershipExceptions = (
 				Sources/Presentation/AppRootFeature,
 				Sources/Presentation/AppSharedState,
+				Sources/Presentation/RegisterTrainingFeature,
 			);
 			target = 7B62CD632D76EB0200408FDF /* RegisterApp */;
 		};
