@@ -37,9 +37,9 @@ public struct SessionDetailView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .overlay(alignment: .bottom) {
                 Button {
-                    store.send(.onTapRegister)
+                    store.send(.onTapSelect)
                 } label: {
-                    Text("登録する")
+                    Text("選択")
                 }
                 .buttonStyle(CommonButtonStyle())
                 .frame(height: 52)

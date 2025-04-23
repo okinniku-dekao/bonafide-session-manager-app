@@ -15,7 +15,8 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.18.0"),
         .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.5.1"),
         .package(path: "../../../../../BonafideSharedFramework"),
-        .package(path: "../AppSharedState")
+        .package(path: "../AppSharedState"),
+        .package(path: "../RegisterTrainingFeature")
     ],
     targets: [
         .target(
@@ -28,7 +29,8 @@ let package = Package(
                 .product(name: "PresentationHelper", package: "BonafideSharedFramework"),
                 .product(name: "Resources", package: "BonafideSharedFramework"),
                 .product(name: "UIComponents", package: "BonafideSharedFramework"),
-                "AppSharedState"
+                "AppSharedState",
+                "RegisterTrainingFeature"
             ]
         ),
         .testTarget(

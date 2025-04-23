@@ -7,6 +7,8 @@
 
 import SwiftUI
 import ComposableArchitecture
+import UIComponents
+import Resources
 
 public struct RegisterTrainingView: View {
     @Perception.Bindable private var store: StoreOf<RegisterTrainingFeature>
@@ -15,8 +17,42 @@ public struct RegisterTrainingView: View {
         self.store = store
     }
     
+    private let backgroundColor: UIColor = sharedColors.commonBackground()!
     public var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithPerceptionTracking {
+            VStack(spacing: 0) {
+                header
+                Divider()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .overlay(alignment: .bottom) {
+                Button {
+                    store.send(.onTapRegister)
+                } label: {
+                    Text("登録する")
+                }
+                .buttonStyle(CommonButtonStyle())
+                .frame(height: 52)
+                .padding(.bottom, 10)
+            }
+            .background(Color(uiColor: backgroundColor))
+        }
+    }
+    
+    private var header: some View {
+        Text("トレーニング登録")
+            .foregroundStyle(Color.black)
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .overlay(alignment: .trailing) {
+                Button {
+                    store.send(.onTapClose)
+                } label: {
+                    Text("閉じる")
+                }
+                .padding(.trailing)
+            }
+            .background(Color(uiColor: backgroundColor))
     }
 }
 

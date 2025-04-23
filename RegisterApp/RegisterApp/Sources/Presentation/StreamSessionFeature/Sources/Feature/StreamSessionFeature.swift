@@ -6,6 +6,7 @@ import Composition
 import Domain
 import PresentationHelper
 import AppSharedState
+import RegisterTrainingFeature
 
 @Reducer
 public struct StreamSessionFeature: Sendable {
@@ -18,6 +19,7 @@ public struct StreamSessionFeature: Sendable {
         var sessions: LoadStatus<[Session]> = .idle
         @Presents var alert: AlertState<Action.Alert>?
         @Presents var sessionDetail: SessionDetailFeature.State?
+        @Presents var registerTrainingState: RegisterTrainingFeature.State?
         var userName: String {
             guard let user = appSharedState.connectedUser else {
                 preconditionFailure("値をセットしてから読み込んでください")
@@ -33,6 +35,7 @@ public struct StreamSessionFeature: Sendable {
         case alert(PresentationAction<Alert>)
         case onTapSessionRow(Session)
         case sessionDetailAction(PresentationAction<SessionDetailFeature.Action>)
+        case registerTrainingAction(PresentationAction<RegisterTrainingFeature.Action>)
 
         public enum Alert {
             case ok
@@ -83,16 +86,20 @@ public struct StreamSessionFeature: Sendable {
                 state.sessionDetail = .init(sesison: session)
                 return .none
                 
-            case .sessionDetailAction:
+            case .sessionDetailAction(.presented(.delegate(.transitionToRegister(let session)))):
+                state.registerTrainingState = .init()
                 return .none
                 
-            case .alert:
+            default:
                 return .none
             }
         }
         .ifLet(\.$alert, action: \.alert)
         .ifLet(\.$sessionDetail, action: \.sessionDetailAction) {
             SessionDetailFeature()
+        }
+        .ifLet(\.$registerTrainingState, action: \.registerTrainingAction) {
+            RegisterTrainingFeature()
         }
     }
 }

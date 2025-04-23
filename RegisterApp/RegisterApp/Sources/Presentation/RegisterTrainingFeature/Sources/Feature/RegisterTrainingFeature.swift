@@ -4,18 +4,32 @@
 import ComposableArchitecture
 
 @Reducer
-public struct RegisterTrainingFeature {
+public struct RegisterTrainingFeature: Sendable {
     public init() {}
     
+    @ObservableState
     public struct State {
         public init() {}
     }
     
-    public enum Action {}
+    @CasePathable
+    public enum Action {
+        case onTapClose
+        case onTapRegister
+    }
     
+    @Dependency(\.dismiss) var dismiss
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
-            return .none
+            switch action {
+            case .onTapClose:
+                return .run { _ in
+                    await dismiss()
+                }
+                
+            default:
+                return .none
+            }
         }
     }
 }

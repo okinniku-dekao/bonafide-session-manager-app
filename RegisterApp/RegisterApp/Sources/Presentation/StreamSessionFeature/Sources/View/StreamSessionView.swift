@@ -12,6 +12,7 @@ import Resources
 import Domain
 import Composition
 import AppSharedState
+import RegisterTrainingFeature
 
 public struct StreamSessionView: View {
     @Perception.Bindable private var store: StoreOf<StreamSessionFeature>
@@ -64,8 +65,15 @@ public struct StreamSessionView: View {
             .task {
                 store.send(.onAppear)
             }
-            .sheet(item: $store.scope(state: \.sessionDetail, action: \.sessionDetailAction)) {
+            .sheet(
+                item: $store.scope(state: \.sessionDetail, action: \.sessionDetailAction)
+            ) {
                 SessionDetailView(store: $0)
+            }
+            .fullScreenCover(
+                item: $store.scope(state: \.registerTrainingState, action: \.registerTrainingAction)
+            ) {
+                RegisterTrainingView(store: $0)
             }
         }
         .navigationBarTitle("")
