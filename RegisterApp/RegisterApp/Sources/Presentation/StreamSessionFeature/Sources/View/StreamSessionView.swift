@@ -23,10 +23,9 @@ public struct StreamSessionView: View {
     private let backgroundColor: UIColor = sharedColors.commonBackground()!
     public var body: some View {
         WithPerceptionTracking {
-            VStack {
-                Text(store.userName)
-                    .font(.title)
-                    .foregroundStyle(Color.black)
+            VStack(spacing: 0) {
+                header
+                    .padding(10)
                 switch store.sessions {
                 case .idle:
                     EmptyView()
