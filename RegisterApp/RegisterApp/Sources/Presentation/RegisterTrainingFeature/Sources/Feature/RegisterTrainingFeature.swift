@@ -10,10 +10,25 @@ public struct RegisterTrainingFeature: Sendable {
     
     @ObservableState
     public struct State {
-        public init(session: Session) {
+        private init(session: Session, trainingRecord: TrainingRecord) {
             self.session = session
+            self.trainingRecord = trainingRecord
         }
         let session: Session
+        var trainingRecord: TrainingRecord
+        
+        public static func initial(session: Session) -> Self {
+            @Dependency(\.uuid) var uuid
+            @Dependency(\.date) var date
+            return .init(
+                session: session,
+                trainingRecord: .newRecord(
+                    id: uuid(),
+                    recordAt: date(),
+                    menuName: session.name
+                )
+            )
+        }
     }
     
     @CasePathable

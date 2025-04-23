@@ -87,7 +87,7 @@ public struct StreamSessionFeature: Sendable {
                 return .none
                 
             case .sessionDetailAction(.presented(.delegate(.transitionToRegister(let session)))):
-                state.registerTrainingState = .init(session: session)
+                state.registerTrainingState = .initial(session: session)
                 return .none
                 
             default:

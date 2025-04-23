@@ -59,7 +59,7 @@ public struct RegisterTrainingView: View {
 #Preview {
     RegisterTrainingView(
         store: Store(
-            initialState: RegisterTrainingFeature.State(session: .preview()),
+            initialState: RegisterTrainingFeature.State.initial(session: .preview()),
             reducer: { RegisterTrainingFeature() }
         )
     )

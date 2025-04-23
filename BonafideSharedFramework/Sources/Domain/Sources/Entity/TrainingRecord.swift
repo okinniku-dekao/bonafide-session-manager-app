@@ -42,6 +42,25 @@ public struct TrainingRecord: Equatable, Identifiable, Sendable {
         self.totalWeight = totalWeight
         self.usedItems = usedItems
     }
+    
+    public static func newRecord(
+        id: UUID,
+        recordAt: Date,
+        menuName: String
+    ) -> TrainingRecord {
+        .init(
+            id: id.uuidString,
+            dateTime: recordAt,
+            durationInSeconds: nil,
+            menuName: menuName,
+            note: "",
+            reps: 0,
+            satisfaction: "",
+            sets: 0,
+            totalWeight: 0.0,
+            usedItems: []
+        )
+    }
 }
 
 public extension TrainingRecord {
