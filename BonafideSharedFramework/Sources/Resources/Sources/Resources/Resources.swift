@@ -11,7 +11,7 @@ public enum AnimationAsset {
     private static let bundle = Bundle.module
     
     public static func url(_ name: String) -> URL? {
-        guard let path = bundle.path(forResource: name, ofType: "webp", inDirectory: "gif") else {
+        guard let path = bundle.path(forResource: name, ofType: "gif", inDirectory: "gif") else {
             return nil
         }
         return URL(fileURLWithPath: path)
