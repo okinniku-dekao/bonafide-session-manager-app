@@ -2,6 +2,7 @@
 // https://docs.swift.org/swift-book
 
 import ComposableArchitecture
+import Domain
 
 @Reducer
 public struct RegisterTrainingFeature: Sendable {
@@ -9,7 +10,10 @@ public struct RegisterTrainingFeature: Sendable {
     
     @ObservableState
     public struct State {
-        public init() {}
+        public init(session: Session) {
+            self.session = session
+        }
+        let session: Session
     }
     
     @CasePathable
