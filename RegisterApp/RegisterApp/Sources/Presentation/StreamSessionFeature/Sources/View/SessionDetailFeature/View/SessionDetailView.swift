@@ -37,6 +37,7 @@ public struct SessionDetailView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .overlay(alignment: .bottom) {
                 Button {
+                    store.send(.onTapRegister)
                 } label: {
                     Text("登録する")
                 }

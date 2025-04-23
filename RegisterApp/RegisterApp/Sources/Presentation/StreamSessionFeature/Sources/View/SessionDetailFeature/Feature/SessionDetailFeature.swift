@@ -23,6 +23,12 @@ public struct SessionDetailFeature: Sendable {
     @CasePathable
     public enum Action {
         case onTapClose
+        case onTapRegister
+        case delegate(Delegate)
+        
+        public enum Delegate {
+            case transitionToRegister(Session)
+        }
     }
     
     @Dependency(\.dismiss) var dismiss
@@ -34,6 +40,15 @@ public struct SessionDetailFeature: Sendable {
                 return .run { _ in
                     await dismiss()
                 }
+            
+            case .onTapRegister:
+                return .concatenate(
+                    .run { _ in await dismiss() },
+                    .send(.delegate(.transitionToRegister(state.session)))
+                )
+                
+            default:
+                return .none
             }
         }
     }
