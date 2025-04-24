@@ -132,7 +132,8 @@ let package = Package(
             dependencies: [
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 "Domain",
-                "Resources"
+                "Resources",
+                "Composition"
             ],
             path: "Sources/PresentationHelper"
         )
