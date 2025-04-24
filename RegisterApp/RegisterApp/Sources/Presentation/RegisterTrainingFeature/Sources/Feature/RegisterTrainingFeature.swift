@@ -3,6 +3,8 @@
 
 import ComposableArchitecture
 import Domain
+import Composition
+import PresentationHelper
 
 @Reducer
 public struct RegisterTrainingFeature: Sendable {
@@ -16,31 +18,56 @@ public struct RegisterTrainingFeature: Sendable {
         }
         let session: Session
         var trainingRecord: TrainingRecord
-        
-        public static func initial(session: Session) -> Self {
-            @Dependency(\.uuid) var uuid
-            @Dependency(\.date) var date
-            return .init(
-                session: session,
-                trainingRecord: .newRecord(
-                    id: uuid(),
-                    recordAt: date(),
-                    menuName: session.name
-                )
-            )
+        var menu: LoadStatus<Menu> = .idle
+        var weights: LoadStatus<[Weight]> = .idle
+        var isLoading: Bool {
+            menu.isLoading || weights.isLoading
+        }
+        var error: DomainError? {
+            menu.error ?? weights.error ?? nil
         }
     }
     
     @CasePathable
     public enum Action {
+        case onAppear
         case onTapClose
         case onTapRegister
+        case fetchMenuDetailSuccess(Menu)
+        case fetchMenuDetailFailed(DomainError)
+        case fetchAllWeightSuccess([Weight])
+        case fetchAllWeightFailed(DomainError)
+        case retry
     }
     
     @Dependency(\.dismiss) var dismiss
+    @Dependency(\.menuUseCases) var menu
+    @Dependency(\.weightUseCases) var weight
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case .onAppear, .retry:
+                return .merge(
+                    fetchMenuDetail(state: &state),
+                    fetchAllWeight(state: &state)
+                )
+                
+            case .fetchMenuDetailSuccess(let menu):
+                state.menu = .loaded(menu)
+                return .none
+                
+            case .fetchAllWeightSuccess(let weights):
+                state.weights = .loaded(weights)
+                return .none
+                
+            case .fetchMenuDetailFailed(let error):
+                state.menu = .error(error)
+                return .none
+                
+            case .fetchAllWeightFailed(let error):
+                state.weights = .error(error)
+                return .none
+
             case .onTapClose:
                 return .run { _ in
                     await dismiss()
@@ -50,5 +77,41 @@ public struct RegisterTrainingFeature: Sendable {
                 return .none
             }
         }
+    }
+    
+    private func fetchMenuDetail(state: inout State) -> Effect<Action> {
+        state.menu = .loading
+        return .runDomainError { [menuName = state.session.name] send in
+            let menu = try await menu.fetchDetail(by: menuName)
+            await send(.fetchMenuDetailSuccess(menu))
+        } catch: { error, send in
+            await send(.fetchMenuDetailFailed(error))
+        }
+    }
+    
+    private func fetchAllWeight(state: inout State) -> Effect<Action> {
+        state.weights = .loading
+        return .runDomainError { send in
+            let weights = try await weight.fetchAll()
+            await send(.fetchAllWeightSuccess(weights))
+        } catch: { error, send in
+            await send(.fetchAllWeightFailed(error))
+        }
+
+    }
+}
+
+public extension RegisterTrainingFeature.State {
+    static func initial(session: Session) -> Self {
+        @Dependency(\.uuid) var uuid
+        @Dependency(\.date) var date
+        return .init(
+            session: session,
+            trainingRecord: .newRecord(
+                id: uuid(),
+                recordAt: date(),
+                menuName: session.name
+            )
+        )
     }
 }

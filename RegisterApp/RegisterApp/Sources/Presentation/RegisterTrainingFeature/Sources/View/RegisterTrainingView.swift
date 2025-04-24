@@ -23,6 +23,19 @@ public struct RegisterTrainingView: View {
             VStack(spacing: 0) {
                 header
                 Divider()
+                if store.isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    if let menu = store.menu.value {
+                        Text(menu.name)
+                    }
+                    if let weights = store.weights.value {
+                        ForEach(weights, id: \.self) { weight in
+                            Text(weight.name)
+                        }
+                    }
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .overlay(alignment: .bottom) {
@@ -35,7 +48,13 @@ public struct RegisterTrainingView: View {
                 .frame(height: 52)
                 .padding(.bottom, 10)
             }
+            .errorOverlay(error: store.error) {
+                store.send(.retry)
+            }
             .background(Color(uiColor: backgroundColor))
+            .task {
+                store.send(.onAppear)
+            }
         }
     }
     
