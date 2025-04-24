@@ -8,7 +8,7 @@
 import Domain
 
 public extension DomainError {
-    init(from error: DataStoreError) {
+    init(from error: DataSourceError) {
         switch error {
         case .notFound, .notSaved:
             self = .notFound

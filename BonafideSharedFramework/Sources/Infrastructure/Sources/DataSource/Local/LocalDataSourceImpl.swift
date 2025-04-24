@@ -15,7 +15,7 @@ public struct LocalDataSourceImpl: LocalDataSource {
         self.service = service
     }
     
-    public func saveDeviceId(_ deviceId: String) async throws(DataStoreError) {
+    public func saveDeviceId(_ deviceId: String) async throws(DataSourceError) {
         guard let deviceIdData = deviceId.data(using: .utf8) else {
             throw .faildConvertToData
         }
@@ -29,7 +29,7 @@ public struct LocalDataSourceImpl: LocalDataSource {
         }
     }
     
-    public func getDeviceId() async throws(DataStoreError) -> String {
+    public func getDeviceId() async throws(DataSourceError) -> String {
         guard let data = await KeychainManager.shared.load(
             service: service,
             key: KeychainKey.deviceId

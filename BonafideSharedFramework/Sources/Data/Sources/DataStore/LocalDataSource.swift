@@ -7,7 +7,7 @@
 
 public protocol LocalDataSource: Sendable {
     // MARK: - Keychain
-    func saveDeviceId(_ deviceId: String) async throws(DataStoreError)
-    func getDeviceId() async throws(DataStoreError) -> String
+    func saveDeviceId(_ deviceId: String) async throws(DataSourceError)
+    func getDeviceId() async throws(DataSourceError) -> String
 }
 

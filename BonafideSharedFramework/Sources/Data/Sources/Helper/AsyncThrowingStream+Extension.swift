@@ -19,7 +19,7 @@ extension AsyncThrowingStream where Element: Sendable {
                     }
                     continuation.finish()
                 } catch {
-                    continuation.finish(throwing: DomainError(from: error as! DataStoreError))
+                    continuation.finish(throwing: DomainError(from: error as! DataSourceError))
                 }
             }
         }

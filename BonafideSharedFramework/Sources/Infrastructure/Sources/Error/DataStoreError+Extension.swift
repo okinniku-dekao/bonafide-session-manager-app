@@ -1,5 +1,5 @@
 //
-//  DataStoreError+Extension.swift
+//  DataSourceError+Extension.swift
 //  Infrastructure
 //
 //  Created by 東　秀斗 on 2025/04/14.
@@ -8,7 +8,7 @@
 import Data
 import FirebaseFirestore
 
-extension DataStoreError {
+extension DataSourceError {
     public init(from error: Error) {
         guard let err = error as NSError?,
               err.domain == FirestoreErrorDomain,
