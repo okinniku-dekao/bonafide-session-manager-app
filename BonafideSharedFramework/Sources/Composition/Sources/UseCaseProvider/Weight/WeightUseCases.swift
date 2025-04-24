@@ -26,8 +26,8 @@ public extension DependencyValues {
 }
 
 extension WeightUseCases: DependencyKey {
-    private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
-    private static let weightRepositoryImpl: WeightRepository = WeightRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
+    private static let firebaseDataSourceImpl: FirebaseDataSource = FirebaseDataSourceImpl()
+    private static let weightRepositoryImpl: WeightRepository = WeightRepositoryImpl(firebaseDataSource: firebaseDataSourceImpl)
 
     public static var liveValue: WeightUseCases {
         Self(

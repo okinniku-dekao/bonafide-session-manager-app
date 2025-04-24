@@ -8,15 +8,15 @@
 import Domain
 
 public struct KeychainRepositoryImpl: KeychainRepository {
-    private let localDataStore: LocalDataStore
+    private let localDataSource: LocalDataSource
     
-    public init(localDataStore: LocalDataStore) {
-        self.localDataStore = localDataStore
+    public init(localDataSource: LocalDataSource) {
+        self.localDataSource = localDataSource
     }
     
     public func saveDeviceId(_ id: String) async throws(DomainError) {
         do {
-            try await localDataStore.saveDeviceId(id)
+            try await localDataSource.saveDeviceId(id)
         } catch {
             throw DomainError(from: error)
         }
@@ -24,7 +24,7 @@ public struct KeychainRepositoryImpl: KeychainRepository {
     
     public func loadDeviceId() async throws(DomainError) -> String {
         do {
-            return try await localDataStore.getDeviceId()
+            return try await localDataSource.getDeviceId()
         } catch {
             throw DomainError(from: error)
         }

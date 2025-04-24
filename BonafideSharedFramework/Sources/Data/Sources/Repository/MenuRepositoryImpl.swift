@@ -8,15 +8,15 @@
 import Domain
 
 public struct MenuRepositoryImpl: MenuRepository {
-    private let firebaseDataStore: FirebaseDataStore
+    private let firebaseDataSource: FirebaseDataSource
     
-    public init(firebaseDataStore: FirebaseDataStore) {
-        self.firebaseDataStore = firebaseDataStore
+    public init(firebaseDataSource: FirebaseDataSource) {
+        self.firebaseDataSource = firebaseDataSource
     }
     
     public func register(_ menu: Menu) async throws(DomainError) {
         do {
-            try await firebaseDataStore.registerMenu(MenuDTO(from: menu))
+            try await firebaseDataSource.registerMenu(MenuDTO(from: menu))
         } catch {
             throw DomainError(from: error)
         }
@@ -24,7 +24,7 @@ public struct MenuRepositoryImpl: MenuRepository {
     
     public func update(_ menu: Menu) async throws(DomainError) {
         do {
-            try await firebaseDataStore.updateMenu(MenuDTO(from: menu))
+            try await firebaseDataSource.updateMenu(MenuDTO(from: menu))
         } catch {
             throw DomainError(from: error)
         }
@@ -32,7 +32,7 @@ public struct MenuRepositoryImpl: MenuRepository {
     
     public func delete(_ menuId: String) async throws(DomainError) {
         do {
-            try await firebaseDataStore.deleteMenu(menuId: menuId)
+            try await firebaseDataSource.deleteMenu(menuId: menuId)
         } catch {
             throw DomainError(from: error)
         }
@@ -40,7 +40,7 @@ public struct MenuRepositoryImpl: MenuRepository {
     
     public func fetchAll() async throws(DomainError) -> [Menu] {
         do {
-            return try await firebaseDataStore.fetchAllMenu().map(\.toDomain)
+            return try await firebaseDataSource.fetchAllMenu().map(\.toDomain)
         } catch {
             throw DomainError(from: error)
         }

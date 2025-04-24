@@ -1,5 +1,5 @@
 //
-//  LocalDataStoreImpl.swift
+//  LocalDataSourceImpl.swift
 //  BonafideSharedFramework
 //
 //  Created by 東　秀斗 on 2025/04/16.
@@ -8,7 +8,7 @@
 import Data
 import Foundation
 
-public struct LocalDataStoreImpl: LocalDataStore {
+public struct LocalDataSourceImpl: LocalDataSource {
     private let service: String
     
     public init(service: String) {

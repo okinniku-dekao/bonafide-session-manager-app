@@ -8,15 +8,15 @@
 import Domain
 
 public struct TrainingRecordRepositoryImpl: TrainingRecordRepository {
-    private let firebaseDataStore: FirebaseDataStore
+    private let firebaseDataSource: FirebaseDataSource
     
-    public init(firebaseDataStore: FirebaseDataStore) {
-        self.firebaseDataStore = firebaseDataStore
+    public init(firebaseDataSource: FirebaseDataSource) {
+        self.firebaseDataSource = firebaseDataSource
     }
     
     public func register(userId: String, trainingRecord: TrainingRecord) async throws(DomainError) {
         do {
-            try await firebaseDataStore.registerTrainingRecord(
+            try await firebaseDataSource.registerTrainingRecord(
                 userId: userId,
                 trainingRecordDTO: TrainingRecordDTO(from: trainingRecord)
             )
@@ -27,7 +27,7 @@ public struct TrainingRecordRepositoryImpl: TrainingRecordRepository {
     
     public func delete(userId: String, trainingRecordId: String) async throws(DomainError) {
         do {
-            try await firebaseDataStore.deleteTrainingRecord(
+            try await firebaseDataSource.deleteTrainingRecord(
                 userId: userId,
                 trainingRecordId: trainingRecordId
             )
@@ -38,7 +38,7 @@ public struct TrainingRecordRepositoryImpl: TrainingRecordRepository {
     
     public func fetchAll(_ userId: String) async throws(DomainError) -> [TrainingRecord] {
         do {
-            return try await firebaseDataStore.fetchAllTrainingRecord(userId: userId)
+            return try await firebaseDataSource.fetchAllTrainingRecord(userId: userId)
                 .map(\.toDomain)
         } catch {
             throw DomainError(from: error)

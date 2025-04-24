@@ -8,15 +8,15 @@
 import Domain
 
 public struct WeightRepositoryImpl: WeightRepository {
-    private let firebaseDataStore: FirebaseDataStore
+    private let firebaseDataSource: FirebaseDataSource
     
-    public init(firebaseDataStore: FirebaseDataStore) {
-        self.firebaseDataStore = firebaseDataStore
+    public init(firebaseDataSource: FirebaseDataSource) {
+        self.firebaseDataSource = firebaseDataSource
     }
     
     public func register(_ weight: Weight) async throws(DomainError) {
         do {
-            try await firebaseDataStore.registerWeight(weightDTO: WeightDTO(from: weight))
+            try await firebaseDataSource.registerWeight(weightDTO: WeightDTO(from: weight))
         } catch {
             throw DomainError(from: error)
         }
@@ -24,7 +24,7 @@ public struct WeightRepositoryImpl: WeightRepository {
     
     public func delete(_ weightId: String) async throws(DomainError) {
         do {
-            try await firebaseDataStore.deleteWeight(weightId: weightId)
+            try await firebaseDataSource.deleteWeight(weightId: weightId)
         } catch {
             throw DomainError(from: error)
         }
@@ -32,7 +32,7 @@ public struct WeightRepositoryImpl: WeightRepository {
     
     public func update(_ weight: Weight) async throws(DomainError) {
         do {
-            try await firebaseDataStore.updateWeight(weightDTO: WeightDTO(from: weight))
+            try await firebaseDataSource.updateWeight(weightDTO: WeightDTO(from: weight))
         } catch {
             throw DomainError(from: error)
         }
@@ -40,7 +40,7 @@ public struct WeightRepositoryImpl: WeightRepository {
     
     public func fetchAll() async throws(DomainError) -> [Weight] {
         do {
-            return try await firebaseDataStore.fetchAllWeight()
+            return try await firebaseDataSource.fetchAllWeight()
                 .map(\.toDomain)
         } catch {
             throw DomainError(from: error)

@@ -29,14 +29,14 @@ public extension DependencyValues {
 }
 
 extension DeviceUseCases: DependencyKey {
-    private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
+    private static let firebaseDataSourceImpl: FirebaseDataSource = FirebaseDataSourceImpl()
     nonisolated(unsafe) public static var serviceName: String = ""
-    private static let localDataStoreImpl: LocalDataStore = {
+    private static let localDataSourceImpl: LocalDataSource = {
         guard !serviceName.isEmpty else { fatalError("AppDelegate内でserviceNameを設定してください") }
-        return LocalDataStoreImpl(service: serviceName)
+        return LocalDataSourceImpl(service: serviceName)
     }()
-    private static let deviceRepositoryImpl: DeviceRepository = DeviceRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
-    private static let keychainRepositoryImpl: KeychainRepository = KeychainRepositoryImpl(localDataStore: localDataStoreImpl)
+    private static let deviceRepositoryImpl: DeviceRepository = DeviceRepositoryImpl(firebaseDataSource: firebaseDataSourceImpl)
+    private static let keychainRepositoryImpl: KeychainRepository = KeychainRepositoryImpl(localDataSource: localDataSourceImpl)
 
     public static var liveValue: DeviceUseCases {
         Self(

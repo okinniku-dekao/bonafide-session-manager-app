@@ -8,15 +8,15 @@
 import Domain
 
 public struct MenuNoteRepositoryImpl: MenuNoteRepository {
-    private let firebaseDataStore: FirebaseDataStore
+    private let firebaseDataSource: FirebaseDataSource
     
-    public init(firebaseDataStore: FirebaseDataStore) {
-        self.firebaseDataStore = firebaseDataStore
+    public init(firebaseDataSource: FirebaseDataSource) {
+        self.firebaseDataSource = firebaseDataSource
     }
     
     public func register(userId: String, menuNote: MenuNote) async throws(DomainError) {
         do {
-            try await firebaseDataStore.registerMenuNote(userId: userId, menuNoteDTO: MenuNoteDTO(from: menuNote))
+            try await firebaseDataSource.registerMenuNote(userId: userId, menuNoteDTO: MenuNoteDTO(from: menuNote))
         } catch {
             throw DomainError(from: error)
         }
@@ -24,7 +24,7 @@ public struct MenuNoteRepositoryImpl: MenuNoteRepository {
     
     public func delete(userId: String, menuNoteId: String) async throws(DomainError) {
         do {
-            try await firebaseDataStore.deleteMenuNote(userId: userId, menuNoteId: menuNoteId)
+            try await firebaseDataSource.deleteMenuNote(userId: userId, menuNoteId: menuNoteId)
         } catch {
             throw DomainError(from: error)
         }
@@ -32,7 +32,7 @@ public struct MenuNoteRepositoryImpl: MenuNoteRepository {
     
     public func update(userId: String, menuNote: MenuNote) async throws(DomainError) {
         do {
-            try await firebaseDataStore.updateMenuNote(userId: userId, menuNoteDTO: MenuNoteDTO(from: menuNote))
+            try await firebaseDataSource.updateMenuNote(userId: userId, menuNoteDTO: MenuNoteDTO(from: menuNote))
         } catch {
             throw DomainError(from: error)
         }
@@ -40,7 +40,7 @@ public struct MenuNoteRepositoryImpl: MenuNoteRepository {
     
     public func fetchAll(userId: String) async throws(DomainError) -> [MenuNote] {
         do {
-            return try await firebaseDataStore.fetchAllMenuNote(userId: userId).map(\.toDomain)
+            return try await firebaseDataSource.fetchAllMenuNote(userId: userId).map(\.toDomain)
         } catch {
             throw DomainError(from: error)
         }

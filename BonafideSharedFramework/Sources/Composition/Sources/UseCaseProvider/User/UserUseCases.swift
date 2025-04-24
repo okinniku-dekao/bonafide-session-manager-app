@@ -27,8 +27,8 @@ public extension DependencyValues {
 }
 
 extension UserUseCases: DependencyKey {
-    private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
-    private static let userRepositoryImpl: UserRepository = UserRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
+    private static let firebaseDataSourceImpl: FirebaseDataSource = FirebaseDataSourceImpl()
+    private static let userRepositoryImpl: UserRepository = UserRepositoryImpl(firebaseDataSource: firebaseDataSourceImpl)
 
     public static var liveValue: UserUseCases {
         Self(

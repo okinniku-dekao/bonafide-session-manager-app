@@ -26,8 +26,8 @@ public extension DependencyValues {
 }
 
 extension MenuNoteUseCases: DependencyKey {
-    private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
-    private static let menuNoteRepositoryImpl: MenuNoteRepository = MenuNoteRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
+    private static let firebaseDataSourceImpl: FirebaseDataSource = FirebaseDataSourceImpl()
+    private static let menuNoteRepositoryImpl: MenuNoteRepository = MenuNoteRepositoryImpl(firebaseDataSource: firebaseDataSourceImpl)
 
     public static var liveValue: MenuNoteUseCases {
         Self(

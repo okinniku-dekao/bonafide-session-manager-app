@@ -1,5 +1,5 @@
 //
-//  FirebaseDataStoreImp.swift
+//  firebaseDataSourceImp.swift
 //  Infrastructure
 //
 //  Created by 東　秀斗 on 2025/04/14.
@@ -8,7 +8,7 @@
 import Data
 @preconcurrency import FirebaseFirestore
 
-public actor FirebaseDataStoreImpl: FirebaseDataStore {
+public actor FirebaseDataSourceImpl: FirebaseDataSource {
     typealias Key = FirebaseCollectionKey
     private let db = Firestore.firestore()
     
@@ -211,7 +211,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     }
 }
 
-extension FirebaseDataStoreImpl {
+extension FirebaseDataSourceImpl {
     private func handle<T: Sendable>(
         _ operation: () async throws -> T
     ) async throws(DataStoreError) -> T {

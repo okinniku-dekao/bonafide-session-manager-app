@@ -25,8 +25,8 @@ public extension DependencyValues {
 }
 
 extension TrainingRecordUseCases: DependencyKey {
-    private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
-    private static let trainingRecordRepositoryImpl: TrainingRecordRepository = TrainingRecordRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
+    private static let firebaseDataSourceImpl: FirebaseDataSource = FirebaseDataSourceImpl()
+    private static let trainingRecordRepositoryImpl: TrainingRecordRepository = TrainingRecordRepositoryImpl(firebaseDataSource: firebaseDataSourceImpl)
 
     public static var liveValue: TrainingRecordUseCases {
         Self(

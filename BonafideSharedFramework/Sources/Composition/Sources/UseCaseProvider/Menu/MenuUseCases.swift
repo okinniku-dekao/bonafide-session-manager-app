@@ -27,8 +27,8 @@ public extension DependencyValues {
 }
 
 extension MenuUseCases: DependencyKey {
-    private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
-    private static let menuRepositoryImpl: MenuRepository = MenuRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
+    private static let firebaseDataSourceImpl: FirebaseDataSource = FirebaseDataSourceImpl()
+    private static let menuRepositoryImpl: MenuRepository = MenuRepositoryImpl(firebaseDataSource: firebaseDataSourceImpl)
 
     public static var liveValue: MenuUseCases {
         Self(

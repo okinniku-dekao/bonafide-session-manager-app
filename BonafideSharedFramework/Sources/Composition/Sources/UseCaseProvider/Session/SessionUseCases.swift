@@ -26,8 +26,8 @@ public extension DependencyValues {
 }
 
 extension SessionUseCases: DependencyKey {
-    private static let firebaseDataStoreImpl: FirebaseDataStore = FirebaseDataStoreImpl()
-    private static let sessionRepositoryImpl: SessionRepository = SessionRepositoryImpl(firebaseDataStore: firebaseDataStoreImpl)
+    private static let firebaseDataSourceImpl: FirebaseDataSource = FirebaseDataSourceImpl()
+    private static let sessionRepositoryImpl: SessionRepository = SessionRepositoryImpl(firebaseDataSource: firebaseDataSourceImpl)
 
     public static var liveValue: SessionUseCases {
         Self(
