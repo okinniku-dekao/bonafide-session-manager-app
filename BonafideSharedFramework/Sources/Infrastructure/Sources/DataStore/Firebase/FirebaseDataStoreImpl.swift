@@ -39,7 +39,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchAllDevice() async throws(DataStoreError) -> [DeviceDTO] {
         try await handle {
-            try await db.collection(Key.devices).getDocuments().documents.map {
+            try await db.collection(Key.devices).getDocuments(source: .server).documents.map {
                 try $0.data(as: DeviceDTO.self)
             }
         }
@@ -47,7 +47,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchDeviceDetail(_ deviceId: String) async throws(DataStoreError) -> DeviceDTO {
         try await handle {
-            try await db.collection(Key.devices).document(deviceId).getDocument().data(as: DeviceDTO.self)
+            try await db.collection(Key.devices).document(deviceId).getDocument(source: .server).data(as: DeviceDTO.self)
         }
     }
     
@@ -82,7 +82,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchAllMenuNote(userId: String) async throws(DataStoreError) -> [MenuNoteDTO] {
         try await handle {
-            try await db.collection(Key.users).document(userId).getDocument().data(as: UserDTO.self).menus
+            try await db.collection(Key.users).document(userId).getDocument(source: .server).data(as: UserDTO.self).menus
         }
     }
     
@@ -107,7 +107,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchAllMenu() async throws(DataStoreError) -> [MenuDTO] {
         try await handle {
-            try await db.collection(Key.menus).getDocuments().documents.map { try $0.data(as: MenuDTO.self) }
+            try await db.collection(Key.menus).getDocuments(source: .server).documents.map { try $0.data(as: MenuDTO.self) }
         }
     }
     
@@ -128,7 +128,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchAllSession(userId: String) async throws(DataStoreError) -> [SessionDTO] {
         try await handle {
-            try await db.collection(Key.users).document(userId).getDocument().data(as: UserDTO.self).sessions
+            try await db.collection(Key.users).document(userId).getDocument(source: .server).data(as: UserDTO.self).sessions
         }
     }
     
@@ -156,7 +156,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchAllTrainingRecord(userId: String) async throws(DataStoreError) -> [TrainingRecordDTO] {
         try await handle {
-            try await db.collection(Key.users).document(userId).getDocument().data(as: UserDTO.self).trainingRecords
+            try await db.collection(Key.users).document(userId).getDocument(source: .server).data(as: UserDTO.self).trainingRecords
         }
     }
     
@@ -181,7 +181,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchAllUser() async throws(DataStoreError) -> [UserDTO] {
         try await handle {
-            try await db.collection(Key.users).getDocuments().documents.map { try $0.data(as: UserDTO.self) }
+            try await db.collection(Key.users).getDocuments(source: .server).documents.map { try $0.data(as: UserDTO.self) }
         }
     }
     
@@ -206,7 +206,7 @@ public actor FirebaseDataStoreImpl: FirebaseDataStore {
     
     public func fetchAllWeight() async throws(DataStoreError) -> [WeightDTO] {
         try await handle {
-            try await db.collection(Key.weights).getDocuments().documents.map { try $0.data(as: WeightDTO.self) }
+            try await db.collection(Key.weights).getDocuments(source: .server).documents.map { try $0.data(as: WeightDTO.self) }
         }
     }
 }
