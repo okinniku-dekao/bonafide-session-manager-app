@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Domain
+import Composition
 
 public extension Effect {
     static func stream<T: Equatable & Sendable>(
@@ -36,5 +37,24 @@ public extension Effect {
             }
             await handler(domainError, send)
         }
+    }
+    
+    static func lifecycleObserver(
+        inBackground backgroundAction: @escaping @Sendable  (_ send: Send<Action>) async -> Void,
+        inForeground foregroundAction: @escaping @Sendable  (_ send: Send<Action>) async -> Void,
+    ) -> Effect {
+        @Dependency(\.appLifecycle) var appLifecycle
+        return .merge(
+            .run { send in
+                for await _ in appLifecycle.background() {
+                    await backgroundAction(send)
+                }
+            },
+            .run { send in
+                for await _ in appLifecycle.foreground() {
+                    await foregroundAction(send)
+                }
+            }
+        )
     }
 }

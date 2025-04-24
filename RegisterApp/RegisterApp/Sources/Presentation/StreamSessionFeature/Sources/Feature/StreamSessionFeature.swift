@@ -26,6 +26,13 @@ public struct StreamSessionFeature: Sendable {
             }
             return user.name
         }
+        
+        var userId: String {
+            guard let userId = appSharedState.connectedUser?.id else {
+                fatalError("userIdが未設定で呼ばれることはない")
+            }
+            return userId
+        }
     }
     
     public enum Action {
@@ -36,6 +43,8 @@ public struct StreamSessionFeature: Sendable {
         case onTapSessionRow(Session)
         case sessionDetailAction(PresentationAction<SessionDetailFeature.Action>)
         case registerTrainingAction(PresentationAction<RegisterTrainingFeature.Action>)
+        case inBackground
+        case inForeground
 
         public enum Alert {
             case ok
@@ -53,17 +62,14 @@ public struct StreamSessionFeature: Sendable {
             switch action {
             case .onAppear:
                 state.sessions = .loading
-                guard let userId = state.appSharedState.connectedUser?.id else {
-                    preconditionFailure()
-                }
-                return .stream {
-                    await session.stream(userId: userId)
-                } map: {
-                    .sessionsReceived($0)
-                } catch: { error, send in
-                    await send(.streamSessionFailed(error))
-                }
-                .cancellable(id: CancelId.stream)
+                return .merge(
+                    .lifecycleObserver { send in
+                        await send(.inBackground)
+                    } inForeground: { send in
+                        await send(.inForeground)
+                    },
+                    streamSession(of: state.userId)
+                )
                 
             case .sessionsReceived(let sessions):
                 state.sessions = .loaded(sessions)
@@ -90,6 +96,12 @@ public struct StreamSessionFeature: Sendable {
                 state.registerTrainingState = .initial(session: session)
                 return .none
                 
+            case .inBackground:
+                return .cancel(id: CancelId.stream)
+                
+            case .inForeground:
+                return streamSession(of: state.userId)
+                
             default:
                 return .none
             }
@@ -101,5 +113,16 @@ public struct StreamSessionFeature: Sendable {
         .ifLet(\.$registerTrainingState, action: \.registerTrainingAction) {
             RegisterTrainingFeature()
         }
+    }
+    
+    private func streamSession(of userId: String) -> Effect<Action> {
+        .stream {
+            await session.stream(userId: userId)
+        } map: {
+            .sessionsReceived($0)
+        } catch: { error, send in
+            await send(.streamSessionFailed(error))
+        }
+        .cancellable(id: CancelId.stream)
     }
 }
