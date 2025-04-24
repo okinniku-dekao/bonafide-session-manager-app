@@ -31,9 +31,7 @@ public struct RegisterTrainingView: View {
                         Text(menu.name)
                     }
                     if let weights = store.weights.value {
-                        ForEach(weights, id: \.self) { weight in
-                            Text(weight.name)
-                        }
+                        WeightGrid(weights: weights)
                     }
                 }
             }
