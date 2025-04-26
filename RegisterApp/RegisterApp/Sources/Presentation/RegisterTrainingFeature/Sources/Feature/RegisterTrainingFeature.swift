@@ -35,6 +35,9 @@ public struct RegisterTrainingFeature: Sendable {
         var isLoading: Bool {
             menu.isLoading || weights.isLoading
         }
+        var isLoaded: Bool {
+            menu.isLoaded && weights.isLoaded
+        }
         var error: DomainError? {
             menu.error ?? weights.error ?? nil
         }
