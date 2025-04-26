@@ -26,12 +26,13 @@ public struct RegisterTrainingView: View {
                 if store.isLoading {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    if let menu = store.menu.value {
-                        Text(menu.name)
-                    }
-                    if let weights = store.weights.value {
-                        WeightGrid(weights: weights)
+                } else if store.isLoaded {
+                    switch store.menuValue.category.recordType {
+                    case .weightBase:
+                        WeightInputView(store: store)
+                        
+                    case .timeBase:
+                        TimeInputView(store: store)
                     }
                 }
             }
