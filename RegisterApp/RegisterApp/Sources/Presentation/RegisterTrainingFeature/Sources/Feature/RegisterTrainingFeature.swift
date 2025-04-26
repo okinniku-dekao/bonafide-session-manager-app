@@ -112,6 +112,30 @@ public struct RegisterTrainingFeature: Sendable {
                     await dismiss()
                 }
                 
+            case .onTapTimeIncrement(let time):
+                state.trainingRecord.incrementTimeDuration(time: time)
+                return .none
+                
+            case .onTapTimeDecrement(let time):
+                state.trainingRecord.decrementTimeDuration(time: time)
+                return .none
+                
+            case .incrementSets:
+                state.trainingRecord.incrementSets()
+                return .none
+                
+            case .decrementSets:
+                state.trainingRecord.decrementSets()
+                return .none
+                
+            case .incrementReps:
+                state.trainingRecord.incrementReps()
+                return .none
+                
+            case .decrementReps:
+                state.trainingRecord.decrementReps()
+                return .none
+                
             default:
                 return .none
             }
