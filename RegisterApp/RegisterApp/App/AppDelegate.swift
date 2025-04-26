@@ -23,6 +23,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         setupNavigationBarAppearance()
         setupTabBarAppearance()
         setupSDWebImageWebPDecoder()
+        setupSegmentedControll()
         DeviceUseCases.serviceName = Bundle.main.bundleIdentifier ?? "default.bundle.identifier"
         #if DEBUG
         // デバッグ用でKeychainに保存した端末IDを削除する
@@ -51,6 +52,12 @@ extension AppDelegate {
         appearance.backgroundColor = .white
         UITabBar.appearance().scrollEdgeAppearance = appearance
         UITabBar.appearance().standardAppearance = appearance
+    }
+    
+    private func setupSegmentedControll() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .white
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
     }
     
     private func setupSDWebImageWebPDecoder() {
