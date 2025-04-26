@@ -26,6 +26,33 @@ public struct RegisterTrainingFeature: Sendable {
         var error: DomainError? {
             menu.error ?? weights.error ?? nil
         }
+        var weightSelection: WeightInputMode = .select
+        var timeSelection: TimeInputMode = .timeSelect
+    }
+    
+    enum WeightInputMode: String, Equatable, CaseIterable {
+        case select = "プレート選択"
+        case manual = "手動入力"
+    }
+    
+    enum TimeInputMode: String, Equatable, CaseIterable {
+        case timeSelect = "時間選択"
+        case setAndReps = "回数入力"
+    }
+    
+    enum TimeMode: String, CaseIterable {
+        case tenSeconds = "10秒"
+        case oneMinute = "1分"
+        
+        var value: Int {
+            switch self {
+            case .tenSeconds:
+                return 10
+                
+            case .oneMinute:
+                return 60
+            }
+        }
     }
     
     @CasePathable
