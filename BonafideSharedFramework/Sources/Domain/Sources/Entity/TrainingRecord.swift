@@ -67,6 +67,45 @@ public extension TrainingRecord {
     mutating func updateTotalWeight(value: Double) {
         self.totalWeight = value
     }
+    
+    mutating func incrementTimeDuration(time: Int) {
+        if var durationInSeconds {
+            durationInSeconds += time
+            self.durationInSeconds = durationInSeconds
+        } else {
+            self.durationInSeconds = time
+        }
+    }
+    
+    mutating func decrementTimeDuration(time: Int) {
+        guard var durationInSeconds else { return }
+        durationInSeconds -= time
+        if durationInSeconds > 0 {
+            self.durationInSeconds = durationInSeconds
+        } else {
+            self.durationInSeconds = nil
+        }
+    }
+    
+    mutating func incrementSets() {
+        self.sets += 1
+    }
+    
+    mutating func decrementSets() {
+        if self.sets > 0 {
+            self.sets -= 1
+        }
+    }
+    
+    mutating func incrementReps() {
+        self.reps += 1
+    }
+    
+    mutating func decrementReps() {
+        if self.reps > 0 {
+            self.reps -= 1
+        }
+    }
 
     func validation(recodType: RecordType) throws(DomainError) {
         switch recodType {
