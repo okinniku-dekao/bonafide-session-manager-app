@@ -54,7 +54,7 @@ public struct TrainingRecord: Equatable, Identifiable, Sendable {
             durationInSeconds: nil,
             menuName: menuName,
             note: "",
-            reps: 0,
+            reps: 10,
             satisfaction: "",
             sets: 0,
             totalWeight: 0.0,
