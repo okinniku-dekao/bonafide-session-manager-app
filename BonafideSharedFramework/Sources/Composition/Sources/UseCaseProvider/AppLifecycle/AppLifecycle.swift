@@ -5,7 +5,7 @@
 //  Created by 東　秀斗 on 2025/04/24.
 //
 
-import ComposableArchitecture
+import Dependencies
 @preconcurrency import UIKit
 
 public struct AppLifecycle: Sendable {
