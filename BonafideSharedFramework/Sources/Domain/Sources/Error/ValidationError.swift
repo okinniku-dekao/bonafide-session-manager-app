@@ -14,4 +14,5 @@ public enum ValidationError: Equatable, Error {
     case invalidSatisfaction
     case invalidWeightValue
     case invalidDurationValue
+    case invalidSetsAndReps
 }

@@ -110,8 +110,11 @@ public extension TrainingRecord {
     func validation(recodType: RecordType) throws(DomainError) {
         switch recodType {
         case .timeBase:
-            guard let durationInSeconds, durationInSeconds > 0 else {
+            if let durationInSeconds, durationInSeconds == 0 {
                 throw DomainError.validation(.invalidDurationValue)
+            }
+            if durationInSeconds == nil && (reps == 0 || sets == 0) {
+                throw DomainError.validation(.invalidSetsAndReps)
             }
         case .weightBase:
             guard totalWeight > 0, reps > 0, sets > 0 else {
