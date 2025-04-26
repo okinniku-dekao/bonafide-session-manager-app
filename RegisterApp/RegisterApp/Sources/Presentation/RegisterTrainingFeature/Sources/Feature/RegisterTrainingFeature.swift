@@ -19,7 +19,19 @@ public struct RegisterTrainingFeature: Sendable {
         let session: Session
         var trainingRecord: TrainingRecord
         var menu: LoadStatus<Menu> = .idle
+        var menuValue: Menu {
+            guard let menu = menu.value else {
+                preconditionFailure("値がセットされてから読み込んでください")
+            }
+            return menu
+        }
         var weights: LoadStatus<[Weight]> = .idle
+        var weightsValue: [Weight] {
+            guard let weights = weights.value else {
+                preconditionFailure("値がセットされてから読み込んでください")
+            }
+            return weights
+        }
         var isLoading: Bool {
             menu.isLoading || weights.isLoading
         }
