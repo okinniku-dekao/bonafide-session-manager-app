@@ -68,7 +68,8 @@ public struct RegisterTrainingFeature: Sendable {
     }
     
     @CasePathable
-    public enum Action {
+    public enum Action: BindableAction {
+        case binding(BindingAction<State>)
         case onAppear
         case onTapClose
         case onTapRegister
@@ -76,6 +77,12 @@ public struct RegisterTrainingFeature: Sendable {
         case fetchMenuDetailFailed(DomainError)
         case fetchAllWeightSuccess([Weight])
         case fetchAllWeightFailed(DomainError)
+        case onTapTimeIncrement(Int)
+        case onTapTimeDecrement(Int)
+        case incrementSets
+        case decrementSets
+        case incrementReps
+        case decrementReps
         case retry
     }
     
@@ -83,6 +90,7 @@ public struct RegisterTrainingFeature: Sendable {
     @Dependency(\.menuUseCases) var menu
     @Dependency(\.weightUseCases) var weight
     public var body: some ReducerOf<Self> {
+        BindingReducer()
         Reduce { state, action in
             switch action {
             case .onAppear, .retry:
