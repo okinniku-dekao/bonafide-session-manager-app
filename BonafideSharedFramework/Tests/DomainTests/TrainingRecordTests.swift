@@ -84,7 +84,7 @@ struct TrainingRecordTests {
             usedItems: []
         )
         
-        #expect(throws: DomainError.validation(.invalidDurationValue)) {
+        #expect(throws: DomainError.validation(.invalidSetsAndReps)) {
             try record.validation(recodType: .timeBase)
         }
     }
@@ -121,6 +121,24 @@ struct TrainingRecordTests {
         )
         
         #expect(throws: DomainError.validation(.invalidSatisfaction)) {
+            try record.validation(recodType: .timeBase)
+        }
+    }
+    
+    @Test("validation: timeBaseで時間がnil, repsが0")
+    func testValidationTimeBaseTimeIsNilAndRepsIsZero() throws {
+        let record = TrainingRecord(
+            durationInSeconds: nil,
+            menuName: "テスト",
+            note: "",
+            reps: 0,
+            satisfaction: "",
+            sets: 10,
+            totalWeight: 0,
+            usedItems: []
+        )
+        
+        #expect(throws: DomainError.validation(.invalidSetsAndReps)) {
             try record.validation(recodType: .timeBase)
         }
     }

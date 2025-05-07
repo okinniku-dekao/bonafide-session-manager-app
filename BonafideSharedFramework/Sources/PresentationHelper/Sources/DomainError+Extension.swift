@@ -89,6 +89,8 @@ public extension Domain.ValidationError {
             return l10n.errorValidationInvalidWeightValueTitle()
         case .invalidDurationValue:
             return l10n.errorValidationInvalidDurationValueTitle()
+        case .invalidSetsAndReps:
+            return ""
         }
     }
     
@@ -108,6 +110,8 @@ public extension Domain.ValidationError {
             return l10n.errorValidationInvalidWeightValueMessage()
         case .invalidDurationValue:
             return l10n.errorValidationInvalidDurationValueMessage()
+        case .invalidSetsAndReps:
+            return ""
         }
     }
 }
