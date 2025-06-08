@@ -27,13 +27,7 @@ public struct RegisterTrainingView: View {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else if store.isLoaded {
-                    switch store.menuValue.category.recordType {
-                    case .weightBase:
-                        WeightInputView(store: store)
-                        
-                    case .timeBase:
-                        TimeInputView(store: store)
-                    }
+                    contentView
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -54,11 +48,24 @@ public struct RegisterTrainingView: View {
             .task {
                 store.send(.onAppear)
             }
+            .hideKeyboardOnTap()
+        }
+    }
+    
+    private var contentView: some View {
+        VStack {
+            switch store.menuValue.category.recordType {
+            case .weightBase:
+                WeightInputView(store: store)
+                
+            case .timeBase:
+                TimeInputView(store: store)
+            }
         }
     }
     
     private var header: some View {
-        Text("トレーニング登録")
+        Text(store.session.name)
             .foregroundStyle(Color.black)
             .frame(maxWidth: .infinity)
             .frame(height: 50)

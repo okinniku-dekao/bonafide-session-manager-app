@@ -25,7 +25,14 @@ struct WeightInputView: View {
             }
             .pickerStyle(.segmented)
             .padding()
-            WeightGrid(weights: store.weightsValue)
+            switch store.weightSelection {
+            case .select:
+                WeightGrid(weights: store.weightsValue)
+                
+            case .manual:
+                CustomWeightInputView(weightText: $store.customWeight)
+                SetAndRepsInputView(store: store)
+            }
         }
     }
 }

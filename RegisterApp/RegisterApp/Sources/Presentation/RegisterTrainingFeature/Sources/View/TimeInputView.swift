@@ -34,7 +34,6 @@ struct TimeInputView: View {
                     
                 case .setAndReps:
                     SetAndRepsInputView(store: store)
-
                 }
             }
         }

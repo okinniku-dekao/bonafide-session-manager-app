@@ -96,4 +96,22 @@ public struct AppRootFeature: Sendable {
         }
         .ifLet(\.$destination, action: \.destination)
     }
+    
+    private func test() async throws {
+        @Dependency(\.menuUseCases) var menu
+        @Dependency(\.sessionUseCases) var session
+        try await menu.register(.init(name: "インクラインダンベルプレス", number: 401, path: "401_Incline_Dumbbell_Press.gif"))
+        try await session.register(
+            userId: "560e50e2-23b8-41ac-90d0-830a2c69a9dc",
+            sessions: [
+                .init(
+                    id: "03B8DFDA-EF49-4E2D-BCA7-741F1CF8B157",
+                    name: "インクラインダンベルプレス",
+                    note: "",
+                    number: 401,
+                    path: "401_Incline_Dumbbell_Press.gif"
+                )
+            ]
+        )
+    }
 }
